@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunklap_trinh_huong_doi_tuong=self.webpackChunklap_trinh_huong_doi_tuong||[]).push([["668"],{6569(e,r,n){n.r(r),n.d(r,{default:()=>c});var u=n(4848);n(6540);var s=n(4164),a=n(4308),t=n(8287),o=n(2831),h=n(1085);function c(e){return(0,u.jsx)(a.e3,{className:(0,s.A)(t.G.wrapper.docsPages),children:(0,u.jsx)(h.A,{children:(0,o.v)(e.route.routes)})})}}}]);

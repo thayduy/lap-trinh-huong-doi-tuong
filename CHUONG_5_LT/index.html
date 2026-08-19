@@ -1,0 +1,733 @@
+<!doctype html><html lang=vi dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-CHUONG_5_LT" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.2"><title data-rh=true>CHƯƠNG 5: XỬ LÝ NGOẠI LỆ (EXCEPTIONS) & KIỂM THỬ (TESTING) | Lập trình Hướng đối tượng</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://thayduy.github.io/lap-trinh-huong-doi-tuong/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://thayduy.github.io/lap-trinh-huong-doi-tuong/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_5_LT /><meta data-rh=true property=og:locale content=vi /><meta data-rh=true name=docusaurus_locale content=vi /><meta data-rh=true name=docsearch:language content=vi /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="CHƯƠNG 5: XỬ LÝ NGOẠI LỆ (EXCEPTIONS) & KIỂM THỬ (TESTING) | Lập trình Hướng đối tượng"/><meta data-rh=true name=description content="📚 MỤC TIÊU HỌC TẬP"/><meta data-rh=true property=og:description content="📚 MỤC TIÊU HỌC TẬP"/><link data-rh=true rel=icon href=/lap-trinh-huong-doi-tuong/img/favicon.ico /><link data-rh=true rel=canonical href=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_5_LT /><link data-rh=true rel=alternate href=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_5_LT hreflang=vi /><link data-rh=true rel=alternate href=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_5_LT hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_5_LT","name":"CHƯƠNG 5: XỬ LÝ NGOẠI LỆ (EXCEPTIONS) & KIỂM THỬ (TESTING)","position":1}]}</script><link rel=stylesheet href=/lap-trinh-huong-doi-tuong/assets/css/styles.96ad39d9.css /><script src=/lap-trinh-huong-doi-tuong/assets/js/runtime~main.4596e5db.js defer></script><script src=/lap-trinh-huong-doi-tuong/assets/js/main.87eabe26.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-509")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/lap-trinh-huong-doi-tuong/img/logo.svg /><div role=region aria-label="Chuyển tới nội dung chính"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Chuyển tới nội dung chính</a></div><nav aria-label="Thanh điều hướng" class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Đóng - mở thanh điều hướng" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/lap-trinh-huong-doi-tuong/><div class=navbar__logo><img src=/lap-trinh-huong-doi-tuong/img/logo.svg alt=Logo class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/lap-trinh-huong-doi-tuong/img/logo.svg alt=Logo class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">LTHĐT</b></a><a aria-current=page class="navbar__item navbar__link navbar__link--active" href=/lap-trinh-huong-doi-tuong/CHUONG_1_LT>Lý thuyết</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/thayduy/lap-trinh-huong-doi-tuong target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Chuyển đổi chế độ sáng và tối (hiện tại là system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Trở lại đầu trang" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Thanh điều hướng tài liệu" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_1_LT><span class=linkLabel_WmDU>CHƯƠNG 1: TƯ DUY HƯỚNG ĐỐI TƯỢNG & THIẾT LẬP MÔI TRƯỜNG CHUYÊN NGHIỆP</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_2_LT><span class=linkLabel_WmDU>CHƯƠNG 2: LỚP (CLASS) & ĐỐI TƯỢNG (OBJECT) – MODERN JAVA APPROACH</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_3_LT><span class=linkLabel_WmDU>CHƯƠNG 3: KẾ THỪA & ĐA HÌNH – TRÁI TIM CỦA OOP</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_4_LT><span class=linkLabel_WmDU>CHƯƠNG 4: NGUYÊN LÝ THIẾT KẾ & DESIGN PATTERNS CƠ BẢN</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current=page href=/lap-trinh-huong-doi-tuong/CHUONG_5_LT><span class=linkLabel_WmDU>CHƯƠNG 5: XỬ LÝ NGOẠI LỆ (EXCEPTIONS) & KIỂM THỬ (TESTING)</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_6_LT><span class=linkLabel_WmDU>CHƯƠNG 6: COLLECTIONS & STREAM API – HIỆN ĐẠI HÓA JAVA</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/><span class=linkLabel_WmDU>📘 GIÁO TRÌNH LÝ THUYẾT – LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG (JAVA)</span></a></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Liên kết điều hướng"><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Trang chủ" class=breadcrumbs__link href=/lap-trinh-huong-doi-tuong/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>CHƯƠNG 5: XỬ LÝ NGOẠI LỆ (EXCEPTIONS) & KIỂM THỬ (TESTING)</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">Trên trang này</button></div><div class="theme-doc-markdown markdown"><header><h1>CHƯƠNG 5: XỬ LÝ NGOẠI LỆ (EXCEPTIONS) & KIỂM THỬ (TESTING)</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-mục-tiêu-học-tập>📚 MỤC TIÊU HỌC TẬP<a href=#-mục-tiêu-học-tập class=hash-link aria-label="Đường dẫn trực tiếp đến 📚 MỤC TIÊU HỌC TẬP" title="Đường dẫn trực tiếp đến 📚 MỤC TIÊU HỌC TẬP" translate=no>​</a></h2>
+<p>Sau khi hoàn thành chương này, bạn sẽ:</p>
+<ul>
+<li class="">Phân biệt được Checked và Unchecked Exceptions</li>
+<li class="">Xử lý Exception đúng cách với try-catch-finally</li>
+<li class="">Sử dụng Try-with-resources để quản lý tài nguyên</li>
+<li class="">Tạo Custom Exception</li>
+<li class="">Viết Unit Test với JUnit 5</li>
+<li class="">Áp dụng Testing best practices</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-kiến-thức-cần-có-prerequisites>📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)<a href=#-kiến-thức-cần-có-prerequisites class=hash-link aria-label="Đường dẫn trực tiếp đến 📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)" title="Đường dẫn trực tiếp đến 📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)" translate=no>​</a></h2>
+<p>Trước khi học chương này, bạn cần nắm vững:</p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class=task-list-item>
+<p><input type=checkbox disabled/> ✅ <strong>Class và Object</strong> (Chương 2)</p>
+<ul>
+<li class="">Tạo class, định nghĩa methods</li>
+<li class="">Access modifiers</li>
+</ul>
+</li>
+<li class=task-list-item>
+<p><input type=checkbox disabled/> ✅ <strong>Inheritance</strong> (Chương 3, phần 3.1)</p>
+<ul>
+<li class=""><code>extends</code>, <code>super</code></li>
+<li class="">Tạo custom class</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>💡 Lưu ý:</strong> Exception handling và Testing là <strong>kỹ năng bắt buộc</strong> trong lập trình chuyên nghiệp. Hãy học kỹ phần này!</p>
+</blockquote>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-hướng-dẫn-học-sâu--code-chạy-thử>🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ<a href=#-hướng-dẫn-học-sâu--code-chạy-thử class=hash-link aria-label="Đường dẫn trực tiếp đến 🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ" title="Đường dẫn trực tiếp đến 🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Chủ đề<th>Code<th>Output mong đợi<tbody><tr><td>Custom Exception<td><code>CODE/VI_DU/CHUONG_5/01_Exception/</code><td>Rút 30 OK; rút 100 → in lỗi số dư</table>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">cd CODE/VI_DU/CHUONG_5/01_Exception</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">javac Main.java && java Main</span><br/></div></code></pre></div></div>
+<p><strong>Output thực tế:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Rút thành công. Số dư còn: 70.0</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Lỗi: Số dư không đủ. Cần: 100.0, có: 70.0</span><br/></div></code></pre></div></div>
+<p><strong>Giảng sâu:</strong> <code>withdraw</code> <strong>ném</strong> exception thay vì return false – caller <strong>bắt buộc</strong> xử lý (try-catch) hoặc khai báo <code>throws</code>. Message rõ ràng giúp debug và hiển thị cho user.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=51-phân-loại-ngoại-lệ>5.1. PHÂN LOẠI NGOẠI LỆ<a href=#51-phân-loại-ngoại-lệ class=hash-link aria-label="Đường dẫn trực tiếp đến 5.1. PHÂN LOẠI NGOẠI LỆ" title="Đường dẫn trực tiếp đến 5.1. PHÂN LOẠI NGOẠI LỆ" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=511-exception-là-gì>5.1.1. Exception là gì?<a href=#511-exception-là-gì class=hash-link aria-label="Đường dẫn trực tiếp đến 5.1.1. Exception là gì?" title="Đường dẫn trực tiếp đến 5.1.1. Exception là gì?" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa>Định nghĩa<a href=#định-nghĩa class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>Exception (Ngoại lệ)</strong> là sự kiện xảy ra trong quá trình thực thi chương trình làm gián đoạn luồng xử lý bình thường.</p>
+<p><strong>Ví dụ:</strong></p>
+<ul>
+<li class="">Chia cho 0</li>
+<li class="">Truy cập file không tồn tại</li>
+<li class="">Kết nối database thất bại</li>
+<li class="">Mảng vượt quá chỉ số</li>
+</ul>
+<blockquote>
+<p><strong>🚨 Tưởng tượng: Máy báo cháy (Smoke Detector)</strong></p>
+<ul>
+<li class="">Exception giống như việc máy báo cháy hú còi.</li>
+<li class="">Nó <strong>KHÔNG</strong> dập lửa (không tự sửa lỗi).</li>
+<li class="">Nó chỉ <strong>BÁO ĐỘNG</strong> để bạn biết có vấn đề và xử lý (chạy thoát thân hoặc lấy bình cứu hỏa).</li>
+<li class="">Nếu bạn lờ đi (không catch), ngôi nhà (chương trình) sẽ cháy rụi (crash).</li>
+</ul>
+</blockquote>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=exception-hierarchy-trong-java>Exception Hierarchy trong Java<a href=#exception-hierarchy-trong-java class=hash-link aria-label="Đường dẫn trực tiếp đến Exception Hierarchy trong Java" title="Đường dẫn trực tiếp đến Exception Hierarchy trong Java" translate=no>​</a></h4>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Throwable</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">├── Error (Không nên catch)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   ├── OutOfMemoryError</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   └── StackOverflowError</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└── Exception</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    ├── RuntimeException (Unchecked)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    │   ├── NullPointerException</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    │   ├── ArrayIndexOutOfBoundsException</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    │   ├── IllegalArgumentException</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    │   └── ArithmeticException</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    └── Checked Exceptions</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        ├── IOException</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        ├── FileNotFoundException</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        ├── SQLException</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        └── ClassNotFoundException</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=512-checked-vs-unchecked-exceptions>5.1.2. Checked vs Unchecked Exceptions<a href=#512-checked-vs-unchecked-exceptions class=hash-link aria-label="Đường dẫn trực tiếp đến 5.1.2. Checked vs Unchecked Exceptions" title="Đường dẫn trực tiếp đến 5.1.2. Checked vs Unchecked Exceptions" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=checked-exceptions>Checked Exceptions<a href=#checked-exceptions class=hash-link aria-label="Đường dẫn trực tiếp đến Checked Exceptions" title="Đường dẫn trực tiếp đến Checked Exceptions" translate=no>​</a></h4>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">Phải được xử lý (catch) hoặc khai báo (throws)</li>
+<li class="">Compiler bắt buộc kiểm tra</li>
+<li class="">Thường là lỗi ngoài tầm kiểm soát của programmer</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ❌ LỖI: Phải xử lý hoặc throws</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void readFile() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    FileReader file = new FileReader("file.txt");  // FileNotFoundException (Checked)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// ✅ Cách 1: Catch</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void readFile() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        FileReader file = new FileReader("file.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    } catch (FileNotFoundException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// ✅ Cách 2: Throws</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void readFile() throws FileNotFoundException {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    FileReader file = new FileReader("file.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Các Checked Exceptions phổ biến:</strong></p>
+<ul>
+<li class=""><code>IOException</code></li>
+<li class=""><code>FileNotFoundException</code></li>
+<li class=""><code>SQLException</code></li>
+<li class=""><code>ClassNotFoundException</code></li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=unchecked-exceptions-runtimeexception>Unchecked Exceptions (RuntimeException)<a href=#unchecked-exceptions-runtimeexception class=hash-link aria-label="Đường dẫn trực tiếp đến Unchecked Exceptions (RuntimeException)" title="Đường dẫn trực tiếp đến Unchecked Exceptions (RuntimeException)" translate=no>​</a></h4>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">Không bắt buộc phải catch hoặc throws</li>
+<li class="">Compiler không kiểm tra</li>
+<li class="">Thường là lỗi logic của programmer</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ✅ OK: Không cần catch</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void divide(int a, int b) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    int result = a / b;  // ArithmeticException nếu b = 0 (Unchecked)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Có thể catch nếu muốn</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void divide(int a, int b) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        int result = a / b;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    } catch (ArithmeticException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println("Cannot divide by zero!");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Các Unchecked Exceptions phổ biến:</strong></p>
+<ul>
+<li class=""><code>NullPointerException</code></li>
+<li class=""><code>ArrayIndexOutOfBoundsException</code></li>
+<li class=""><code>IllegalArgumentException</code></li>
+<li class=""><code>ArithmeticException</code></li>
+</ul>
+<blockquote>
+<p><strong>🚦 Tưởng tượng: Cảnh sát giao thông vs Biển báo công trường</strong></p>
+<ul>
+<li class=""><strong>Unchecked (Runtime)</strong>: Giống như <strong>vượt đèn đỏ</strong>. Đây là lỗi của bạn (lỗi logic). Luật không bắt bạn phải đội mũ sắt để đề phòng, nhưng nếu vi phạm thì bị phạt (Exception).</li>
+<li class=""><strong>Checked</strong>: Giống như gặp <strong>biển "Đường đang thi công"</strong>. Đây không phải lỗi của bạn, nhưng luật bắt buộc bạn phải chạy đường vòng (catch/throws). Bạn phải chuẩn bị tinh thần xử lý tình huống này trước khi ra đường.</li>
+</ul>
+</blockquote>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=so-sánh-checked-vs-unchecked>So sánh Checked vs Unchecked<a href=#so-sánh-checked-vs-unchecked class=hash-link aria-label="Đường dẫn trực tiếp đến So sánh Checked vs Unchecked" title="Đường dẫn trực tiếp đến So sánh Checked vs Unchecked" translate=no>​</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Đặc điểm<th>Checked<th>Unchecked<tbody><tr><td><strong>Phải catch/throws?</strong><td>✅ Có<td>❌ Không<tr><td><strong>Compiler kiểm tra?</strong><td>✅ Có<td>❌ Không<tr><td><strong>Kế thừa từ</strong><td>Exception<td>RuntimeException<tr><td><strong>Khi nào xảy ra</strong><td>Runtime (nhưng có thể dự đoán)<td>Runtime (lỗi logic)<tr><td><strong>Ví dụ</strong><td>FileNotFoundException<td>NullPointerException</table>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=513-khi-nào-nên-bắt-lỗi-ném-lỗi-tự-định-nghĩa-exception>5.1.3. Khi nào nên bắt lỗi, ném lỗi, tự định nghĩa Exception?<a href=#513-khi-nào-nên-bắt-lỗi-ném-lỗi-tự-định-nghĩa-exception class=hash-link aria-label="Đường dẫn trực tiếp đến 5.1.3. Khi nào nên bắt lỗi, ném lỗi, tự định nghĩa Exception?" title="Đường dẫn trực tiếp đến 5.1.3. Khi nào nên bắt lỗi, ném lỗi, tự định nghĩa Exception?" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=khi-nào-nên-bắt-lỗi-catch>Khi nào nên BẮT lỗi (catch)?<a href=#khi-nào-nên-bắt-lỗi-catch class=hash-link aria-label="Đường dẫn trực tiếp đến Khi nào nên BẮT lỗi (catch)?" title="Đường dẫn trực tiếp đến Khi nào nên BẮT lỗi (catch)?" translate=no>​</a></h4>
+<p><strong>✅ BẮT khi:</strong></p>
+<ul>
+<li class="">Có thể xử lý và tiếp tục chương trình</li>
+<li class="">Cần log lỗi để debug</li>
+<li class="">Cần thông báo cho user</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public void readConfigFile() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        FileReader file = new FileReader("config.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Đọc file</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    } catch (FileNotFoundException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Có thể xử lý: Dùng config mặc định</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println("Config file not found, using defaults");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        useDefaultConfig();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=khi-nào-nên-ném-lỗi-throwthrows>Khi nào nên NÉM lỗi (throw/throws)?<a href=#khi-nào-nên-ném-lỗi-throwthrows class=hash-link aria-label="Đường dẫn trực tiếp đến Khi nào nên NÉM lỗi (throw/throws)?" title="Đường dẫn trực tiếp đến Khi nào nên NÉM lỗi (throw/throws)?" translate=no>​</a></h4>
+<p><strong>✅ NÉM khi:</strong></p>
+<ul>
+<li class="">Không thể xử lý tại chỗ</li>
+<li class="">Muốn để caller xử lý</li>
+<li class="">Lỗi quan trọng, không thể bỏ qua</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Method không thể xử lý lỗi</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void connectToDatabase() throws SQLException {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Kết nối database</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Nếu lỗi → Ném lên cho caller xử lý</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Connection conn = DriverManager.getConnection(url);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Caller xử lý</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void initialize() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        connectToDatabase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    } catch (SQLException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Xử lý ở đây</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.err.println("Database connection failed!");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=khi-nào-nên-tự-định-nghĩa-exception>Khi nào nên TỰ ĐỊNH NGHĨA Exception?<a href=#khi-nào-nên-tự-định-nghĩa-exception class=hash-link aria-label="Đường dẫn trực tiếp đến Khi nào nên TỰ ĐỊNH NGHĨA Exception?" title="Đường dẫn trực tiếp đến Khi nào nên TỰ ĐỊNH NGHĨA Exception?" translate=no>​</a></h4>
+<p><strong>✅ TỰ ĐỊNH NGHĨA khi:</strong></p>
+<ul>
+<li class="">Cần exception riêng cho business logic</li>
+<li class="">Muốn thông điệp lỗi rõ ràng hơn</li>
+<li class="">Cần thêm thông tin vào exception</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Custom Exception</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class InsufficientBalanceException extends Exception {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private double balance;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private double amount;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public InsufficientBalanceException(double balance, double amount) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        super("Insufficient balance. Current: " + balance + ", Required: " + amount);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.balance = balance;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.amount = amount;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double getBalance() { return balance; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double getAmount() { return amount; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void withdraw(double amount) throws InsufficientBalanceException {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    if (amount > balance) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        throw new InsufficientBalanceException(balance, amount);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    balance -= amount;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=52-cơ-chế-xử-lý-exception>5.2. CƠ CHẾ XỬ LÝ EXCEPTION<a href=#52-cơ-chế-xử-lý-exception class=hash-link aria-label="Đường dẫn trực tiếp đến 5.2. CƠ CHẾ XỬ LÝ EXCEPTION" title="Đường dẫn trực tiếp đến 5.2. CƠ CHẾ XỬ LÝ EXCEPTION" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=521-try-catch-finally>5.2.1. Try-Catch-Finally<a href=#521-try-catch-finally class=hash-link aria-label="Đường dẫn trực tiếp đến 5.2.1. Try-Catch-Finally" title="Đường dẫn trực tiếp đến 5.2.1. Try-Catch-Finally" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=cú-pháp-cơ-bản>Cú pháp cơ bản<a href=#cú-pháp-cơ-bản class=hash-link aria-label="Đường dẫn trực tiếp đến Cú pháp cơ bản" title="Đường dẫn trực tiếp đến Cú pháp cơ bản" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Code có thể ném exception</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (ExceptionType e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Xử lý exception</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} finally {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Code luôn chạy (dù có exception hay không)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-cơ-bản>Ví dụ cơ bản<a href=#ví-dụ-cơ-bản class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ cơ bản" title="Đường dẫn trực tiếp đến Ví dụ cơ bản" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public void divide(int a, int b) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        int result = a / b;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println("Result: " + result);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    } catch (ArithmeticException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println("Error: Cannot divide by zero!");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    } finally {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println("Division operation completed");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">divide(10, 2);   // Result: 5, Division operation completed</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">divide(10, 0);    // Error: Cannot divide by zero!, Division operation completed</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=-phân-tích-luồng-nhảy-jump-flow>📉 Phân tích Luồng nhảy (Jump Flow)<a href=#-phân-tích-luồng-nhảy-jump-flow class=hash-link aria-label="Đường dẫn trực tiếp đến 📉 Phân tích Luồng nhảy (Jump Flow)" title="Đường dẫn trực tiếp đến 📉 Phân tích Luồng nhảy (Jump Flow)" translate=no>​</a></h3>
+<p>Khi <code>divide(10, 0)</code> chạy, JVM thực hiện cú nhảy ngoạn mục:</p>
+<ol>
+<li class=""><strong>Dòng 276</strong>: <code>int result = 10 / 0;</code> → 🔥 <strong>BÙM!</strong> Lỗi <code>ArithmeticException</code>.</li>
+<li class=""><strong>Java dừng ngay</strong>: Dòng 277 (<code>println Result</code>) <strong>KHÔNG BAO GIỜ</strong> được chạy.</li>
+<li class=""><strong>Nhảy cầu (Jump)</strong>: Java tìm ngay block <code>catch</code> phù hợp. Nó thấy dòng 278 bắt <code>ArithmeticException</code>.</li>
+<li class=""><strong>Đáp đất</strong>: Chạy code trong block <code>catch</code> (dòng 279-280). In ra "Error...".</li>
+<li class=""><strong>Chốt hạ</strong>: Dù có lỗi hay không, <code>finally</code> (dòng 281) <strong>LUÔN LUÔN</strong> chạy để dọn dẹp hiện trường.</li>
+</ol>
+<blockquote>
+<p><strong>💡 Bài học:</strong> Hãy coi <code>try-catch</code> như một gỡ bom. <code>try</code> là lúc cắt dây bom. Nếu nổ (<code>Exception</code>), bạn bị văng ra xa và rơi vào lưới đỡ (<code>catch</code>), chứ không chết (<code>Crash App</code>).</p>
+</blockquote>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=multiple-catch-blocks>Multiple Catch Blocks<a href=#multiple-catch-blocks class=hash-link aria-label="Đường dẫn trực tiếp đến Multiple Catch Blocks" title="Đường dẫn trực tiếp đến Multiple Catch Blocks" translate=no>​</a></h4>
+<p><strong>Có thể catch nhiều loại exception:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Code có thể ném nhiều loại exception</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    int[] arr = new int[5];</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    int value = arr[10];  // ArrayIndexOutOfBoundsException</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    String str = null;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    int len = str.length();  // NullPointerException</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (ArrayIndexOutOfBoundsException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println("Array index out of bounds!");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (NullPointerException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println("Null pointer exception!");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (Exception e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println("Other exception: " + e.getMessage());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Lưu ý:</strong></p>
+<ul>
+<li class="">Catch từ cụ thể → chung chung</li>
+<li class=""><code>Exception</code> phải ở cuối cùng</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=multi-catch-java-7>Multi-Catch (Java 7+)<a href=#multi-catch-java-7 class=hash-link aria-label="Đường dẫn trực tiếp đến Multi-Catch (Java 7+)" title="Đường dẫn trực tiếp đến Multi-Catch (Java 7+)" translate=no>​</a></h4>
+<p><strong>Có thể catch nhiều exception trong một block:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Code</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (FileNotFoundException | IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Xử lý cả 2 loại exception</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println("File error: " + e.getMessage());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=522-try-with-resources>5.2.2. Try-with-Resources<a href=#522-try-with-resources class=hash-link aria-label="Đường dẫn trực tiếp đến 5.2.2. Try-with-Resources" title="Đường dẫn trực tiếp đến 5.2.2. Try-with-Resources" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=vấn-đề-với-finally>Vấn đề với Finally<a href=#vấn-đề-với-finally class=hash-link aria-label="Đường dẫn trực tiếp đến Vấn đề với Finally" title="Đường dẫn trực tiếp đến Vấn đề với Finally" translate=no>​</a></h4>
+<p><strong>Code cũ (phức tạp):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">FileReader file = null;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    file = new FileReader("file.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Đọc file</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} finally {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    if (file != null) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            file.close();  // Phải close trong finally</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        } catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Vấn đề:</strong></p>
+<ul>
+<li class="">❌ Code dài, phức tạp</li>
+<li class="">❌ Dễ quên close</li>
+<li class="">❌ Nested try-catch</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=giải-pháp-try-with-resources-java-7>Giải pháp: Try-with-Resources (Java 7+)<a href=#giải-pháp-try-with-resources-java-7 class=hash-link aria-label="Đường dẫn trực tiếp đến Giải pháp: Try-with-Resources (Java 7+)" title="Đường dẫn trực tiếp đến Giải pháp: Try-with-Resources (Java 7+)" translate=no>​</a></h4>
+<p><strong>Cú pháp:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try (ResourceType resource = new ResourceType()) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Sử dụng resource</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (Exception e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Xử lý exception</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Resource tự động được close</span><br/></div></code></pre></div></div>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ✅ TỐT: Tự động close</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">try (FileReader file = new FileReader("file.txt")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Đọc file</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // File tự động close khi ra khỏi try block</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Không cần finally để close!</span><br/></div></code></pre></div></div>
+<blockquote>
+<p><strong>🚪 Tưởng tượng: Cửa tự đóng (Spring-loaded Door)</strong></p>
+<ul>
+<li class="">Try-with-resources giống như cái cửa có lò xo tự đóng.</li>
+<li class="">Bạn đi vào (mở file), làm gì thì làm.</li>
+<li class="">Khi bạn bước ra (kết thúc block), cửa tự động đóng "RẦM" lại sau lưng. Bạn không cần quay lại đóng cửa (gọi <code>close()</code>). An toàn tuyệt đối!</li>
+</ul>
+</blockquote>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">---</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">#### AutoCloseable Interface</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">**Resource phải implement `AutoCloseable`:**</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">```java</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public interface AutoCloseable {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    void close() throws Exception;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Các class đã implement:</strong></p>
+<ul>
+<li class=""><code>FileReader</code>, <code>FileWriter</code></li>
+<li class=""><code>BufferedReader</code>, <code>BufferedWriter</code></li>
+<li class=""><code>Scanner</code></li>
+<li class=""><code>Connection</code> (JDBC)</li>
+<li class=""><code>InputStream</code>, <code>OutputStream</code></li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=multiple-resources>Multiple Resources<a href=#multiple-resources class=hash-link aria-label="Đường dẫn trực tiếp đến Multiple Resources" title="Đường dẫn trực tiếp đến Multiple Resources" translate=no>​</a></h4>
+<p><strong>Có thể khai báo nhiều resources:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try (</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    FileReader reader = new FileReader("input.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    FileWriter writer = new FileWriter("output.txt")</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Sử dụng reader và writer</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Cả 2 tự động close (theo thứ tự ngược lại)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=523-best-practices-không-bao-giờ-nuốt-lỗi>5.2.3. Best Practices: Không bao giờ "nuốt" lỗi<a href=#523-best-practices-không-bao-giờ-nuốt-lỗi class=hash-link aria-label='Đường dẫn trực tiếp đến 5.2.3. Best Practices: Không bao giờ "nuốt" lỗi' title='Đường dẫn trực tiếp đến 5.2.3. Best Practices: Không bao giờ "nuốt" lỗi' translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=vấn-đề-swallowing-exceptions>Vấn đề: Swallowing Exceptions<a href=#vấn-đề-swallowing-exceptions class=hash-link aria-label="Đường dẫn trực tiếp đến Vấn đề: Swallowing Exceptions" title="Đường dẫn trực tiếp đến Vấn đề: Swallowing Exceptions" translate=no>​</a></h4>
+<p><strong>❌ TỒI: Nuốt exception (không làm gì)</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Code có thể lỗi</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    processData();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (Exception e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Không làm gì - NGUY HIỂM!</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Vấn đề:</strong></p>
+<ul>
+<li class="">❌ Lỗi bị che giấu</li>
+<li class="">❌ Khó debug</li>
+<li class="">❌ Chương trình chạy sai nhưng không biết</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=-tốt-xử-lý-exception-đúng-cách>✅ TỐT: Xử lý exception đúng cách<a href=#-tốt-xử-lý-exception-đúng-cách class=hash-link aria-label="Đường dẫn trực tiếp đến ✅ TỐT: Xử lý exception đúng cách" title="Đường dẫn trực tiếp đến ✅ TỐT: Xử lý exception đúng cách" translate=no>​</a></h4>
+<p><strong>1. Log exception:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    processData();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (Exception e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    logger.error("Error processing data", e);  // Log để debug</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Hoặc</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    e.printStackTrace();  // Ít nhất in ra console</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>2. Thông báo cho user:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    processData();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (Exception e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println("An error occurred. Please try again.");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    logger.error("Error", e);  // Log chi tiết cho developer</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>3. Ném lại nếu không thể xử lý:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    processData();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (Exception e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    logger.error("Error", e);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    throw new RuntimeException("Failed to process data", e);  // Ném lại</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>4. Wrap exception:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    processData();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    throw new DataProcessingException("Failed to process data", e);  // Wrap</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=53-unit-testing--tư-duy-kiểm-thử-hiện-đại>5.3. UNIT TESTING – TƯ DUY KIỂM THỬ HIỆN ĐẠI<a href=#53-unit-testing--tư-duy-kiểm-thử-hiện-đại class=hash-link aria-label="Đường dẫn trực tiếp đến 5.3. UNIT TESTING – TƯ DUY KIỂM THỬ HIỆN ĐẠI" title="Đường dẫn trực tiếp đến 5.3. UNIT TESTING – TƯ DUY KIỂM THỬ HIỆN ĐẠI" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=531-unit-testing-là-gì>5.3.1. Unit Testing là gì?<a href=#531-unit-testing-là-gì class=hash-link aria-label="Đường dẫn trực tiếp đến 5.3.1. Unit Testing là gì?" title="Đường dẫn trực tiếp đến 5.3.1. Unit Testing là gì?" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-1>Định nghĩa<a href=#định-nghĩa-1 class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>Unit Test</strong> là kiểm thử từng đơn vị code (method, class) một cách độc lập.</p>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">Test một đơn vị nhỏ nhất</li>
+<li class="">Chạy nhanh</li>
+<li class="">Độc lập (không phụ thuộc nhau)</li>
+<li class="">Có thể chạy tự động</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=tại-sao-cần-unit-test>Tại sao cần Unit Test?<a href=#tại-sao-cần-unit-test class=hash-link aria-label="Đường dẫn trực tiếp đến Tại sao cần Unit Test?" title="Đường dẫn trực tiếp đến Tại sao cần Unit Test?" translate=no>​</a></h4>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Phát hiện lỗi sớm</li>
+<li class="">✅ Tự tin refactor code</li>
+<li class="">✅ Tài liệu sống (code làm gì)</li>
+<li class="">✅ Tăng chất lượng code</li>
+</ul>
+<blockquote>
+<p><strong>🎪 Tưởng tượng: Lưới an toàn (Safety Net)</strong></p>
+<ul>
+<li class="">Viết code mà không có Unit Test giống như diễn viên xiếc đi trên dây mà <strong>không có lưới bảo vệ</strong>. Sơ sẩy là "chết" (bug production).</li>
+<li class="">Khi có Unit Test, bạn tự tin nhảy múa, nhào lộn (Refactor code). Nếu lỡ trượt chân, tấm lưới (Test fail) sẽ đỡ bạn ngay lập tức. Bạn biết mình sai ở đâu và leo lên đi lại.</li>
+</ul>
+</blockquote>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Code cần test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Calculator {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public int add(int a, int b) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return a + b;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Unit Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">@Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void testAdd() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Calculator calc = new Calculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    int result = calc.add(2, 3);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals(5, result);  // Kiểm tra kết quả</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=532-junit-5---framework-testing>5.3.2. JUnit 5 - Framework Testing<a href=#532-junit-5---framework-testing class=hash-link aria-label="Đường dẫn trực tiếp đến 5.3.2. JUnit 5 - Framework Testing" title="Đường dẫn trực tiếp đến 5.3.2. JUnit 5 - Framework Testing" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=giới-thiệu-junit-5>Giới thiệu JUnit 5<a href=#giới-thiệu-junit-5 class=hash-link aria-label="Đường dẫn trực tiếp đến Giới thiệu JUnit 5" title="Đường dẫn trực tiếp đến Giới thiệu JUnit 5" translate=no>​</a></h4>
+<p><strong>JUnit 5</strong> là framework testing phổ biến nhất cho Java.</p>
+<p><strong>Cài đặt (Maven):</strong></p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token tag punctuation" style=color:#393A34>&lt;</span><span class="token tag" style=color:#00009f>dependencies</span><span class="token tag punctuation" style=color:#393A34>></span><span class="token plain"></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><span class="token tag punctuation" style=color:#393A34>&lt;</span><span class="token tag" style=color:#00009f>dependency</span><span class="token tag punctuation" style=color:#393A34>></span><span class="token plain"></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><span class="token tag punctuation" style=color:#393A34>&lt;</span><span class="token tag" style=color:#00009f>groupId</span><span class="token tag punctuation" style=color:#393A34>></span><span class="token plain">org.junit.jupiter</span><span class="token tag punctuation" style=color:#393A34>&lt;/</span><span class="token tag" style=color:#00009f>groupId</span><span class="token tag punctuation" style=color:#393A34>></span><span class="token plain"></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><span class="token tag punctuation" style=color:#393A34>&lt;</span><span class="token tag" style=color:#00009f>artifactId</span><span class="token tag punctuation" style=color:#393A34>></span><span class="token plain">junit-jupiter</span><span class="token tag punctuation" style=color:#393A34>&lt;/</span><span class="token tag" style=color:#00009f>artifactId</span><span class="token tag punctuation" style=color:#393A34>></span><span class="token plain"></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><span class="token tag punctuation" style=color:#393A34>&lt;</span><span class="token tag" style=color:#00009f>version</span><span class="token tag punctuation" style=color:#393A34>></span><span class="token plain">5.10.0</span><span class="token tag punctuation" style=color:#393A34>&lt;/</span><span class="token tag" style=color:#00009f>version</span><span class="token tag punctuation" style=color:#393A34>></span><span class="token plain"></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><span class="token tag punctuation" style=color:#393A34>&lt;</span><span class="token tag" style=color:#00009f>scope</span><span class="token tag punctuation" style=color:#393A34>></span><span class="token plain">test</span><span class="token tag punctuation" style=color:#393A34>&lt;/</span><span class="token tag" style=color:#00009f>scope</span><span class="token tag punctuation" style=color:#393A34>></span><span class="token plain"></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><span class="token tag punctuation" style=color:#393A34>&lt;/</span><span class="token tag" style=color:#00009f>dependency</span><span class="token tag punctuation" style=color:#393A34>></span><span class="token plain"></span><br/></div><div class=token-line style=color:#393A34><span class="token plain"></span><span class="token tag punctuation" style=color:#393A34>&lt;/</span><span class="token tag" style=color:#00009f>dependencies</span><span class="token tag punctuation" style=color:#393A34>></span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=cấu-trúc-test-cơ-bản>Cấu trúc Test cơ bản<a href=#cấu-trúc-test-cơ-bản class=hash-link aria-label="Đường dẫn trực tiếp đến Cấu trúc Test cơ bản" title="Đường dẫn trực tiếp đến Cấu trúc Test cơ bản" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">import org.junit.jupiter.api.Test;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">import static org.junit.jupiter.api.Assertions.*;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class CalculatorTest {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void testAdd() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Arrange (Chuẩn bị)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        Calculator calc = new Calculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Act (Thực hiện)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        int result = calc.add(2, 3);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Assert (Kiểm tra)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        assertEquals(5, result);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=️-phân-tích-chiến-thuật-aaa>🛡️ Phân tích Chiến thuật AAA<a href=#️-phân-tích-chiến-thuật-aaa class=hash-link aria-label="Đường dẫn trực tiếp đến 🛡️ Phân tích Chiến thuật AAA" title="Đường dẫn trực tiếp đến 🛡️ Phân tích Chiến thuật AAA" translate=no>​</a></h3>
+<p>Tại sao lại phải chia làm 3 bước <code>Arrange</code>, <code>Act</code>, <code>Assert</code>?</p>
+<ol>
+<li class=""><strong>Arrange (Chuẩn bị)</strong>: Thiết lập bối cảnh. Giống như việc bạn bày biện nguyên liệu trước khi nấu ăn.
+<ul>
+<li class=""><em>Tại sao?</em> Để đảm bảo môi trường test là sạch sẽ và cô lập (Isolated).</li>
+</ul>
+</li>
+<li class=""><strong>Act (Hành động)</strong>: Chỉ gọi <strong>ĐÚNG 1</strong> hàm cần test.
+<ul>
+<li class=""><em>Tại sao?</em> Nếu lỗi xảy ra, bạn biết ngay do hàm này gây ra, không phải do các bước rườm rà khác.</li>
+</ul>
+</li>
+<li class=""><strong>Assert (Khẳng định)</strong>: So sánh <code>Thực tế</code> (Result) với <code>Kỳ vọng</code> (Expected).
+<ul>
+<li class=""><em>Tại sao?</em> Đây là chốt chặn cuối cùng. Nếu <code>Assert</code> sai, code bạn có vấn đề logic. Nó hoạt động như một "Cam kết bảo hành".</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>⚠️ Sai lầm thường gặp:</strong> Một số bạn viết code <code>sout</code> (System.out.println) trong test để nhìn bằng mắt. Đừng làm thế! Hãy để <code>Assert</code> tự động phán xét Đúng/Sai.</p>
+</blockquote>
+<p><strong>Cấu trúc AAA:</strong></p>
+<ul>
+<li class=""><strong>Arrange</strong>: Chuẩn bị dữ liệu</li>
+<li class=""><strong>Act</strong>: Thực hiện hành động</li>
+<li class=""><strong>Assert</strong>: Kiểm tra kết quả</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=các-assertions-phổ-biến>Các Assertions phổ biến<a href=#các-assertions-phổ-biến class=hash-link aria-label="Đường dẫn trực tiếp đến Các Assertions phổ biến" title="Đường dẫn trực tiếp đến Các Assertions phổ biến" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">import static org.junit.jupiter.api.Assertions.*;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">@Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void testAssertions() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // assertEquals - So sánh bằng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals(5, 2 + 3);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals("Hello", "Hello");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // assertNotEquals - So sánh khác</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertNotEquals(5, 2 + 2);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // assertTrue - Kiểm tra true</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertTrue(5 > 3);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // assertFalse - Kiểm tra false</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertFalse(5 &lt; 3);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // assertNull - Kiểm tra null</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    String str = null;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertNull(str);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // assertNotNull - Kiểm tra không null</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    String str2 = "Hello";</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertNotNull(str2);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // assertSame - Cùng object</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Object obj1 = new Object();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Object obj2 = obj1;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertSame(obj1, obj2);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // assertNotSame - Khác object</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Object obj3 = new Object();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertNotSame(obj1, obj3);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // assertThrows - Kiểm tra exception</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertThrows(ArithmeticException.class, () -> {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        int result = 10 / 0;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    });</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=533-kỹ-thuật-viết-test-case>5.3.3. Kỹ thuật viết Test Case<a href=#533-kỹ-thuật-viết-test-case class=hash-link aria-label="Đường dẫn trực tiếp đến 5.3.3. Kỹ thuật viết Test Case" title="Đường dẫn trực tiếp đến 5.3.3. Kỹ thuật viết Test Case" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=test-case-tốt>Test Case tốt<a href=#test-case-tốt class=hash-link aria-label="Đường dẫn trực tiếp đến Test Case tốt" title="Đường dẫn trực tiếp đến Test Case tốt" translate=no>​</a></h4>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">✅ Tên test mô tả rõ ràng</li>
+<li class="">✅ Test một điều duy nhất</li>
+<li class="">✅ Độc lập (không phụ thuộc test khác)</li>
+<li class="">✅ Có thể chạy nhiều lần (repeatable)</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">@Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void testAdd_PositiveNumbers_ReturnsSum() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Arrange</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Calculator calc = new Calculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Act</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    int result = calc.add(5, 3);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Assert</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals(8, result);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">@Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void testAdd_NegativeNumbers_ReturnsSum() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Calculator calc = new Calculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    int result = calc.add(-5, -3);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals(-8, result);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">@Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void testAdd_Zero_ReturnsOtherNumber() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Calculator calc = new Calculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    int result = calc.add(5, 0);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals(5, result);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=kiểm-thử-biên-boundary-testing>Kiểm thử Biên (Boundary Testing)<a href=#kiểm-thử-biên-boundary-testing class=hash-link aria-label="Đường dẫn trực tiếp đến Kiểm thử Biên (Boundary Testing)" title="Đường dẫn trực tiếp đến Kiểm thử Biên (Boundary Testing)" translate=no>​</a></h4>
+<p><strong>Test các giá trị biên:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">@Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void testCalculateDiscount_BoundaryValues() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    DiscountCalculator calc = new DiscountCalculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Biên dưới</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals(0, calc.calculateDiscount(0));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Biên trên</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals(50, calc.calculateDiscount(1000));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Ngay dưới biên</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals(0, calc.calculateDiscount(99));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Ngay trên biên</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals(10, calc.calculateDiscount(100));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Giữa biên</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals(20, calc.calculateDiscount(500));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=kiểm-thử-lớp-tương-đương-equivalence-partitioning>Kiểm thử Lớp tương đương (Equivalence Partitioning)<a href=#kiểm-thử-lớp-tương-đương-equivalence-partitioning class=hash-link aria-label="Đường dẫn trực tiếp đến Kiểm thử Lớp tương đương (Equivalence Partitioning)" title="Đường dẫn trực tiếp đến Kiểm thử Lớp tương đương (Equivalence Partitioning)" translate=no>​</a></h4>
+<p><strong>Chia input thành các lớp tương đương:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Method: calculateGrade(double score)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Lớp 1: 0-49 → "F"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Lớp 2: 50-59 → "D"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Lớp 3: 60-69 → "C"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Lớp 4: 70-79 → "B"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Lớp 5: 80-100 → "A"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">@Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void testCalculateGrade_ClassF() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    GradeCalculator calc = new GradeCalculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals("F", calc.calculateGrade(0));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals("F", calc.calculateGrade(25));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals("F", calc.calculateGrade(49));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">@Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void testCalculateGrade_ClassA() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    GradeCalculator calc = new GradeCalculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals("A", calc.calculateGrade(80));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals("A", calc.calculateGrade(90));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals("A", calc.calculateGrade(100));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=test-exception>Test Exception<a href=#test-exception class=hash-link aria-label="Đường dẫn trực tiếp đến Test Exception" title="Đường dẫn trực tiếp đến Test Exception" translate=no>​</a></h4>
+<p><strong>Kiểm tra method ném exception:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">@Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void testDivide_ByZero_ThrowsException() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Calculator calc = new Calculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Kiểm tra ném ArithmeticException</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertThrows(ArithmeticException.class, () -> {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        calc.divide(10, 0);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    });</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">@Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void testWithdraw_InsufficientBalance_ThrowsException() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    BankAccount account = new BankAccount(100.0);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    InsufficientBalanceException exception = assertThrows(</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        InsufficientBalanceException.class,</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        () -> account.withdraw(200.0)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    );</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Kiểm tra message</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals("Insufficient balance", exception.getMessage());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=534-sử-dụng-assert-thay-vì-systemoutprintln>5.3.4. Sử dụng Assert thay vì System.out.println()<a href=#534-sử-dụng-assert-thay-vì-systemoutprintln class=hash-link aria-label="Đường dẫn trực tiếp đến 5.3.4. Sử dụng Assert thay vì System.out.println()" title="Đường dẫn trực tiếp đến 5.3.4. Sử dụng Assert thay vì System.out.println()" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=-tồi-dùng-systemoutprintln>❌ TỒI: Dùng System.out.println()<a href=#-tồi-dùng-systemoutprintln class=hash-link aria-label="Đường dẫn trực tiếp đến ❌ TỒI: Dùng System.out.println()" title="Đường dẫn trực tiếp đến ❌ TỒI: Dùng System.out.println()" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public void testAdd() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Calculator calc = new Calculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    int result = calc.add(2, 3);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println("Result: " + result);  // ❌ Phải tự kiểm tra bằng mắt</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Không tự động phát hiện lỗi</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Vấn đề:</strong></p>
+<ul>
+<li class="">❌ Phải tự kiểm tra bằng mắt</li>
+<li class="">❌ Không tự động phát hiện lỗi</li>
+<li class="">❌ Không thể chạy tự động trong CI/CD</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=-tốt-dùng-assert>✅ TỐT: Dùng Assert<a href=#-tốt-dùng-assert class=hash-link aria-label="Đường dẫn trực tiếp đến ✅ TỐT: Dùng Assert" title="Đường dẫn trực tiếp đến ✅ TỐT: Dùng Assert" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">@Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void testAdd() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Calculator calc = new Calculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    int result = calc.add(2, 3);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    assertEquals(5, result);  // ✅ Tự động kiểm tra</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Nếu sai → Test fail ngay</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Tự động kiểm tra</li>
+<li class="">✅ Fail ngay nếu sai</li>
+<li class="">✅ Có thể chạy tự động</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=535-beforeeach-và-aftereach>5.3.5. @BeforeEach và @AfterEach<a href=#535-beforeeach-và-aftereach class=hash-link aria-label="Đường dẫn trực tiếp đến 5.3.5. @BeforeEach và @AfterEach" title="Đường dẫn trực tiếp đến 5.3.5. @BeforeEach và @AfterEach" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=setup-và-teardown>Setup và Teardown<a href=#setup-và-teardown class=hash-link aria-label="Đường dẫn trực tiếp đến Setup và Teardown" title="Đường dẫn trực tiếp đến Setup và Teardown" translate=no>​</a></h4>
+<p><strong>@BeforeEach: Chạy trước mỗi test</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class BankAccountTest {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private BankAccount account;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @BeforeEach</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setUp() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Chạy trước mỗi test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        account = new BankAccount(1000.0);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void testDeposit() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        account.deposit(500.0);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        assertEquals(1500.0, account.getBalance());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void testWithdraw() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        account.withdraw(300.0);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        assertEquals(700.0, account.getBalance());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>@AfterEach: Chạy sau mỗi test</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">@AfterEach</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void tearDown() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Cleanup sau mỗi test</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    account = null;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=54-file-io-cơ-bản>5.4. FILE I/O CƠ BẢN<a href=#54-file-io-cơ-bản class=hash-link aria-label="Đường dẫn trực tiếp đến 5.4. FILE I/O CƠ BẢN" title="Đường dẫn trực tiếp đến 5.4. FILE I/O CƠ BẢN" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=541-file-path-files-nio2>5.4.1. File, Path, Files (NIO.2)<a href=#541-file-path-files-nio2 class=hash-link aria-label="Đường dẫn trực tiếp đến 5.4.1. File, Path, Files (NIO.2)" title="Đường dẫn trực tiếp đến 5.4.1. File, Path, Files (NIO.2)" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=java-nio2-java-7>Java NIO.2 (Java 7+)<a href=#java-nio2-java-7 class=hash-link aria-label="Đường dẫn trực tiếp đến Java NIO.2 (Java 7+)" title="Đường dẫn trực tiếp đến Java NIO.2 (Java 7+)" translate=no>​</a></h4>
+<p><strong>NIO.2</strong> cung cấp API hiện đại để làm việc với file.</p>
+<p><strong>Import:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">import java.nio.file.Path;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">import java.nio.file.Paths;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">import java.nio.file.Files;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">import java.nio.file.StandardOpenOption;</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=path-và-paths>Path và Paths<a href=#path-và-paths class=hash-link aria-label="Đường dẫn trực tiếp đến Path và Paths" title="Đường dẫn trực tiếp đến Path và Paths" translate=no>​</a></h4>
+<p><strong>Tạo Path:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Cách 1: Dùng Paths.get()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Path path1 = Paths.get("file.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Path path2 = Paths.get("/home/user/file.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Path path3 = Paths.get("C:", "Users", "user", "file.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Cách 2: Dùng Path.of() (Java 11+)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Path path4 = Path.of("file.txt");</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=files---utility-class>Files - Utility Class<a href=#files---utility-class class=hash-link aria-label="Đường dẫn trực tiếp đến Files - Utility Class" title="Đường dẫn trực tiếp đến Files - Utility Class" translate=no>​</a></h4>
+<p><strong>Đọc file:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Path path = Paths.get("file.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Đọc toàn bộ file thành String</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    String content = Files.readString(path);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Đọc thành List&lt;String> (mỗi dòng một phần tử)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    List&lt;String> lines = Files.readAllLines(path);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Đọc thành byte[]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    byte[] bytes = Files.readAllBytes(path);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Ghi file:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Path path = Paths.get("output.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Ghi String</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    String content = "Hello, World!";</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Files.writeString(path, content);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Ghi List&lt;String></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    List&lt;String> lines = Arrays.asList("Line 1", "Line 2");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Files.write(path, lines);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Ghi byte[]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    byte[] data = "Hello".getBytes();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Files.write(path, data);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Append (thêm vào cuối)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Files.writeString(path, "\nNew line", StandardOpenOption.APPEND);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=try-with-resources-với-io>Try-with-Resources với I/O<a href=#try-with-resources-với-io class=hash-link aria-label="Đường dẫn trực tiếp đến Try-with-Resources với I/O" title="Đường dẫn trực tiếp đến Try-with-Resources với I/O" translate=no>​</a></h4>
+<p><strong>Đọc file với BufferedReader:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Path path = Paths.get("file.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">try (BufferedReader reader = Files.newBufferedReader(path)) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    String line;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    while ((line = reader.readLine()) != null) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println(line);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Ghi file với BufferedWriter:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Path path = Paths.get("output.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">try (BufferedWriter writer = Files.newBufferedWriter(path)) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    writer.write("Line 1");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    writer.newLine();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    writer.write("Line 2");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=542-xử-lý-exception-trong-io>5.4.2. Xử lý Exception trong I/O<a href=#542-xử-lý-exception-trong-io class=hash-link aria-label="Đường dẫn trực tiếp đến 5.4.2. Xử lý Exception trong I/O" title="Đường dẫn trực tiếp đến 5.4.2. Xử lý Exception trong I/O" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=best-practices>Best Practices<a href=#best-practices class=hash-link aria-label="Đường dẫn trực tiếp đến Best Practices" title="Đường dẫn trực tiếp đến Best Practices" translate=no>​</a></h4>
+<p><strong>1. Luôn dùng try-with-resources:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ✅ TỐT</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">try (BufferedReader reader = Files.newBufferedReader(path)) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Đọc file</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    logger.error("Error reading file", e);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>2. Xử lý exception cụ thể:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Files.readString(path);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (FileNotFoundException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // File không tồn tại</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println("File not found: " + path);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Lỗi I/O khác</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    logger.error("IO error", e);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>3. Kiểm tra file tồn tại:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Path path = Paths.get("file.txt");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">if (Files.exists(path)) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    try {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        String content = Files.readString(path);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    } catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} else {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println("File does not exist");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=55-advanced-io-object-serialization>5.5. ADVANCED I/O: OBJECT SERIALIZATION<a href=#55-advanced-io-object-serialization class=hash-link aria-label="Đường dẫn trực tiếp đến 5.5. ADVANCED I/O: OBJECT SERIALIZATION" title="Đường dẫn trực tiếp đến 5.5. ADVANCED I/O: OBJECT SERIALIZATION" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=551-serialization-là-gì>5.5.1. Serialization là gì?<a href=#551-serialization-là-gì class=hash-link aria-label="Đường dẫn trực tiếp đến 5.5.1. Serialization là gì?" title="Đường dẫn trực tiếp đến 5.5.1. Serialization là gì?" translate=no>​</a></h3>
+<p><strong>Serialization</strong> (Tuần tự hóa) là quá trình chuyển đổi trạng thái của một Object thành byte stream để:</p>
+<ul>
+<li class="">Lưu vào file (Persistence)</li>
+<li class="">Gửi qua mạng (Network)</li>
+<li class="">Lưu vào Database</li>
+</ul>
+<p><strong>Deserialization</strong> là quá trình ngược lại: Byte stream  → Object.</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=552-interface-serializable>5.5.2. Interface Serializable<a href=#552-interface-serializable class=hash-link aria-label="Đường dẫn trực tiếp đến 5.5.2. Interface Serializable" title="Đường dẫn trực tiếp đến 5.5.2. Interface Serializable" translate=no>​</a></h3>
+<p>Để một class có thể serialize, nó phải implements interface <code>java.io.Serializable</code>.
+Đây là một <strong>Marker Interface</strong> (không có method nào).</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">import java.io.Serializable;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Student implements Serializable {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private static final long serialVersionUID = 1L; // Version control</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private String name;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private int age;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private transient String password; // transient: KHÔNG serialize trường này</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Contructors, getters, setters...</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=từ-khóa-quan-trọng>Từ khóa quan trọng:<a href=#từ-khóa-quan-trọng class=hash-link aria-label="Đường dẫn trực tiếp đến Từ khóa quan trọng:" title="Đường dẫn trực tiếp đến Từ khóa quan trọng:" translate=no>​</a></h4>
+<ul>
+<li class=""><code>serialVersionUID</code>: ID để đảm bảo phiên bản class khi đọc/ghi là khớp nhau.</li>
+<li class=""><code>transient</code>: Đánh dấu biến <strong>không</strong> muốn lưu (ví dụ: mật khẩu, dữ liệu tạm).</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=553-ghi-và-đọc-object>5.5.3. Ghi và Đọc Object<a href=#553-ghi-và-đọc-object class=hash-link aria-label="Đường dẫn trực tiếp đến 5.5.3. Ghi và Đọc Object" title="Đường dẫn trực tiếp đến 5.5.3. Ghi và Đọc Object" translate=no>​</a></h3>
+<p>Dùng <code>ObjectOutputStream</code> và <code>ObjectInputStream</code>.</p>
+<p><strong>Ghi Object (Serialization):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Student s1 = new Student("Nam", 20, "secret123");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">try (ObjectOutputStream oos = new ObjectOutputStream(</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        new FileOutputStream("student.dat"))) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    oos.writeObject(s1);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println("Đã lưu student!");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Đọc Object (Deserialization):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try (ObjectInputStream ois = new ObjectInputStream(</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        new FileInputStream("student.dat"))) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    Student s2 = (Student) ois.readObject(); // Cần ép kiểu</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println("Đã đọc: " + s2.getName());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">} catch (IOException | ClassNotFoundException e) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    e.printStackTrace();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<blockquote>
+<p><strong>⚠️ Cảnh báo:</strong> Serialization mặc định của Java có nhiều vấn đề về bảo mật và hiệu năng. Trong các dự án hiện đại (nhất là Web/API), người ta thường dùng <strong>JSON</strong> (Gson, Jackson) thay vì Serialization này. Tuy nhiên, hiểu về nó là cần thiết.</p>
+</blockquote>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-bảng-so-sánh--tra-cứu-nhanh-chương-5>📊 BẢNG SO SÁNH & TRA CỨU NHANH (CHƯƠNG 5)<a href=#-bảng-so-sánh--tra-cứu-nhanh-chương-5 class=hash-link aria-label="Đường dẫn trực tiếp đến 📊 BẢNG SO SÁNH & TRA CỨU NHANH (CHƯƠNG 5)" title="Đường dẫn trực tiếp đến 📊 BẢNG SO SÁNH & TRA CỨU NHANH (CHƯƠNG 5)" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=checked-vs-unchecked>Checked vs Unchecked<a href=#checked-vs-unchecked class=hash-link aria-label="Đường dẫn trực tiếp đến Checked vs Unchecked" title="Đường dẫn trực tiếp đến Checked vs Unchecked" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><th>Checked<th>Unchecked<tbody><tr><td><strong>Kế thừa</strong><td><code>Exception</code> (không phải RuntimeException)<td><code>RuntimeException</code><tr><td><strong>Bắt buộc xử lý?</strong><td>Có (try-catch hoặc throws)<td>Không<tr><td><strong>Ví dụ</strong><td>IOException, SQLException<td>NullPointerException, IllegalArgumentException<tr><td><strong>Khi nào</strong><td>Lỗi có thể phục hồi, bên ngoài kiểm soát<td>Lỗi lập trình, logic sai</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=try-catch-vs-try-with-resources>Try-catch vs Try-with-resources<a href=#try-catch-vs-try-with-resources class=hash-link aria-label="Đường dẫn trực tiếp đến Try-catch vs Try-with-resources" title="Đường dẫn trực tiếp đến Try-catch vs Try-with-resources" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><th>try-catch-finally<th>try-with-resources<tbody><tr><td><strong>Đóng tài nguyên</strong><td>Phải finally hoặc tự close<td>Tự đóng (AutoCloseable)<tr><td><strong>Dùng cho</strong><td>Logic xử lý lỗi chung<td>File, stream, connection<tr><td><strong>Khuyến nghị</strong><td>Mọi exception<td><strong>Luôn ưu tiên</strong> khi đọc/ghi file</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=unit-test--aaa>Unit Test – AAA<a href=#unit-test--aaa class=hash-link aria-label="Đường dẫn trực tiếp đến Unit Test – AAA" title="Đường dẫn trực tiếp đến Unit Test – AAA" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Bước<th>Ý nghĩa<th>Ví dụ<tbody><tr><td><strong>Arrange</strong><td>Chuẩn bị dữ liệu<td><code>Calculator calc = new Calculator()</code><tr><td><strong>Act</strong><td>Gọi method cần test<td><code>int r = calc.add(2, 3)</code><tr><td><strong>Assert</strong><td>Kiểm tra kết quả<td><code>assertEquals(5, r)</code></table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-cầu-nối-sang-chương-6>🔗 CẦU NỐI SANG CHƯƠNG 6<a href=#-cầu-nối-sang-chương-6 class=hash-link aria-label="Đường dẫn trực tiếp đến 🔗 CẦU NỐI SANG CHƯƠNG 6" title="Đường dẫn trực tiếp đến 🔗 CẦU NỐI SANG CHƯƠNG 6" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Chương 5<th>Chương 6<th>Liên hệ<tbody><tr><td>Đọc file (List dòng)<td><code>List&lt;String></code> + Stream<td>Xử lý từng dòng bằng stream<tr><td>Exception khi parse số<td><code>map</code>, <code>filter</code> an toàn<td>Validate trước khi đưa vào collection<tr><td>Unit test<td>Test logic trên List<td>Assert kết quả sau <code>collect()</code></table>
+<p><strong>Nhắc lại:</strong> Trước khi vào Ch.6, ôn <strong>Wrapper Classes</strong> (Ch.1) – <code>List&lt;Integer></code> không dùng <code>int</code>.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-tóm-tắt-chương-5>📝 TÓM TẮT CHƯƠNG 5<a href=#-tóm-tắt-chương-5 class=hash-link aria-label="Đường dẫn trực tiếp đến 📝 TÓM TẮT CHƯƠNG 5" title="Đường dẫn trực tiếp đến 📝 TÓM TẮT CHƯƠNG 5" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=kiến-thức-đã-học>Kiến thức đã học:<a href=#kiến-thức-đã-học class=hash-link aria-label="Đường dẫn trực tiếp đến Kiến thức đã học:" title="Đường dẫn trực tiếp đến Kiến thức đã học:" translate=no>​</a></h3>
+<ol>
+<li class="">✅ Checked vs Unchecked Exceptions</li>
+<li class="">✅ Try-catch-finally & Try-with-resources</li>
+<li class="">✅ Custom Exception</li>
+<li class="">✅ Unit Testing với JUnit 5</li>
+<li class="">✅ Boundary Testing và Equivalence Partitioning</li>
+<li class="">✅ File I/O với NIO.2</li>
+<li class="">✅ <strong>Object Serialization (Lưu trữ đối tượng)</strong></li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=kỹ-năng-đã-có>Kỹ năng đã có:<a href=#kỹ-năng-đã-có class=hash-link aria-label="Đường dẫn trực tiếp đến Kỹ năng đã có:" title="Đường dẫn trực tiếp đến Kỹ năng đã có:" translate=no>​</a></h3>
+<ul>
+<li class="">✅ Xử lý Exception đúng cách</li>
+<li class="">✅ Viết Unit Test chuyên nghiệp</li>
+<li class="">✅ Đọc/ghi file với Java NIO.2</li>
+<li class="">✅ Serialization Object</li>
+<li class="">✅ Áp dụng Testing best practices</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-bài-tập-chương-5>🎯 BÀI TẬP CHƯƠNG 5<a href=#-bài-tập-chương-5 class=hash-link aria-label="Đường dẫn trực tiếp đến 🎯 BÀI TẬP CHƯƠNG 5" title="Đường dẫn trực tiếp đến 🎯 BÀI TẬP CHƯƠNG 5" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-1-exception-handling-cơ-bản>Bài 1: Exception Handling cơ bản<a href=#bài-1-exception-handling-cơ-bản class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 1: Exception Handling cơ bản" title="Đường dẫn trực tiếp đến Bài 1: Exception Handling cơ bản" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Tạo class <code>Calculator</code> với method <code>divide(int a, int b)</code>:</p>
+<ol>
+<li class="">Ném <code>ArithmeticException</code> nếu b = 0</li>
+<li class="">Viết method test với try-catch</li>
+<li class="">In thông báo lỗi thân thiện</li>
+</ol>
+<p><strong>Test:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Calculator calc = new Calculator();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">calc.divide(10, 2);  // 5</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">calc.divide(10, 0);  // Exception với thông báo</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-2-custom-exception>Bài 2: Custom Exception<a href=#bài-2-custom-exception class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 2: Custom Exception" title="Đường dẫn trực tiếp đến Bài 2: Custom Exception" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong></p>
+<ol>
+<li class="">Tạo custom exception <code>InsufficientBalanceException</code></li>
+<li class="">Class <code>BankAccount</code> với method <code>withdraw(double amount)</code></li>
+<li class="">Ném exception nếu số dư không đủ</li>
+<li class="">Test exception với JUnit</li>
+</ol>
+<p><strong>Test:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">BankAccount account = new BankAccount(100.0);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">account.withdraw(50.0);   // OK</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">account.withdraw(100.0);  // InsufficientBalanceException</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-3-try-with-resources>Bài 3: Try-with-Resources<a href=#bài-3-try-with-resources class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 3: Try-with-Resources" title="Đường dẫn trực tiếp đến Bài 3: Try-with-Resources" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong></p>
+<ol>
+<li class="">Đọc file "input.txt"</li>
+<li class="">Xử lý dữ liệu</li>
+<li class="">Ghi kết quả vào "output.txt"</li>
+<li class="">Sử dụng try-with-resources</li>
+</ol>
+<p><strong>Yêu cầu:</strong></p>
+<ul>
+<li class="">Xử lý tất cả exceptions</li>
+<li class="">Đảm bảo file được close đúng cách</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-4-unit-test-với-junit-5>Bài 4: Unit Test với JUnit 5<a href=#bài-4-unit-test-với-junit-5 class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 4: Unit Test với JUnit 5" title="Đường dẫn trực tiếp đến Bài 4: Unit Test với JUnit 5" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Tạo class <code>StringUtils</code> với methods:</p>
+<ol>
+<li class=""><code>reverse(String str)</code>: Đảo ngược chuỗi</li>
+<li class=""><code>isPalindrome(String str)</code>: Kiểm tra đối xứng</li>
+<li class=""><code>countWords(String str)</code>: Đếm số từ</li>
+</ol>
+<p><strong>Viết Unit Test:</strong></p>
+<ul>
+<li class="">Test các trường hợp bình thường</li>
+<li class="">Test boundary cases (null, empty string)</li>
+<li class="">Test exception (nếu có)</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-5-boundary-testing>Bài 5: Boundary Testing<a href=#bài-5-boundary-testing class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 5: Boundary Testing" title="Đường dẫn trực tiếp đến Bài 5: Boundary Testing" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Tạo class <code>GradeCalculator</code> với method <code>calculateGrade(double score)</code>:</p>
+<ul>
+<li class="">0-49: "F"</li>
+<li class="">50-59: "D"</li>
+<li class="">60-69: "C"</li>
+<li class="">70-79: "B"</li>
+<li class="">80-100: "A"</li>
+</ul>
+<p><strong>Viết test cho:</strong></p>
+<ul>
+<li class="">Các giá trị biên (0, 49, 50, 59, 60, ...)</li>
+<li class="">Giá trị ngoài phạm vi (&lt; 0, > 100)</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-6-file-io>Bài 6: File I/O<a href=#bài-6-file-io class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 6: File I/O" title="Đường dẫn trực tiếp đến Bài 6: File I/O" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong></p>
+<ol>
+<li class="">
+<p>Tạo class <code>FileManager</code> với methods:</p>
+<ul>
+<li class=""><code>readFile(String filename)</code>: Đọc file</li>
+<li class=""><code>writeFile(String filename, String content)</code>: Ghi file</li>
+<li class=""><code>appendToFile(String filename, String content)</code>: Thêm vào cuối</li>
+</ul>
+</li>
+<li class="">
+<p>Xử lý exceptions đầy đủ</p>
+</li>
+<li class="">
+<p>Viết Unit Test</p>
+</li>
+</ol>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-7-tổng-hợp---hệ-thống-quản-lý-file-với-testing>Bài 7: Tổng hợp - Hệ thống Quản lý File với Testing<a href=#bài-7-tổng-hợp---hệ-thống-quản-lý-file-với-testing class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 7: Tổng hợp - Hệ thống Quản lý File với Testing" title="Đường dẫn trực tiếp đến Bài 7: Tổng hợp - Hệ thống Quản lý File với Testing" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Tạo hệ thống quản lý file với:</p>
+<ol>
+<li class="">
+<p><strong>Class <code>FileService</code></strong>:</p>
+<ul>
+<li class=""><code>readFile(Path path)</code>: Đọc file</li>
+<li class=""><code>writeFile(Path path, String content)</code>: Ghi file</li>
+<li class=""><code>copyFile(Path source, Path target)</code>: Copy file</li>
+<li class="">Xử lý tất cả exceptions</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Custom Exception <code>FileServiceException</code></strong></p>
+</li>
+<li class="">
+<p><strong>Unit Tests đầy đủ</strong>:</p>
+<ul>
+<li class="">Test đọc file thành công</li>
+<li class="">Test đọc file không tồn tại</li>
+<li class="">Test ghi file</li>
+<li class="">Test copy file</li>
+</ul>
+</li>
+</ol>
+<p><strong>Yêu cầu:</strong></p>
+<ul>
+<li class="">Sử dụng try-with-resources</li>
+<li class="">Custom exception với thông tin chi tiết</li>
+<li class="">Test coverage tốt</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-tài-liệu-tham-khảo>📚 TÀI LIỆU THAM KHẢO<a href=#-tài-liệu-tham-khảo class=hash-link aria-label="Đường dẫn trực tiếp đến 📚 TÀI LIỆU THAM KHẢO" title="Đường dẫn trực tiếp đến 📚 TÀI LIỆU THAM KHẢO" translate=no>​</a></h2>
+<ol>
+<li class=""><strong>JUnit 5 User Guide</strong>: <a href=https://junit.org/junit5/docs/current/user-guide/ target=_blank rel="noopener noreferrer" class="">https://junit.org/junit5/docs/current/user-guide/</a></li>
+<li class=""><strong>Java NIO.2 Tutorial</strong>: <a href=https://docs.oracle.com/javase/tutorial/essential/io/fileio.html target=_blank rel="noopener noreferrer" class="">https://docs.oracle.com/javase/tutorial/essential/io/fileio.html</a></li>
+<li class=""><strong>Effective Java</strong> - Joshua Bloch (Item 69-77: Exceptions)</li>
+</ol>
+<hr/>
+<p><strong>Chúc bạn học tốt! 🚀</strong></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/thayduy/lap-trinh-huong-doi-tuong/tree/main/docs/CHUONG_5_LT.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Sửa trang này</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Trang tài liệu"><a class="pagination-nav__link pagination-nav__link--prev" href=/lap-trinh-huong-doi-tuong/CHUONG_4_LT><div class=pagination-nav__sublabel>Trước</div><div class=pagination-nav__label>CHƯƠNG 4: NGUYÊN LÝ THIẾT KẾ & DESIGN PATTERNS CƠ BẢN</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/lap-trinh-huong-doi-tuong/CHUONG_6_LT><div class=pagination-nav__sublabel>Kế tiếp</div><div class=pagination-nav__label>CHƯƠNG 6: COLLECTIONS & STREAM API – HIỆN ĐẠI HÓA JAVA</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#-mục-tiêu-học-tập class="table-of-contents__link toc-highlight">📚 MỤC TIÊU HỌC TẬP</a><li><a href=#-kiến-thức-cần-có-prerequisites class="table-of-contents__link toc-highlight">📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)</a><li><a href=#-hướng-dẫn-học-sâu--code-chạy-thử class="table-of-contents__link toc-highlight">🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ</a><li><a href=#51-phân-loại-ngoại-lệ class="table-of-contents__link toc-highlight">5.1. PHÂN LOẠI NGOẠI LỆ</a><ul><li><a href=#511-exception-là-gì class="table-of-contents__link toc-highlight">5.1.1. Exception là gì?</a><li><a href=#512-checked-vs-unchecked-exceptions class="table-of-contents__link toc-highlight">5.1.2. Checked vs Unchecked Exceptions</a><li><a href=#513-khi-nào-nên-bắt-lỗi-ném-lỗi-tự-định-nghĩa-exception class="table-of-contents__link toc-highlight">5.1.3. Khi nào nên bắt lỗi, ném lỗi, tự định nghĩa Exception?</a></ul><li><a href=#52-cơ-chế-xử-lý-exception class="table-of-contents__link toc-highlight">5.2. CƠ CHẾ XỬ LÝ EXCEPTION</a><ul><li><a href=#521-try-catch-finally class="table-of-contents__link toc-highlight">5.2.1. Try-Catch-Finally</a><li><a href=#-phân-tích-luồng-nhảy-jump-flow class="table-of-contents__link toc-highlight">📉 Phân tích Luồng nhảy (Jump Flow)</a><li><a href=#522-try-with-resources class="table-of-contents__link toc-highlight">5.2.2. Try-with-Resources</a><li><a href=#523-best-practices-không-bao-giờ-nuốt-lỗi class="table-of-contents__link toc-highlight">5.2.3. Best Practices: Không bao giờ "nuốt" lỗi</a></ul><li><a href=#53-unit-testing--tư-duy-kiểm-thử-hiện-đại class="table-of-contents__link toc-highlight">5.3. UNIT TESTING – TƯ DUY KIỂM THỬ HIỆN ĐẠI</a><ul><li><a href=#531-unit-testing-là-gì class="table-of-contents__link toc-highlight">5.3.1. Unit Testing là gì?</a><li><a href=#532-junit-5---framework-testing class="table-of-contents__link toc-highlight">5.3.2. JUnit 5 - Framework Testing</a><li><a href=#️-phân-tích-chiến-thuật-aaa class="table-of-contents__link toc-highlight">🛡️ Phân tích Chiến thuật AAA</a><li><a href=#533-kỹ-thuật-viết-test-case class="table-of-contents__link toc-highlight">5.3.3. Kỹ thuật viết Test Case</a><li><a href=#534-sử-dụng-assert-thay-vì-systemoutprintln class="table-of-contents__link toc-highlight">5.3.4. Sử dụng Assert thay vì System.out.println()</a><li><a href=#535-beforeeach-và-aftereach class="table-of-contents__link toc-highlight">5.3.5. @BeforeEach và @AfterEach</a></ul><li><a href=#54-file-io-cơ-bản class="table-of-contents__link toc-highlight">5.4. FILE I/O CƠ BẢN</a><ul><li><a href=#541-file-path-files-nio2 class="table-of-contents__link toc-highlight">5.4.1. File, Path, Files (NIO.2)</a><li><a href=#542-xử-lý-exception-trong-io class="table-of-contents__link toc-highlight">5.4.2. Xử lý Exception trong I/O</a></ul><li><a href=#55-advanced-io-object-serialization class="table-of-contents__link toc-highlight">5.5. ADVANCED I/O: OBJECT SERIALIZATION</a><ul><li><a href=#551-serialization-là-gì class="table-of-contents__link toc-highlight">5.5.1. Serialization là gì?</a><li><a href=#552-interface-serializable class="table-of-contents__link toc-highlight">5.5.2. Interface Serializable</a><li><a href=#553-ghi-và-đọc-object class="table-of-contents__link toc-highlight">5.5.3. Ghi và Đọc Object</a></ul><li><a href=#-bảng-so-sánh--tra-cứu-nhanh-chương-5 class="table-of-contents__link toc-highlight">📊 BẢNG SO SÁNH & TRA CỨU NHANH (CHƯƠNG 5)</a><ul><li><a href=#checked-vs-unchecked class="table-of-contents__link toc-highlight">Checked vs Unchecked</a><li><a href=#try-catch-vs-try-with-resources class="table-of-contents__link toc-highlight">Try-catch vs Try-with-resources</a><li><a href=#unit-test--aaa class="table-of-contents__link toc-highlight">Unit Test – AAA</a></ul><li><a href=#-cầu-nối-sang-chương-6 class="table-of-contents__link toc-highlight">🔗 CẦU NỐI SANG CHƯƠNG 6</a><li><a href=#-tóm-tắt-chương-5 class="table-of-contents__link toc-highlight">📝 TÓM TẮT CHƯƠNG 5</a><ul><li><a href=#kiến-thức-đã-học class="table-of-contents__link toc-highlight">Kiến thức đã học:</a><li><a href=#kỹ-năng-đã-có class="table-of-contents__link toc-highlight">Kỹ năng đã có:</a></ul><li><a href=#-bài-tập-chương-5 class="table-of-contents__link toc-highlight">🎯 BÀI TẬP CHƯƠNG 5</a><ul><li><a href=#bài-1-exception-handling-cơ-bản class="table-of-contents__link toc-highlight">Bài 1: Exception Handling cơ bản</a><li><a href=#bài-2-custom-exception class="table-of-contents__link toc-highlight">Bài 2: Custom Exception</a><li><a href=#bài-3-try-with-resources class="table-of-contents__link toc-highlight">Bài 3: Try-with-Resources</a><li><a href=#bài-4-unit-test-với-junit-5 class="table-of-contents__link toc-highlight">Bài 4: Unit Test với JUnit 5</a><li><a href=#bài-5-boundary-testing class="table-of-contents__link toc-highlight">Bài 5: Boundary Testing</a><li><a href=#bài-6-file-io class="table-of-contents__link toc-highlight">Bài 6: File I/O</a><li><a href=#bài-7-tổng-hợp---hệ-thống-quản-lý-file-với-testing class="table-of-contents__link toc-highlight">Bài 7: Tổng hợp - Hệ thống Quản lý File với Testing</a></ul><li><a href=#-tài-liệu-tham-khảo class="table-of-contents__link toc-highlight">📚 TÀI LIỆU THAM KHẢO</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Tài liệu</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/lap-trinh-huong-doi-tuong/>Lý thuyết</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Liên kết</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/thayduy/lap-trinh-huong-doi-tuong target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright © 2026 Lập trình Hướng đối tượng. Built with Docusaurus.</div></div></div></footer></div></body>

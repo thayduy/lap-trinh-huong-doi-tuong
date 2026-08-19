@@ -1,0 +1,920 @@
+<!doctype html><html lang=vi dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-CHUONG_4_LT" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.2"><title data-rh=true>CHƯƠNG 4: NGUYÊN LÝ THIẾT KẾ & DESIGN PATTERNS CƠ BẢN | Lập trình Hướng đối tượng</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://thayduy.github.io/lap-trinh-huong-doi-tuong/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://thayduy.github.io/lap-trinh-huong-doi-tuong/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_4_LT /><meta data-rh=true property=og:locale content=vi /><meta data-rh=true name=docusaurus_locale content=vi /><meta data-rh=true name=docsearch:language content=vi /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="CHƯƠNG 4: NGUYÊN LÝ THIẾT KẾ & DESIGN PATTERNS CƠ BẢN | Lập trình Hướng đối tượng"/><meta data-rh=true name=description content="📚 MỤC TIÊU HỌC TẬP"/><meta data-rh=true property=og:description content="📚 MỤC TIÊU HỌC TẬP"/><link data-rh=true rel=icon href=/lap-trinh-huong-doi-tuong/img/favicon.ico /><link data-rh=true rel=canonical href=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_4_LT /><link data-rh=true rel=alternate href=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_4_LT hreflang=vi /><link data-rh=true rel=alternate href=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_4_LT hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_4_LT","name":"CHƯƠNG 4: NGUYÊN LÝ THIẾT KẾ & DESIGN PATTERNS CƠ BẢN","position":1}]}</script><link rel=stylesheet href=/lap-trinh-huong-doi-tuong/assets/css/styles.96ad39d9.css /><script src=/lap-trinh-huong-doi-tuong/assets/js/runtime~main.4596e5db.js defer></script><script src=/lap-trinh-huong-doi-tuong/assets/js/main.87eabe26.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-509")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/lap-trinh-huong-doi-tuong/img/logo.svg /><div role=region aria-label="Chuyển tới nội dung chính"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Chuyển tới nội dung chính</a></div><nav aria-label="Thanh điều hướng" class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Đóng - mở thanh điều hướng" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/lap-trinh-huong-doi-tuong/><div class=navbar__logo><img src=/lap-trinh-huong-doi-tuong/img/logo.svg alt=Logo class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/lap-trinh-huong-doi-tuong/img/logo.svg alt=Logo class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">LTHĐT</b></a><a aria-current=page class="navbar__item navbar__link navbar__link--active" href=/lap-trinh-huong-doi-tuong/CHUONG_1_LT>Lý thuyết</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/thayduy/lap-trinh-huong-doi-tuong target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Chuyển đổi chế độ sáng và tối (hiện tại là system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Trở lại đầu trang" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Thanh điều hướng tài liệu" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_1_LT><span class=linkLabel_WmDU>CHƯƠNG 1: TƯ DUY HƯỚNG ĐỐI TƯỢNG & THIẾT LẬP MÔI TRƯỜNG CHUYÊN NGHIỆP</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_2_LT><span class=linkLabel_WmDU>CHƯƠNG 2: LỚP (CLASS) & ĐỐI TƯỢNG (OBJECT) – MODERN JAVA APPROACH</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_3_LT><span class=linkLabel_WmDU>CHƯƠNG 3: KẾ THỪA & ĐA HÌNH – TRÁI TIM CỦA OOP</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current=page href=/lap-trinh-huong-doi-tuong/CHUONG_4_LT><span class=linkLabel_WmDU>CHƯƠNG 4: NGUYÊN LÝ THIẾT KẾ & DESIGN PATTERNS CƠ BẢN</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_5_LT><span class=linkLabel_WmDU>CHƯƠNG 5: XỬ LÝ NGOẠI LỆ (EXCEPTIONS) & KIỂM THỬ (TESTING)</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_6_LT><span class=linkLabel_WmDU>CHƯƠNG 6: COLLECTIONS & STREAM API – HIỆN ĐẠI HÓA JAVA</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/><span class=linkLabel_WmDU>📘 GIÁO TRÌNH LÝ THUYẾT – LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG (JAVA)</span></a></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Liên kết điều hướng"><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Trang chủ" class=breadcrumbs__link href=/lap-trinh-huong-doi-tuong/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>CHƯƠNG 4: NGUYÊN LÝ THIẾT KẾ & DESIGN PATTERNS CƠ BẢN</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">Trên trang này</button></div><div class="theme-doc-markdown markdown"><header><h1>CHƯƠNG 4: NGUYÊN LÝ THIẾT KẾ & DESIGN PATTERNS CƠ BẢN</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-mục-tiêu-học-tập>📚 MỤC TIÊU HỌC TẬP<a href=#-mục-tiêu-học-tập class=hash-link aria-label="Đường dẫn trực tiếp đến 📚 MỤC TIÊU HỌC TẬP" title="Đường dẫn trực tiếp đến 📚 MỤC TIÊU HỌC TẬP" translate=no>​</a></h2>
+<p>Sau khi hoàn thành chương này, bạn sẽ:</p>
+<ul>
+<li class="">Hiểu và áp dụng các nguyên lý <strong>SOLID</strong> (S, O, L, I, D)</li>
+<li class="">Đọc và vẽ <strong>UML Class Diagram</strong> cơ bản</li>
+<li class="">Nắm vững <strong>Dependency Inversion</strong> và <strong>Dependency Injection</strong></li>
+<li class="">Hiểu và implement <strong>Singleton Pattern</strong></li>
+<li class="">Hiểu và implement <strong>Factory Pattern</strong></li>
+<li class="">Áp dụng Design Patterns vào thực tế</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-kiến-thức-cần-có-prerequisites>📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)<a href=#-kiến-thức-cần-có-prerequisites class=hash-link aria-label="Đường dẫn trực tiếp đến 📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)" title="Đường dẫn trực tiếp đến 📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)" translate=no>​</a></h2>
+<p>Trước khi học chương này, bạn cần nắm vững:</p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class=task-list-item><input type=checkbox disabled/> ✅ <strong>Class, Object, Encapsulation</strong> (Chương 2)</li>
+<li class=task-list-item><input type=checkbox disabled/> ✅ <strong>Inheritance, Interface, Polymorphism</strong> (Chương 3)</li>
+<li class=task-list-item><input type=checkbox disabled/> ✅ <strong>Override, abstract class</strong> (Chương 3) – dùng trong OCP và Factory</li>
+</ul>
+<blockquote>
+<p><strong>💡 Lưu ý:</strong> Chương này chuyển từ “viết code chạy được” sang “thiết kế code dễ bảo trì”. Nếu Chương 3 chưa vững, nên ôn lại trước.</p>
+</blockquote>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=0-tại-sao-cần-nguyên-lý-thiết-kế>0. TẠI SAO CẦN NGUYÊN LÝ THIẾT KẾ?<a href=#0-tại-sao-cần-nguyên-lý-thiết-kế class=hash-link aria-label="Đường dẫn trực tiếp đến 0. TẠI SAO CẦN NGUYÊN LÝ THIẾT KẾ?" title="Đường dẫn trực tiếp đến 0. TẠI SAO CẦN NGUYÊN LÝ THIẾT KẾ?" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=vấn-đề-thường-gặp>Vấn đề thường gặp<a href=#vấn-đề-thường-gặp class=hash-link aria-label="Đường dẫn trực tiếp đến Vấn đề thường gặp" title="Đường dẫn trực tiếp đến Vấn đề thường gặp" translate=no>​</a></h3>
+<ul>
+<li class="">Code <strong>chạy được</strong> nhưng sửa một chỗ làm vỡ chỗ khác</li>
+<li class="">Thêm tính năng mới phải sửa nhiều file, nhiều <code>if/else</code></li>
+<li class="">Khó test vì class “ôm” quá nhiều việc</li>
+<li class="">Người khác đọc code không hiểu ý đồ thiết kế</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=nguyên-lý-thiết-kế-giúp-gì>Nguyên lý thiết kế giúp gì?<a href=#nguyên-lý-thiết-kế-giúp-gì class=hash-link aria-label="Đường dẫn trực tiếp đến Nguyên lý thiết kế giúp gì?" title="Đường dẫn trực tiếp đến Nguyên lý thiết kế giúp gì?" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Khía cạnh<th>Không có nguyên tắc<th>Có SOLID + Pattern<tbody><tr><td>Sửa lỗi<td>Dễ ảnh hưởng lan<td>Sửa đúng class, ít side effect<tr><td>Mở rộng<td>Thêm <code>if</code> vào class cũ<td>Thêm class mới (OCP)<tr><td>Test<td>Khó tách phần<td>Inject dependency, mock dễ<tr><td>Làm nhóm<td>Không có “ngôn ngữ chung”<td>UML + SOLID là chuẩn chung</table>
+<p><strong>Ví dụ dễ nhớ:</strong> Giống nhà <strong>không tách phòng</strong> (bếp, ngủ, khách một chỗ) vs <strong>tách phòng rõ ràng</strong> – sửa bếp không ảnh hưởng phòng ngủ.</p>
+<p><strong>Thứ tự học trong chương:</strong> UML (mô tả) → SOLID (nguyên tắc) → DIP/DI (phụ thuộc) → Singleton & Factory (mẫu hay dùng).</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-hướng-dẫn-học-sâu--code-chạy-thử>🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ<a href=#-hướng-dẫn-học-sâu--code-chạy-thử class=hash-link aria-label="Đường dẫn trực tiếp đến 🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ" title="Đường dẫn trực tiếp đến 🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Chủ đề<th>Code<th>Lệnh<tbody><tr><td>DIP + Factory + DI<td><code>CODE/VI_DU/CHUONG_4/01_SOLID_DIP_Factory/</code><td><code>javac Main.java && java Main</code></table>
+<p><strong>Output đã kiểm tra:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">[MySQL] Lưu: Order#001:Sách Java</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">[PostgreSQL] Lưu: Order#002:Bút</span><br/></div></code></pre></div></div>
+<p><strong>Trace từng bước:</strong></p>
+<ol>
+<li class=""><code>DatabaseFactory.create("mysql")</code> → trả object <code>MySQLDatabase</code> (Factory).</li>
+<li class=""><code>new OrderService(db)</code> → inject qua constructor (DI), <code>OrderService</code> chỉ biết interface <code>Database</code> (DIP).</li>
+<li class=""><code>placeOrder</code> gọi <code>database.save(...)</code> → runtime chạy code MySQL hoặc PostgreSQL tùy object được inject.</li>
+</ol>
+<p><strong>Thử tự tay:</strong> Đổi <code>"mysql"</code> thành <code>"postgres"</code> trong Main – chỉ output đổi prefix, <strong>không sửa</strong> <code>OrderService</code>.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=41-uml-class-diagram-nhập-môn>4.1. UML CLASS DIAGRAM (NHẬP MÔN)<a href=#41-uml-class-diagram-nhập-môn class=hash-link aria-label="Đường dẫn trực tiếp đến 4.1. UML CLASS DIAGRAM (NHẬP MÔN)" title="Đường dẫn trực tiếp đến 4.1. UML CLASS DIAGRAM (NHẬP MÔN)" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=411-uml-là-gì>4.1.1. UML là gì?<a href=#411-uml-là-gì class=hash-link aria-label="Đường dẫn trực tiếp đến 4.1.1. UML là gì?" title="Đường dẫn trực tiếp đến 4.1.1. UML là gì?" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa>Định nghĩa<a href=#định-nghĩa class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>UML (Unified Modeling Language)</strong> là ngôn ngữ mô hình hóa chuẩn để:</p>
+<ul>
+<li class="">Mô tả thiết kế hệ thống</li>
+<li class="">Giao tiếp giữa các developer</li>
+<li class="">Tài liệu hóa kiến trúc</li>
+</ul>
+<p><strong>UML Class Diagram</strong> mô tả:</p>
+<ul>
+<li class="">Classes và quan hệ giữa chúng</li>
+<li class="">Attributes (fields) và Methods</li>
+<li class="">Access modifiers</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=412-các-thành-phần-cơ-bản>4.1.2. Các thành phần cơ bản<a href=#412-các-thành-phần-cơ-bản class=hash-link aria-label="Đường dẫn trực tiếp đến 4.1.2. Các thành phần cơ bản" title="Đường dẫn trực tiếp đến 4.1.2. Các thành phần cơ bản" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=class-trong-uml>Class trong UML<a href=#class-trong-uml class=hash-link aria-label="Đường dẫn trực tiếp đến Class trong UML" title="Đường dẫn trực tiếp đến Class trong UML" translate=no>​</a></h4>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">┌─────────────────────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   ClassName         │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">├─────────────────────┤</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ - attribute1: type  │  (- = private)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ + attribute2: type  │  (+ = public)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ # attribute3: type  │  (# = protected)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">├─────────────────────┤</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ + method1(): type   │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ - method2(): void   │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ # method3(): type   │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└─────────────────────┘</span><br/></div></code></pre></div></div>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">┌─────────────────────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   Student           │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">├─────────────────────┤</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ - name: String      │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ - age: int          │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ - gpa: double       │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">├─────────────────────┤</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ + getName(): String │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ + setAge(int): void │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ + displayInfo(): void│</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└─────────────────────┘</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=413-các-loại-quan-hệ>4.1.3. Các loại quan hệ<a href=#413-các-loại-quan-hệ class=hash-link aria-label="Đường dẫn trực tiếp đến 4.1.3. Các loại quan hệ" title="Đường dẫn trực tiếp đến 4.1.3. Các loại quan hệ" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=1-association-liên-kết>1. Association (Liên kết)<a href=#1-association-liên-kết class=hash-link aria-label="Đường dẫn trực tiếp đến 1. Association (Liên kết)" title="Đường dẫn trực tiếp đến 1. Association (Liên kết)" translate=no>​</a></h4>
+<p><strong>Quan hệ "có liên quan đến"</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">┌─────────┐         ┌─────────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ Student │─────────│ Course  │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└─────────┘         └─────────┘</span><br/></div></code></pre></div></div>
+<p><strong>Code:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class Student {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Course course;  // Association</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=2-aggregation-tập-hợp>2. Aggregation (Tập hợp)<a href=#2-aggregation-tập-hợp class=hash-link aria-label="Đường dẫn trực tiếp đến 2. Aggregation (Tập hợp)" title="Đường dẫn trực tiếp đến 2. Aggregation (Tập hợp)" translate=no>​</a></h4>
+<p><strong>Quan hệ "HAS-A" - Object có thể tồn tại độc lập</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">┌─────────┐         ┌─────────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│  Team   │◇───────│ Player  │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└─────────┘         └─────────┘</span><br/></div></code></pre></div></div>
+<p><strong>Code:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class Team {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private List&lt;Player> players;  // Aggregation</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Player có thể tồn tại không cần Team</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=3-composition-kết-hợp>3. Composition (Kết hợp)<a href=#3-composition-kết-hợp class=hash-link aria-label="Đường dẫn trực tiếp đến 3. Composition (Kết hợp)" title="Đường dẫn trực tiếp đến 3. Composition (Kết hợp)" translate=no>​</a></h4>
+<p><strong>Quan hệ "HAS-A" - Object không thể tồn tại độc lập</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">┌─────────┐         ┌─────────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│  House  │◆───────│  Room   │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└─────────┘         └─────────┘</span><br/></div></code></pre></div></div>
+<p><strong>Code:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class House {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private List&lt;Room> rooms;  // Composition</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Room không thể tồn tại không cần House</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=4-inheritance-kế-thừa>4. Inheritance (Kế thừa)<a href=#4-inheritance-kế-thừa class=hash-link aria-label="Đường dẫn trực tiếp đến 4. Inheritance (Kế thừa)" title="Đường dẫn trực tiếp đến 4. Inheritance (Kế thừa)" translate=no>​</a></h4>
+<p><strong>Quan hệ "IS-A"</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">┌─────────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ Animal  │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└────┬────┘</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">     │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">     │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">┌────┴────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   Dog   │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└─────────┘</span><br/></div></code></pre></div></div>
+<p><strong>Code:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class Dog extends Animal {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // ...</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=5-implementation-triển-khai-interface>5. Implementation (Triển khai Interface)<a href=#5-implementation-triển-khai-interface class=hash-link aria-label="Đường dẫn trực tiếp đến 5. Implementation (Triển khai Interface)" title="Đường dẫn trực tiếp đến 5. Implementation (Triển khai Interface)" translate=no>​</a></h4>
+<p><strong>Class implement Interface</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">┌──────────────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│  &lt;&lt;interface>>│</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   Flyable    │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└──────┬───────┘</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">       │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">       │ implements</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">       │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">┌──────┴───────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│     Bird     │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└──────────────┘</span><br/></div></code></pre></div></div>
+<p><strong>Code:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class Bird implements Flyable {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // ...</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=so-sánh-nhanh-association--aggregation--composition>So sánh nhanh: Association – Aggregation – Composition<a href=#so-sánh-nhanh-association--aggregation--composition class=hash-link aria-label="Đường dẫn trực tiếp đến So sánh nhanh: Association – Aggregation – Composition" title="Đường dẫn trực tiếp đến So sánh nhanh: Association – Aggregation – Composition" translate=no>​</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Quan hệ<th>Ý nghĩa<th>Ví dụ<th>Trong code<tbody><tr><td><strong>Association</strong><td>A dùng B<td>Student – Course<td><code>private Course course</code><tr><td><strong>Aggregation</strong><td>A chứa B, B sống độc lập<td>Team – Player<td><code>List&lt;Player> players</code><tr><td><strong>Composition</strong><td>A sở hữu B, B gắn vòng đời A<td>House – Room<td>Tạo Room trong constructor House</table>
+<p><strong>Cách nhớ:</strong> IS-A → Inheritance/Implementation; HAS-A → Association/Aggregation/Composition.</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=414-ví-dụ-uml-hoàn-chỉnh>4.1.4. Ví dụ UML hoàn chỉnh<a href=#414-ví-dụ-uml-hoàn-chỉnh class=hash-link aria-label="Đường dẫn trực tiếp đến 4.1.4. Ví dụ UML hoàn chỉnh" title="Đường dẫn trực tiếp đến 4.1.4. Ví dụ UML hoàn chỉnh" translate=no>​</a></h3>
+<p><strong>Hệ thống Quản lý Thư viện:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">┌──────────────┐         ┌──────────────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│    Book      │────────│    Author    │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└──────────────┘         └──────────────┘</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">       │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">       │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">       │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">┌──────┴───────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│    Loan      │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└──────┬───────┘</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">       │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">       │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">┌──────┴───────┐         ┌──────────────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   Member     │────────│   Library    │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└──────────────┘         └──────────────┘</span><br/></div></code></pre></div></div>
+<p><strong>Code tương ứng:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class Book {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Author author;  // Association</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Loan {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Book book;     // Association</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Member member; // Association</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Library {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private List&lt;Member> members;  // Aggregation</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=42-nguyên-lý-solid-trọng-tâm>4.2. NGUYÊN LÝ SOLID (TRỌNG TÂM)<a href=#42-nguyên-lý-solid-trọng-tâm class=hash-link aria-label="Đường dẫn trực tiếp đến 4.2. NGUYÊN LÝ SOLID (TRỌNG TÂM)" title="Đường dẫn trực tiếp đến 4.2. NGUYÊN LÝ SOLID (TRỌNG TÂM)" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=421-solid-là-gì>4.2.1. SOLID là gì?<a href=#421-solid-là-gì class=hash-link aria-label="Đường dẫn trực tiếp đến 4.2.1. SOLID là gì?" title="Đường dẫn trực tiếp đến 4.2.1. SOLID là gì?" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-1>Định nghĩa<a href=#định-nghĩa-1 class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>SOLID</strong> là 5 nguyên lý thiết kế phần mềm:</p>
+<ul>
+<li class=""><strong>S</strong> - Single Responsibility Principle</li>
+<li class=""><strong>O</strong> - Open/Closed Principle</li>
+<li class=""><strong>L</strong> - Liskov Substitution Principle</li>
+<li class=""><strong>I</strong> - Interface Segregation Principle</li>
+<li class=""><strong>D</strong> - Dependency Inversion Principle</li>
+</ul>
+<p><strong>Mục tiêu:</strong></p>
+<ul>
+<li class="">Code dễ bảo trì</li>
+<li class="">Code dễ mở rộng</li>
+<li class="">Code dễ test</li>
+<li class="">Code linh hoạt</li>
+</ul>
+<p><strong>Trong chương này, chúng ta học đủ 5 chữ SOLID; trọng tâm thực hành là S, O, D và hai pattern Singleton, Factory.</strong></p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=422-s--single-responsibility-principle-srp>4.2.2. S – Single Responsibility Principle (SRP)<a href=#422-s--single-responsibility-principle-srp class=hash-link aria-label="Đường dẫn trực tiếp đến 4.2.2. S – Single Responsibility Principle (SRP)" title="Đường dẫn trực tiếp đến 4.2.2. S – Single Responsibility Principle (SRP)" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-2>Định nghĩa<a href=#định-nghĩa-2 class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>"Một class chỉ nên có một lý do để thay đổi"</strong></p>
+<p><strong>Nghĩa là:</strong></p>
+<ul>
+<li class="">Một class chỉ nên có một trách nhiệm</li>
+<li class="">Nếu class có nhiều trách nhiệm → Tách thành nhiều class</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-vi-phạm-srp>Ví dụ: Vi phạm SRP<a href=#ví-dụ-vi-phạm-srp class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ: Vi phạm SRP" title="Đường dẫn trực tiếp đến Ví dụ: Vi phạm SRP" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ❌ TỒI: Class có nhiều trách nhiệm</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Student {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private String name;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private int age;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Trách nhiệm 1: Quản lý thông tin Student</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setName(String name) { this.name = name; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setAge(int age) { this.age = age; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Trách nhiệm 2: Lưu vào Database</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void saveToDatabase() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code lưu database</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Trách nhiệm 3: Gửi Email</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void sendEmail(String message) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code gửi email</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Trách nhiệm 4: Tạo Report</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void generateReport() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code tạo report</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Vấn đề:</strong></p>
+<ul>
+<li class="">❌ Nếu thay đổi cách lưu database → Phải sửa Student</li>
+<li class="">❌ Nếu thay đổi cách gửi email → Phải sửa Student</li>
+<li class="">❌ Nếu thay đổi cách tạo report → Phải sửa Student</li>
+<li class="">❌ Class quá phức tạp, khó test</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=giải-pháp-tách-thành-nhiều-class>Giải pháp: Tách thành nhiều class<a href=#giải-pháp-tách-thành-nhiều-class class=hash-link aria-label="Đường dẫn trực tiếp đến Giải pháp: Tách thành nhiều class" title="Đường dẫn trực tiếp đến Giải pháp: Tách thành nhiều class" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ✅ TỐT: Mỗi class một trách nhiệm</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Class 1: Quản lý thông tin Student</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Student {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private String name;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private int age;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setName(String name) { this.name = name; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setAge(int age) { this.age = age; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public String getName() { return name; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public int getAge() { return age; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Class 2: Lưu vào Database</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class StudentRepository {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void save(Student student) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code lưu database</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public Student findById(String id) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code tìm trong database</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Class 3: Gửi Email</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class EmailService {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void sendEmail(String to, String message) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code gửi email</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Class 4: Tạo Report</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class ReportGenerator {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void generateReport(Student student) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code tạo report</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Mỗi class chỉ có một lý do để thay đổi</li>
+<li class="">✅ Dễ test từng phần riêng biệt</li>
+<li class="">✅ Dễ bảo trì và mở rộng</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=so-sánh-trước--sau-srp>So sánh trước / sau SRP<a href=#so-sánh-trước--sau-srp class=hash-link aria-label="Đường dẫn trực tiếp đến So sánh trước / sau SRP" title="Đường dẫn trực tiếp đến So sánh trước / sau SRP" translate=no>​</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tiêu chí<th>Một class làm hết<th>Tách theo SRP<tbody><tr><td>Sửa database<td>Sửa class Student<td>Chỉ sửa StudentRepository<tr><td>Test logic sinh viên<td>Phải mock DB + email<td>Test Student độc lập<tr><td>Tái sử dụng<td>Khó dùng riêng phần email<td>EmailService dùng ở module khác</table>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=cách-nhận-biết-vi-phạm-srp>Cách nhận biết vi phạm SRP<a href=#cách-nhận-biết-vi-phạm-srp class=hash-link aria-label="Đường dẫn trực tiếp đến Cách nhận biết vi phạm SRP" title="Đường dẫn trực tiếp đến Cách nhận biết vi phạm SRP" translate=no>​</a></h4>
+<p><strong>Dấu hiệu:</strong></p>
+<ul>
+<li class="">Class có quá nhiều methods (> 10-15)</li>
+<li class="">Class có nhiều lý do để thay đổi</li>
+<li class="">Khó đặt tên class (phải dùng "và", "hoặc")</li>
+<li class="">Khó test class</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ❌ Tên class có "và" → Có thể vi phạm SRP</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">class StudentAndCourseManager { }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// ✅ Tách thành 2 class</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">class StudentManager { }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">class CourseManager { }</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=423-o--openclosed-principle-ocp>4.2.3. O – Open/Closed Principle (OCP)<a href=#423-o--openclosed-principle-ocp class=hash-link aria-label="Đường dẫn trực tiếp đến 4.2.3. O – Open/Closed Principle (OCP)" title="Đường dẫn trực tiếp đến 4.2.3. O – Open/Closed Principle (OCP)" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-3>Định nghĩa<a href=#định-nghĩa-3 class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>"Software entities should be open for extension, but closed for modification"</strong></p>
+<p><strong>Nghĩa là:</strong></p>
+<ul>
+<li class=""><strong>Open for extension</strong>: Có thể thêm tính năng mới</li>
+<li class=""><strong>Closed for modification</strong>: Không cần sửa code cũ</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-vi-phạm-ocp>Ví dụ: Vi phạm OCP<a href=#ví-dụ-vi-phạm-ocp class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ: Vi phạm OCP" title="Đường dẫn trực tiếp đến Ví dụ: Vi phạm OCP" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ❌ TỒI: Phải sửa code khi thêm loại mới</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class AreaCalculator {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double calculateArea(Object shape) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        if (shape instanceof Circle) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            Circle circle = (Circle) shape;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return Math.PI * circle.getRadius() * circle.getRadius();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        } else if (shape instanceof Rectangle) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            Rectangle rect = (Rectangle) shape;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return rect.getWidth() * rect.getHeight();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        } else if (shape instanceof Triangle) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            Triangle triangle = (Triangle) shape;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return 0.5 * triangle.getBase() * triangle.getHeight();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Thêm loại mới → Phải sửa code này!</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return 0;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Vấn đề:</strong></p>
+<ul>
+<li class="">❌ Thêm <code>Square</code> → Phải sửa <code>AreaCalculator</code></li>
+<li class="">❌ Vi phạm OCP</li>
+<li class="">❌ Dễ lỗi (quên case nào đó)</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=giải-pháp-dùng-polymorphism>Giải pháp: Dùng Polymorphism<a href=#giải-pháp-dùng-polymorphism class=hash-link aria-label="Đường dẫn trực tiếp đến Giải pháp: Dùng Polymorphism" title="Đường dẫn trực tiếp đến Giải pháp: Dùng Polymorphism" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ✅ TỐT: Open for extension, closed for modification</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Abstract class hoặc Interface</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public abstract class Shape {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public abstract double calculateArea();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Implementations</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Circle extends Shape {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private double radius;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public Circle(double radius) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.radius = radius;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double calculateArea() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return Math.PI * radius * radius;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Rectangle extends Shape {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private double width;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private double height;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public Rectangle(double width, double height) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.width = width;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.height = height;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double calculateArea() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return width * height;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Calculator không cần sửa khi thêm loại mới</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class AreaCalculator {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double calculateArea(Shape shape) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return shape.calculateArea();  // Polymorphism!</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Thêm loại mới - KHÔNG CẦN SỬA AreaCalculator!</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Triangle extends Shape {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private double base;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private double height;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public Triangle(double base, double height) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.base = base;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.height = height;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double calculateArea() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return 0.5 * base * height;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Thêm loại mới → Chỉ cần tạo class mới</li>
+<li class="">✅ Không cần sửa code cũ</li>
+<li class="">✅ Tuân thủ OCP</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=thực-hành-refactor-code-vi-phạm-ocp>Thực hành: Refactor code vi phạm OCP<a href=#thực-hành-refactor-code-vi-phạm-ocp class=hash-link aria-label="Đường dẫn trực tiếp đến Thực hành: Refactor code vi phạm OCP" title="Đường dẫn trực tiếp đến Thực hành: Refactor code vi phạm OCP" translate=no>​</a></h4>
+<p><strong>Code cũ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class PaymentProcessor {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void processPayment(String type, double amount) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        if (type.equals("credit")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            // Process credit card</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        } else if (type.equals("paypal")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            // Process PayPal</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Thêm loại mới → Phải sửa code này</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Code mới (tuân thủ OCP):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Interface</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public interface PaymentMethod {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    void pay(double amount);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Implementations</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class CreditCard implements PaymentMethod {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void pay(double amount) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Process credit card</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class PayPal implements PaymentMethod {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void pay(double amount) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Process PayPal</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Processor không cần sửa khi thêm loại mới</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class PaymentProcessor {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void processPayment(PaymentMethod method, double amount) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        method.pay(amount);  // Polymorphism!</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Thêm loại mới - KHÔNG CẦN SỬA PaymentProcessor!</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Bitcoin implements PaymentMethod {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void pay(double amount) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Process Bitcoin</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=so-sánh-ifinstanceof-vs-polymorphism-ocp>So sánh: if/instanceof vs Polymorphism (OCP)<a href=#so-sánh-ifinstanceof-vs-polymorphism-ocp class=hash-link aria-label="Đường dẫn trực tiếp đến So sánh: if/instanceof vs Polymorphism (OCP)" title="Đường dẫn trực tiếp đến So sánh: if/instanceof vs Polymorphism (OCP)" translate=no>​</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><th>Nhiều if/instanceof<th>Interface + đa hình<tbody><tr><td>Thêm loại mới<td>Sửa class trung tâm<td>Thêm class mới implement interface<tr><td>Rủi ro regression<td>Cao (đụng code cũ)<td>Thấp<tr><td>Liên hệ Chương 3<td>—<td>Dùng Polymorphism đã học</table>
+<p><strong>Ví dụ dễ nhớ:</strong> Cài <strong>app mới</strong> trên điện thoại (mở rộng) thay vì <strong>tháo máy hàn chip</strong> (sửa phần cứng).</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=424-l--liskov-substitution-principle-lsp>4.2.4. L – Liskov Substitution Principle (LSP)<a href=#424-l--liskov-substitution-principle-lsp class=hash-link aria-label="Đường dẫn trực tiếp đến 4.2.4. L – Liskov Substitution Principle (LSP)" title="Đường dẫn trực tiếp đến 4.2.4. L – Liskov Substitution Principle (LSP)" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-một-câu>Định nghĩa (một câu)<a href=#định-nghĩa-một-câu class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa (một câu)" title="Đường dẫn trực tiếp đến Định nghĩa (một câu)" translate=no>​</a></h4>
+<p><strong>“Class con phải thay thế được class cha mà không làm hỏng chương trình.”</strong></p>
+<p>Nếu đoạn code dùng biến kiểu cha (<code>Shape</code>, <code>Rectangle</code>), thay bằng bất kỳ class con nào cũng phải <strong>đúng ý nghĩa</strong>, không gây lỗi hoặc hành vi bất ngờ.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-đời-thường>Ví dụ đời thường<a href=#ví-dụ-đời-thường class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ đời thường" title="Đường dẫn trực tiếp đến Ví dụ đời thường" translate=no>​</a></h4>
+<p>Trong toán, <strong>hình vuông là hình chữ nhật đặc biệt</strong>. Trong code, nếu <code>Square extends Rectangle</code> và override <code>setWidth</code>/<code>setHeight</code> để luôn giữ hai cạnh bằng nhau, người code kiểu <code>Rectangle</code> sẽ <strong>bị bất ngờ</strong> khi set width=4, height=5 mà diện tích không phải 20.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-code-vi-phạm-lsp>Ví dụ code: Vi phạm LSP<a href=#ví-dụ-code-vi-phạm-lsp class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ code: Vi phạm LSP" title="Đường dẫn trực tiếp đến Ví dụ code: Vi phạm LSP" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class Rectangle {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    protected int width, height;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setWidth(int w)  { width = w; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setHeight(int h) { height = h; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public int getArea() { return width * height; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Square extends Rectangle {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setWidth(int w)  { width = height = w; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setHeight(int h) { width = height = h; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Kỳ vọng: Rectangle r; r.setWidth(4); r.setHeight(5); → area = 20</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Thực tế với Square: area = 25 → VI PHẠM LSP</span><br/></div></code></pre></div></div>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=cách-làm-đúng>Cách làm đúng<a href=#cách-làm-đúng class=hash-link aria-label="Đường dẫn trực tiếp đến Cách làm đúng" title="Đường dẫn trực tiếp đến Cách làm đúng" translate=no>​</a></h4>
+<ul>
+<li class="">Không ép <code>Square extends Rectangle</code> nếu hành vi không tương thích.</li>
+<li class="">Dùng interface chung: <code>Shape</code> với <code>getArea()</code>; <code>Rectangle</code> và <code>Square</code> đều implement <code>Shape</code>.</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=so-sánh--đánh-giá-lsp>So sánh & Đánh giá LSP<a href=#so-sánh--đánh-giá-lsp class=hash-link aria-label="Đường dẫn trực tiếp đến So sánh & Đánh giá LSP" title="Đường dẫn trực tiếp đến So sánh & Đánh giá LSP" translate=no>​</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tuân thủ LSP<th>Vi phạm LSP<tbody><tr><td>Thay con vào chỗ cha → chương trình vẫn đúng<td>Thay con → kết quả sai hoặc exception<tr><td>Đa hình đáng tin cậy<td>Debug khó vì “đúng kiểu nhưng sai hành vi”</table>
+<p><strong>Câu hỏi tự kiểm tra:</strong> “Nếu tôi thay subclass vào mọi chỗ đang dùng superclass, code còn đúng không?”</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=425-i--interface-segregation-principle-isp>4.2.5. I – Interface Segregation Principle (ISP)<a href=#425-i--interface-segregation-principle-isp class=hash-link aria-label="Đường dẫn trực tiếp đến 4.2.5. I – Interface Segregation Principle (ISP)" title="Đường dẫn trực tiếp đến 4.2.5. I – Interface Segregation Principle (ISP)" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-một-câu-1>Định nghĩa (một câu)<a href=#định-nghĩa-một-câu-1 class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa (một câu)" title="Đường dẫn trực tiếp đến Định nghĩa (một câu)" translate=no>​</a></h4>
+<p><strong>“Client không nên bị ép phụ thuộc vào method của interface mà nó không dùng.”</strong></p>
+<p>Tách interface lớn thành nhiều interface nhỏ, gắn với <strong>một vai trò</strong>.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-đời-thường-1>Ví dụ đời thường<a href=#ví-dụ-đời-thường-1 class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ đời thường" title="Đường dẫn trực tiếp đến Ví dụ đời thường" translate=no>​</a></h4>
+<p>Remote <strong>50 nút</strong> (TV, điều hòa, quạt…) trong khi bạn chỉ cần bật quạt → rối. Cách tốt: remote quạt chỉ có nút quạt.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-code>Ví dụ code<a href=#ví-dụ-code class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ code" title="Đường dẫn trực tiếp đến Ví dụ code" translate=no>​</a></h4>
+<p><strong>Vi phạm ISP:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public interface IWorker {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    void work();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    void eat();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    void sleep();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    double getSalary();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Robot implements IWorker {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void work() { /* ... */ }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void eat() { }      // Robot không ăn – method rỗng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void sleep() { }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double getSalary() { return 0; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Tuân thủ ISP:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public interface IWorkable { void work(); }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public interface IEatable { void eat(); }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public interface IPayable { double getSalary(); }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Human implements IWorkable, IEatable, IPayable { /* ... */ }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Robot implements IWorkable { /* chỉ work */ }</span><br/></div></code></pre></div></div>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=so-sánh--đánh-giá-isp>So sánh & Đánh giá ISP<a href=#so-sánh--đánh-giá-isp class=hash-link aria-label="Đường dẫn trực tiếp đến So sánh & Đánh giá ISP" title="Đường dẫn trực tiếp đến So sánh & Đánh giá ISP" translate=no>​</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Interface “bự”<th>Interface nhỏ (ISP)<tbody><tr><td>Class implement method không cần<td>Class chỉ implement đúng vai trò<tr><td>Sửa interface → ảnh hưởng nhiều class<td>Sửa một vai trò → ít ảnh hưởng</table>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=426-bảng-tóm-tắt-solid--tra-nhanh>4.2.6. Bảng tóm tắt SOLID – Tra nhanh<a href=#426-bảng-tóm-tắt-solid--tra-nhanh class=hash-link aria-label="Đường dẫn trực tiếp đến 4.2.6. Bảng tóm tắt SOLID – Tra nhanh" title="Đường dẫn trực tiếp đến 4.2.6. Bảng tóm tắt SOLID – Tra nhanh" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Chữ<th>Tên<th>Một câu nhớ<th>Ví dụ dễ hiểu<tbody><tr><td><strong>S</strong><td>Single Responsibility<td>Một class một việc<td>Bồi bàn không nấu ăn<tr><td><strong>O</strong><td>Open/Closed<td>Thêm mới bằng class mới, không sửa code cũ<td>Cài app mới thay vì tháo máy<tr><td><strong>L</strong><td>Liskov Substitution<td>Con thay cha không làm hỏng logic<td>Vuông không nên “giả” chữ nhật nếu hành vi khác<tr><td><strong>I</strong><td>Interface Segregation<td>Interface nhỏ, đúng vai trò<td>Remote quạt chỉ có nút quạt<tr><td><strong>D</strong><td>Dependency Inversion<td>Phụ thuộc interface, không phụ thuộc class cụ thể<td>Đèn cắm ổ chuẩn, không hàn chết vào một ổ</table>
+<p><strong>Thứ tự áp dụng khi viết code:</strong> S (tách class) → O (interface + đa hình) → D (inject dependency) → L, I (khi thiết kế kế thừa và interface).</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=43-dependency-inversion-principle-d--solid>4.3. DEPENDENCY INVERSION PRINCIPLE (D – SOLID)<a href=#43-dependency-inversion-principle-d--solid class=hash-link aria-label="Đường dẫn trực tiếp đến 4.3. DEPENDENCY INVERSION PRINCIPLE (D – SOLID)" title="Đường dẫn trực tiếp đến 4.3. DEPENDENCY INVERSION PRINCIPLE (D – SOLID)" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=431-dependency-inversion-là-gì>4.3.1. Dependency Inversion là gì?<a href=#431-dependency-inversion-là-gì class=hash-link aria-label="Đường dẫn trực tiếp đến 4.3.1. Dependency Inversion là gì?" title="Đường dẫn trực tiếp đến 4.3.1. Dependency Inversion là gì?" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-4>Định nghĩa<a href=#định-nghĩa-4 class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>"High-level modules should not depend on low-level modules. Both should depend on abstractions."</strong></p>
+<p><strong>Nghĩa là:</strong></p>
+<ul>
+<li class="">Module cấp cao không nên phụ thuộc vào module cấp thấp</li>
+<li class="">Cả hai nên phụ thuộc vào abstraction (interface)</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=432-high-level-vs-low-level-modules>4.3.2. High-level vs Low-level Modules<a href=#432-high-level-vs-low-level-modules class=hash-link aria-label="Đường dẫn trực tiếp đến 4.3.2. High-level vs Low-level Modules" title="Đường dẫn trực tiếp đến 4.3.2. High-level vs Low-level Modules" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-5>Định nghĩa<a href=#định-nghĩa-5 class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>High-level Module (Module cấp cao):</strong></p>
+<ul>
+<li class="">Chứa business logic</li>
+<li class="">Quyết định "Làm gì" (What)</li>
+<li class="">Ví dụ: <code>PaymentService</code>, <code>OrderService</code></li>
+</ul>
+<p><strong>Low-level Module (Module cấp thấp):</strong></p>
+<ul>
+<li class="">Chứa implementation chi tiết</li>
+<li class="">Quyết định "Làm thế nào" (How)</li>
+<li class="">Ví dụ: <code>DatabaseRepository</code>, <code>FileRepository</code>, <code>EmailService</code></li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-vi-phạm-dip>Ví dụ: Vi phạm DIP<a href=#ví-dụ-vi-phạm-dip class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ: Vi phạm DIP" title="Đường dẫn trực tiếp đến Ví dụ: Vi phạm DIP" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ❌ TỒI: High-level phụ thuộc vào Low-level</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Low-level module</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class MySQLDatabase {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void save(String data) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code lưu vào MySQL</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// High-level module - PHỤ THUỘC vào MySQLDatabase</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class PaymentService {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private MySQLDatabase database;  // ❌ Phụ thuộc cụ thể</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public PaymentService() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.database = new MySQLDatabase();  // ❌ Tạo dependency cứng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void processPayment(double amount) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Business logic</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        database.save("Payment: " + amount);  // ❌ Phụ thuộc MySQL</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Vấn đề:</strong></p>
+<ul>
+<li class="">❌ Muốn đổi sang PostgreSQL → Phải sửa <code>PaymentService</code></li>
+<li class="">❌ Khó test (không thể mock database)</li>
+<li class="">❌ Vi phạm DIP</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=giải-pháp-depend-on-abstraction>Giải pháp: Depend on Abstraction<a href=#giải-pháp-depend-on-abstraction class=hash-link aria-label="Đường dẫn trực tiếp đến Giải pháp: Depend on Abstraction" title="Đường dẫn trực tiếp đến Giải pháp: Depend on Abstraction" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ✅ TỐT: Depend on Abstraction</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Abstraction (Interface)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public interface Database {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    void save(String data);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Low-level implementations</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class MySQLDatabase implements Database {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void save(String data) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code lưu vào MySQL</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class PostgreSQLDatabase implements Database {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void save(String data) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code lưu vào PostgreSQL</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// High-level module - PHỤ THUỘC vào Interface</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class PaymentService {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Database database;  // ✅ Phụ thuộc abstraction</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Dependency Injection</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public PaymentService(Database database) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.database = database;  // ✅ Nhận dependency từ bên ngoài</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void processPayment(double amount) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Business logic</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        database.save("Payment: " + amount);  // ✅ Không phụ thuộc implementation cụ thể</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Database mysql = new MySQLDatabase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">PaymentService service1 = new PaymentService(mysql);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Database postgres = new PostgreSQLDatabase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">PaymentService service2 = new PaymentService(postgres);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Dễ test - có thể mock</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Database mockDb = new MockDatabase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">PaymentService testService = new PaymentService(mockDb);</span><br/></div></code></pre></div></div>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Dễ thay đổi implementation (MySQL → PostgreSQL)</li>
+<li class="">✅ Dễ test (có thể mock)</li>
+<li class="">✅ Tuân thủ DIP</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=433-dependency-injection-di>4.3.3. Dependency Injection (DI)<a href=#433-dependency-injection-di class=hash-link aria-label="Đường dẫn trực tiếp đến 4.3.3. Dependency Injection (DI)" title="Đường dẫn trực tiếp đến 4.3.3. Dependency Injection (DI)" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-6>Định nghĩa<a href=#định-nghĩa-6 class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>Dependency Injection</strong> là kỹ thuật:</p>
+<ul>
+<li class="">Không tạo dependency bên trong class</li>
+<li class="">Nhận dependency từ bên ngoài (constructor, setter, field)</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=các-cách-inject-dependency>Các cách Inject Dependency<a href=#các-cách-inject-dependency class=hash-link aria-label="Đường dẫn trực tiếp đến Các cách Inject Dependency" title="Đường dẫn trực tiếp đến Các cách Inject Dependency" translate=no>​</a></h4>
+<p><strong>1. Constructor Injection (Khuyến nghị):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class PaymentService {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Database database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Inject qua constructor</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public PaymentService(Database database) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.database = database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Database db = new MySQLDatabase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">PaymentService service = new PaymentService(db);</span><br/></div></code></pre></div></div>
+<p><strong>2. Setter Injection:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class PaymentService {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Database database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Inject qua setter</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setDatabase(Database database) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.database = database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">PaymentService service = new PaymentService();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">service.setDatabase(new MySQLDatabase());</span><br/></div></code></pre></div></div>
+<p><strong>3. Field Injection (Không khuyến nghị):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class PaymentService {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Inject  // Framework annotation</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Database database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=434-tại-sao-từ-khóa-new-là-kẻ-thù>4.3.4. Tại sao từ khóa new là "kẻ thù"?<a href=#434-tại-sao-từ-khóa-new-là-kẻ-thù class=hash-link aria-label='Đường dẫn trực tiếp đến 4.3.4. Tại sao từ khóa new là "kẻ thù"?' title='Đường dẫn trực tiếp đến 4.3.4. Tại sao từ khóa new là "kẻ thù"?' translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=vấn-đề-với-new>Vấn đề với new<a href=#vấn-đề-với-new class=hash-link aria-label="Đường dẫn trực tiếp đến Vấn đề với new" title="Đường dẫn trực tiếp đến Vấn đề với new" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ❌ TỒI: Tạo dependency bên trong class</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class PaymentService {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Database database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public PaymentService() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.database = new MySQLDatabase();  // ❌ Hard-coded dependency</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Vấn đề:</strong></p>
+<ul>
+<li class="">❌ Khó test (không thể mock)</li>
+<li class="">❌ Khó thay đổi (phải sửa code)</li>
+<li class="">❌ Vi phạm DIP</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=giải-pháp-inject-từ-bên-ngoài>Giải pháp: Inject từ bên ngoài<a href=#giải-pháp-inject-từ-bên-ngoài class=hash-link aria-label="Đường dẫn trực tiếp đến Giải pháp: Inject từ bên ngoài" title="Đường dẫn trực tiếp đến Giải pháp: Inject từ bên ngoài" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ✅ TỐT: Inject từ bên ngoài</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class PaymentService {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Database database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public PaymentService(Database database) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.database = database;  // ✅ Nhận từ bên ngoài</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Tạo dependency ở nơi khác (Factory, Main, Framework)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Database db = new MySQLDatabase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">PaymentService service = new PaymentService(db);</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=44-liên-hệ-dependency-inversion-với-factory--interface>4.4. LIÊN HỆ DEPENDENCY INVERSION VỚI FACTORY & INTERFACE<a href=#44-liên-hệ-dependency-inversion-với-factory--interface class=hash-link aria-label="Đường dẫn trực tiếp đến 4.4. LIÊN HỆ DEPENDENCY INVERSION VỚI FACTORY & INTERFACE" title="Đường dẫn trực tiếp đến 4.4. LIÊN HỆ DEPENDENCY INVERSION VỚI FACTORY & INTERFACE" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=441-luồng-thiết-kế-chuẩn>4.4.1. Luồng thiết kế chuẩn<a href=#441-luồng-thiết-kế-chuẩn class=hash-link aria-label="Đường dẫn trực tiếp đến 4.4.1. Luồng thiết kế chuẩn" title="Đường dẫn trực tiếp đến 4.4.1. Luồng thiết kế chuẩn" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=client--interface--factory--implementation>Client → Interface → Factory → Implementation<a href=#client--interface--factory--implementation class=hash-link aria-label="Đường dẫn trực tiếp đến Client → Interface → Factory → Implementation" title="Đường dẫn trực tiếp đến Client → Interface → Factory → Implementation" translate=no>​</a></h4>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">┌─────────┐      ┌──────────┐      ┌────────┐      ┌──────────────┐</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│ Client  │─────▶│Interface │◀─────│ Factory│─────▶│Implementation│</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└─────────┘      └──────────┘      └────────┘      └──────────────┘</span><br/></div></code></pre></div></div>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// 1. Interface (Abstraction)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public interface Database {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    void save(String data);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// 2. Implementations</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class MySQLDatabase implements Database {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void save(String data) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // MySQL implementation</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class PostgreSQLDatabase implements Database {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void save(String data) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // PostgreSQL implementation</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// 3. Factory (Tạo implementation)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class DatabaseFactory {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static Database createDatabase(String type) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        if (type.equals("mysql")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return new MySQLDatabase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        } else if (type.equals("postgres")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return new PostgreSQLDatabase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        throw new IllegalArgumentException("Unknown database type");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// 4. Client (Sử dụng)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class PaymentService {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Database database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public PaymentService(Database database) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.database = database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void processPayment(double amount) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        database.save("Payment: " + amount);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// 5. Main (Kết nối tất cả)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Main {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static void main(String[] args) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Factory tạo implementation</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        Database db = DatabaseFactory.createDatabase("mysql");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Client nhận qua constructor</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        PaymentService service = new PaymentService(db);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        service.processPayment(100.0);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Client không biết implementation cụ thể</li>
+<li class="">✅ Dễ thay đổi implementation</li>
+<li class="">✅ Tuân thủ DIP</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=45-design-patterns-cơ-bản>4.5. DESIGN PATTERNS CƠ BẢN<a href=#45-design-patterns-cơ-bản class=hash-link aria-label="Đường dẫn trực tiếp đến 4.5. DESIGN PATTERNS CƠ BẢN" title="Đường dẫn trực tiếp đến 4.5. DESIGN PATTERNS CƠ BẢN" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=451-design-pattern-là-gì>4.5.1. Design Pattern là gì?<a href=#451-design-pattern-là-gì class=hash-link aria-label="Đường dẫn trực tiếp đến 4.5.1. Design Pattern là gì?" title="Đường dẫn trực tiếp đến 4.5.1. Design Pattern là gì?" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-7>Định nghĩa<a href=#định-nghĩa-7 class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>Design Pattern</strong> là giải pháp tái sử dụng cho các vấn đề thiết kế phổ biến.</p>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Giải pháp đã được kiểm chứng</li>
+<li class="">✅ Dễ hiểu và giao tiếp</li>
+<li class="">✅ Tái sử dụng</li>
+</ul>
+<p><strong>Trong chương này, chúng ta học 2 patterns cơ bản:</strong></p>
+<ol>
+<li class="">Singleton Pattern</li>
+<li class="">Factory Pattern</li>
+</ol>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=452-singleton-pattern>4.5.2. Singleton Pattern<a href=#452-singleton-pattern class=hash-link aria-label="Đường dẫn trực tiếp đến 4.5.2. Singleton Pattern" title="Đường dẫn trực tiếp đến 4.5.2. Singleton Pattern" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=mục-đích>Mục đích<a href=#mục-đích class=hash-link aria-label="Đường dẫn trực tiếp đến Mục đích" title="Đường dẫn trực tiếp đến Mục đích" translate=no>​</a></h4>
+<p><strong>Singleton Pattern</strong> đảm bảo một class chỉ có <strong>một instance duy nhất</strong> và cung cấp điểm truy cập toàn cục.</p>
+<p><strong>Khi nào dùng:</strong></p>
+<ul>
+<li class="">Database connection</li>
+<li class="">Logger</li>
+<li class="">Configuration</li>
+<li class="">Cache</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=cách-cài-đặt-cơ-bản-không-thread-safe>Cách cài đặt cơ bản (Không thread-safe)<a href=#cách-cài-đặt-cơ-bản-không-thread-safe class=hash-link aria-label="Đường dẫn trực tiếp đến Cách cài đặt cơ bản (Không thread-safe)" title="Đường dẫn trực tiếp đến Cách cài đặt cơ bản (Không thread-safe)" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ❌ Không thread-safe</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Singleton {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private static Singleton instance;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Private constructor - không cho tạo từ bên ngoài</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Singleton() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static Singleton getInstance() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        if (instance == null) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            instance = new Singleton();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return instance;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Vấn đề:</strong></p>
+<ul>
+<li class="">❌ Không thread-safe (nhiều thread có thể tạo nhiều instance)</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=cách-cài-đặt-thread-safe-eager-initialization>Cách cài đặt Thread-safe (Eager Initialization)<a href=#cách-cài-đặt-thread-safe-eager-initialization class=hash-link aria-label="Đường dẫn trực tiếp đến Cách cài đặt Thread-safe (Eager Initialization)" title="Đường dẫn trực tiếp đến Cách cài đặt Thread-safe (Eager Initialization)" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ✅ Thread-safe: Eager Initialization</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Singleton {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Tạo instance ngay khi class được load</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private static final Singleton instance = new Singleton();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Singleton() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static Singleton getInstance() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return instance;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li class="">✅ Thread-safe</li>
+<li class="">✅ Đơn giản</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li class="">❌ Tạo instance ngay cả khi không dùng (lãng phí)</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=cách-cài-đặt-thread-safe-lazy-initialization-với-synchronized>Cách cài đặt Thread-safe (Lazy Initialization với synchronized)<a href=#cách-cài-đặt-thread-safe-lazy-initialization-với-synchronized class=hash-link aria-label="Đường dẫn trực tiếp đến Cách cài đặt Thread-safe (Lazy Initialization với synchronized)" title="Đường dẫn trực tiếp đến Cách cài đặt Thread-safe (Lazy Initialization với synchronized)" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ✅ Thread-safe: Lazy Initialization</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Singleton {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private static Singleton instance;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Singleton() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Synchronized để thread-safe</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static synchronized Singleton getInstance() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        if (instance == null) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            instance = new Singleton();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return instance;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li class="">✅ Thread-safe</li>
+<li class="">✅ Lazy (chỉ tạo khi cần)</li>
+</ul>
+<p><strong>Nhược điểm:</strong></p>
+<ul>
+<li class="">❌ Chậm hơn (synchronized mỗi lần gọi)</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=cách-cài-đặt-thread-safe-double-checked-locking>Cách cài đặt Thread-safe (Double-Checked Locking)<a href=#cách-cài-đặt-thread-safe-double-checked-locking class=hash-link aria-label="Đường dẫn trực tiếp đến Cách cài đặt Thread-safe (Double-Checked Locking)" title="Đường dẫn trực tiếp đến Cách cài đặt Thread-safe (Double-Checked Locking)" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// ✅ Thread-safe: Double-Checked Locking</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Singleton {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private static volatile Singleton instance;  // volatile quan trọng!</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Singleton() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static Singleton getInstance() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        if (instance == null) {  // Check 1: Không synchronized</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            synchronized (Singleton.class) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">                if (instance == null) {  // Check 2: Có synchronized</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">                    instance = new Singleton();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">                }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return instance;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Ưu điểm:</strong></p>
+<ul>
+<li class="">✅ Thread-safe</li>
+<li class="">✅ Lazy</li>
+<li class="">✅ Nhanh hơn (chỉ synchronized lần đầu)</li>
+</ul>
+<p><strong>Lưu ý:</strong></p>
+<ul>
+<li class="">Phải dùng <code>volatile</code> để đảm bảo visibility</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=bảng-so-sánh-các-cách-implement-singleton>Bảng so sánh các cách implement Singleton<a href=#bảng-so-sánh-các-cách-implement-singleton class=hash-link aria-label="Đường dẫn trực tiếp đến Bảng so sánh các cách implement Singleton" title="Đường dẫn trực tiếp đến Bảng so sánh các cách implement Singleton" translate=no>​</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Cách<th>Thread-safe<th>Tạo khi nào<th>Ưu<th>Nhược<tbody><tr><td>if null đơn giản<td>❌<td>Lần đầu gọi<td>Dễ hiểu<td>Đa luồng tạo nhiều instance<tr><td>Eager<td>✅<td>Load class<td>Đơn giản, an toàn<td>Tạo dù chưa dùng<tr><td>Lazy + synchronized<td>✅<td>Lần đầu gọi<td>Chỉ tạo khi cần<td>Mỗi lần gọi đều lock<tr><td>Double-Checked<td>✅<td>Lần đầu gọi<td>Lazy + nhanh hơn<td>Code phức tạp, cần volatile</table>
+<p><strong>Khuyến nghị môn học:</strong> Bài tập dùng <strong>Eager</strong> hoặc <strong>Lazy + synchronized</strong>; biết Double-Checked là đủ cho nâng cao.</p>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=cảnh-báo-lạm-dụng-singleton>Cảnh báo lạm dụng Singleton<a href=#cảnh-báo-lạm-dụng-singleton class=hash-link aria-label="Đường dẫn trực tiếp đến Cảnh báo lạm dụng Singleton" title="Đường dẫn trực tiếp đến Cảnh báo lạm dụng Singleton" translate=no>​</a></h4>
+<p><strong>❌ KHÔNG NÊN dùng khi:</strong></p>
+<ul>
+<li class="">Có thể dùng dependency injection</li>
+<li class="">Cần test (khó mock singleton)</li>
+<li class="">Cần nhiều instance</li>
+</ul>
+<p><strong>✅ NÊN dùng khi:</strong></p>
+<ul>
+<li class="">Thực sự cần một instance duy nhất</li>
+<li class="">Resource tốn kém (database connection)</li>
+<li class="">Global state (configuration)</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=453-factory-pattern>4.5.3. Factory Pattern<a href=#453-factory-pattern class=hash-link aria-label="Đường dẫn trực tiếp đến 4.5.3. Factory Pattern" title="Đường dẫn trực tiếp đến 4.5.3. Factory Pattern" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=mục-đích-1>Mục đích<a href=#mục-đích-1 class=hash-link aria-label="Đường dẫn trực tiếp đến Mục đích" title="Đường dẫn trực tiếp đến Mục đích" translate=no>​</a></h4>
+<p><strong>Factory Pattern</strong> cung cấp interface để tạo object mà không cần chỉ định class cụ thể.</p>
+<p><strong>Khi nào dùng:</strong></p>
+<ul>
+<li class="">Không biết trước loại object cần tạo</li>
+<li class="">Muốn tách logic tạo object khỏi code sử dụng</li>
+<li class="">Cần tạo object phức tạp</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=simple-factory>Simple Factory<a href=#simple-factory class=hash-link aria-label="Đường dẫn trực tiếp đến Simple Factory" title="Đường dẫn trực tiếp đến Simple Factory" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Interface</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public interface Animal {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    void makeSound();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Implementations</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Dog implements Animal {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void makeSound() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println("Woof!");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Cat implements Animal {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void makeSound() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println("Meow!");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Factory</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class AnimalFactory {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static Animal createAnimal(String type) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        if (type.equalsIgnoreCase("dog")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return new Dog();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        } else if (type.equalsIgnoreCase("cat")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return new Cat();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        throw new IllegalArgumentException("Unknown animal type: " + type);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Animal dog = AnimalFactory.createAnimal("dog");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">dog.makeSound();  // "Woof!"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Animal cat = AnimalFactory.createAnimal("cat");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">cat.makeSound();  // "Meow!"</span><br/></div></code></pre></div></div>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Tách logic tạo object</li>
+<li class="">✅ Dễ thêm loại mới</li>
+<li class="">✅ Client không biết implementation cụ thể</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=factory-method-pattern>Factory Method Pattern<a href=#factory-method-pattern class=hash-link aria-label="Đường dẫn trực tiếp đến Factory Method Pattern" title="Đường dẫn trực tiếp đến Factory Method Pattern" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Abstract Factory</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public abstract class AnimalFactory {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public abstract Animal createAnimal();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void displayAnimal() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        Animal animal = createAnimal();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        animal.makeSound();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Concrete Factories</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class DogFactory extends AnimalFactory {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public Animal createAnimal() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return new Dog();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class CatFactory extends AnimalFactory {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public Animal createAnimal() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return new Cat();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">AnimalFactory factory = new DogFactory();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">factory.displayAnimal();  // "Woof!"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">factory = new CatFactory();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">factory.displayAnimal();  // "Meow!"</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ứng-dụng-factory-pattern-với-dependency-inversion>Ứng dụng Factory Pattern với Dependency Inversion<a href=#ứng-dụng-factory-pattern-với-dependency-inversion class=hash-link aria-label="Đường dẫn trực tiếp đến Ứng dụng Factory Pattern với Dependency Inversion" title="Đường dẫn trực tiếp đến Ứng dụng Factory Pattern với Dependency Inversion" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Interface</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public interface Database {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    void connect();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    void save(String data);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Implementations</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class MySQLDatabase implements Database {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void connect() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println("Connecting to MySQL...");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void save(String data) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println("Saving to MySQL: " + data);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class PostgreSQLDatabase implements Database {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void connect() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println("Connecting to PostgreSQL...");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void save(String data) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println("Saving to PostgreSQL: " + data);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Factory</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class DatabaseFactory {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static Database createDatabase(String type) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        if (type.equalsIgnoreCase("mysql")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return new MySQLDatabase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        } else if (type.equalsIgnoreCase("postgres")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return new PostgreSQLDatabase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        throw new IllegalArgumentException("Unknown database type");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Service sử dụng Factory</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class PaymentService {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private Database database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public PaymentService(Database database) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.database = database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void processPayment(double amount) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        database.connect();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        database.save("Payment: " + amount);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Main</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Main {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static void main(String[] args) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Factory tạo database</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        Database db = DatabaseFactory.createDatabase("mysql");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Service nhận database</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        PaymentService service = new PaymentService(db);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        service.processPayment(100.0);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Tuân thủ DIP</li>
+<li class="">✅ Dễ thay đổi implementation</li>
+<li class="">✅ Dễ test</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=454-strategy-pattern-kẻ-hủy-diệt-ifelse>4.5.4. Strategy Pattern (Kẻ hủy diệt If/Else)<a href=#454-strategy-pattern-kẻ-hủy-diệt-ifelse class=hash-link aria-label="Đường dẫn trực tiếp đến 4.5.4. Strategy Pattern (Kẻ hủy diệt If/Else)" title="Đường dẫn trực tiếp đến 4.5.4. Strategy Pattern (Kẻ hủy diệt If/Else)" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=mục-đích-2>Mục đích<a href=#mục-đích-2 class=hash-link aria-label="Đường dẫn trực tiếp đến Mục đích" title="Đường dẫn trực tiếp đến Mục đích" translate=no>​</a></h4>
+<p><strong>Strategy Pattern</strong> cho phép bạn định nghĩa một tập hợp các thuật toán (các chiến lược), đóng gói từng thuật toán lại, và làm cho chúng có thể thay thế lẫn nhau. Pattern này giúp thuật toán biến đổi độc lập với client sử dụng nó.</p>
+<p>Đây là pattern hoàn hảo nhất để giải thích và áp dụng <strong>Open/Closed Principle (OCP)</strong>.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-bài-toán-tính-giá-vé-máy-bay-vi-phạm-ocp>Ví dụ: Bài toán tính giá vé máy bay (Vi phạm OCP)<a href=#ví-dụ-bài-toán-tính-giá-vé-máy-bay-vi-phạm-ocp class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ: Bài toán tính giá vé máy bay (Vi phạm OCP)" title="Đường dẫn trực tiếp đến Ví dụ: Bài toán tính giá vé máy bay (Vi phạm OCP)" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class TicketCalculator {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double calculateTicketPrice(String strategy, double basePrice) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        if (strategy.equals("TET_HOLIDAY")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return basePrice * 1.5;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        } else if (strategy.equals("SUMMER_PROMO")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return basePrice * 0.8;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        } else {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return basePrice;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Vấn đề:</strong> Mỗi khi phòng Marketing tung ra khuyến mãi mới (ví dụ: Black Friday), bạn phải mở class này ra, thêm một cái <code>if</code> nữa. -> <strong>VI PHẠM OCP</strong>.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=cách-giải-quyết-bằng-strategy-pattern>Cách giải quyết bằng Strategy Pattern<a href=#cách-giải-quyết-bằng-strategy-pattern class=hash-link aria-label="Đường dẫn trực tiếp đến Cách giải quyết bằng Strategy Pattern" title="Đường dẫn trực tiếp đến Cách giải quyết bằng Strategy Pattern" translate=no>​</a></h4>
+<p><strong>1. Tạo Interface (Chiến lược chung)</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public interface PricingStrategy {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    double calculate(double basePrice);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>2. Tạo các Concrete Strategy (Cài đặt thuật toán)</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Chiến lược ngày Tết</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class TetHolidayStrategy implements PricingStrategy {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double calculate(double basePrice) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return basePrice * 1.5;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Chiến lược mùa Hè</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class SummerPromoStrategy implements PricingStrategy {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double calculate(double basePrice) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return basePrice * 0.8;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Thêm mới chiến lược Black Friday CỰC DỄ, không cần sửa code cũ</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class BlackFridayStrategy implements PricingStrategy {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double calculate(double basePrice) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return basePrice * 0.5;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>3. Context (Nơi sử dụng chiến lược)</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class TicketContext {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private PricingStrategy strategy; // Dùng Composition (HAS-A)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Cho phép thay đổi chiến lược linh hoạt lúc Runtime</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setStrategy(PricingStrategy strategy) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.strategy = strategy;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double getFinalPrice(double basePrice) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return strategy.calculate(basePrice); // Đa hình (Polymorphism)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>4. Client sử dụng</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">TicketContext ticket = new TicketContext();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Lúc thường</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">ticket.setStrategy(new SummerPromoStrategy());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">System.out.println(ticket.getFinalPrice(1000)); // 800</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Đến Black Friday, chỉ việc thay đổi Strategy</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">ticket.setStrategy(new BlackFridayStrategy());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">System.out.println(ticket.getFinalPrice(1000)); // 500</span><br/></div></code></pre></div></div>
+<p><strong>Lợi ích tuyệt đối:</strong></p>
+<ul>
+<li class="">✅ <strong>Tuân thủ OCP</strong>: Thêm hàng ngàn chương trình khuyến mãi mới mà không cần chạm vào <code>TicketContext</code>.</li>
+<li class="">✅ Loại bỏ hoàn toàn khối lệnh <code>if/else</code> chằng chịt.</li>
+<li class="">✅ Có thể chuyển đổi chiến lược ngay lúc chương trình đang chạy (Runtime).</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-cầu-nối-sang-chương-5>🔗 CẦU NỐI SANG CHƯƠNG 5<a href=#-cầu-nối-sang-chương-5 class=hash-link aria-label="Đường dẫn trực tiếp đến 🔗 CẦU NỐI SANG CHƯƠNG 5" title="Đường dẫn trực tiếp đến 🔗 CẦU NỐI SANG CHƯƠNG 5" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Chương 4<th>Chương 5<th>Liên hệ<tbody><tr><td>DIP + inject dependency<td>Unit Test với mock<td>Test <code>PaymentService</code> với Database giả<tr><td>Factory tạo object<td>Exception khi config sai<td>Factory ném <code>IllegalArgumentException</code><tr><td>SRP – class nhỏ<td>Dễ test từng class<td>Mỗi class một bộ test</table>
+<p><strong>Thực hành:</strong> Viết test cho class đã thiết kế theo DIP (Ch.4) – đây là kỹ năng bắt buộc ở Ch.5.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-tóm-tắt-chương-4>📝 TÓM TẮT CHƯƠNG 4<a href=#-tóm-tắt-chương-4 class=hash-link aria-label="Đường dẫn trực tiếp đến 📝 TÓM TẮT CHƯƠNG 4" title="Đường dẫn trực tiếp đến 📝 TÓM TẮT CHƯƠNG 4" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=kiến-thức-đã-học>Kiến thức đã học:<a href=#kiến-thức-đã-học class=hash-link aria-label="Đường dẫn trực tiếp đến Kiến thức đã học:" title="Đường dẫn trực tiếp đến Kiến thức đã học:" translate=no>​</a></h3>
+<ol>
+<li class="">✅ UML Class Diagram cơ bản</li>
+<li class="">✅ Các quan hệ: Association, Aggregation, Composition, Inheritance, Implementation</li>
+<li class="">✅ SOLID: SRP, OCP, <strong>LSP</strong>, <strong>ISP</strong>, DIP</li>
+<li class="">✅ Dependency Injection (Constructor, Setter)</li>
+<li class="">✅ Singleton Pattern (Eager, Lazy, Double-Checked)</li>
+<li class="">✅ Factory Pattern (Simple Factory, kết hợp DIP)</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=kỹ-năng-đã-có>Kỹ năng đã có:<a href=#kỹ-năng-đã-có class=hash-link aria-label="Đường dẫn trực tiếp đến Kỹ năng đã có:" title="Đường dẫn trực tiếp đến Kỹ năng đã có:" translate=no>​</a></h3>
+<ul>
+<li class="">✅ Đọc và vẽ UML Class Diagram</li>
+<li class="">✅ Nhận biết và refactor code vi phạm SOLID</li>
+<li class="">✅ Áp dụng DIP trong thiết kế</li>
+<li class="">✅ Implement Singleton và Factory Pattern</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-bài-tập-chương-4>🎯 BÀI TẬP CHƯƠNG 4<a href=#-bài-tập-chương-4 class=hash-link aria-label="Đường dẫn trực tiếp đến 🎯 BÀI TẬP CHƯƠNG 4" title="Đường dẫn trực tiếp đến 🎯 BÀI TẬP CHƯƠNG 4" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-1-uml-class-diagram>Bài 1: UML Class Diagram<a href=#bài-1-uml-class-diagram class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 1: UML Class Diagram" title="Đường dẫn trực tiếp đến Bài 1: UML Class Diagram" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Vẽ UML Class Diagram cho hệ thống sau:</p>
+<ol>
+<li class="">
+<p><strong>Class <code>Student</code></strong>:</p>
+<ul>
+<li class="">Fields: id, name, age (private)</li>
+<li class="">Methods: getters, setters, displayInfo()</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Class <code>Course</code></strong>:</p>
+<ul>
+<li class="">Fields: code, name, credits (private)</li>
+<li class="">Methods: getters, setters</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Class <code>Enrollment</code></strong>:</p>
+<ul>
+<li class="">Fields: student (Student), course (Course), grade (double)</li>
+<li class="">Methods: calculateGPA()</li>
+</ul>
+</li>
+</ol>
+<p><strong>Quan hệ:</strong></p>
+<ul>
+<li class="">Student và Course có quan hệ Association qua Enrollment</li>
+<li class="">Enrollment có Composition với Student và Course</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-2-single-responsibility-principle>Bài 2: Single Responsibility Principle<a href=#bài-2-single-responsibility-principle class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 2: Single Responsibility Principle" title="Đường dẫn trực tiếp đến Bài 2: Single Responsibility Principle" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Refactor class sau để tuân thủ SRP:</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class User {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private String name;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private String email;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setName(String name) { this.name = name; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setEmail(String email) { this.email = email; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void saveToDatabase() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code lưu database</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void sendEmail(String message) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code gửi email</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void generateReport() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Code tạo report</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Yêu cầu:</strong></p>
+<ul>
+<li class="">Tách thành nhiều class, mỗi class một trách nhiệm</li>
+<li class="">Giải thích tại sao refactor</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-3-openclosed-principle>Bài 3: Open/Closed Principle<a href=#bài-3-openclosed-principle class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 3: Open/Closed Principle" title="Đường dẫn trực tiếp đến Bài 3: Open/Closed Principle" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Refactor code sau để tuân thủ OCP:</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class AreaCalculator {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double calculateArea(Object shape) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        if (shape instanceof Circle) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            Circle c = (Circle) shape;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return Math.PI * c.getRadius() * c.getRadius();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        } else if (shape instanceof Rectangle) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            Rectangle r = (Rectangle) shape;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            return r.getWidth() * r.getHeight();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return 0;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Yêu cầu:</strong></p>
+<ul>
+<li class="">Dùng Abstract Class hoặc Interface</li>
+<li class="">Thêm class <code>Triangle</code> mà không sửa <code>AreaCalculator</code></li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-4-dependency-inversion-principle>Bài 4: Dependency Inversion Principle<a href=#bài-4-dependency-inversion-principle class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 4: Dependency Inversion Principle" title="Đường dẫn trực tiếp đến Bài 4: Dependency Inversion Principle" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Refactor code sau để tuân thủ DIP:</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class PaymentService {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private MySQLDatabase database;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public PaymentService() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.database = new MySQLDatabase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void processPayment(double amount) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        database.save("Payment: " + amount);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Yêu cầu:</strong></p>
+<ol>
+<li class="">Tạo interface <code>Database</code></li>
+<li class="">Tạo class <code>PostgreSQLDatabase</code> implement <code>Database</code></li>
+<li class="">Refactor <code>PaymentService</code> để phụ thuộc vào interface</li>
+<li class="">Sử dụng Dependency Injection</li>
+</ol>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-5-singleton-pattern>Bài 5: Singleton Pattern<a href=#bài-5-singleton-pattern class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 5: Singleton Pattern" title="Đường dẫn trực tiếp đến Bài 5: Singleton Pattern" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Tạo class <code>Logger</code> sử dụng Singleton Pattern:</p>
+<ol>
+<li class="">Thread-safe (dùng một trong các cách đã học)</li>
+<li class="">Method <code>log(String message)</code> để ghi log</li>
+<li class="">Method <code>getInstance()</code> để lấy instance</li>
+</ol>
+<p><strong>Test:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Logger logger1 = Logger.getInstance();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Logger logger2 = Logger.getInstance();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">System.out.println(logger1 == logger2);  // true</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">logger1.log("Message 1");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">logger2.log("Message 2");</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-6-factory-pattern>Bài 6: Factory Pattern<a href=#bài-6-factory-pattern class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 6: Factory Pattern" title="Đường dẫn trực tiếp đến Bài 6: Factory Pattern" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Tạo hệ thống Payment với Factory Pattern:</p>
+<ol>
+<li class="">
+<p><strong>Interface <code>PaymentMethod</code></strong>:</p>
+<ul>
+<li class="">Method: <code>pay(double amount)</code></li>
+</ul>
+</li>
+<li class="">
+<p><strong>Implementations</strong>:</p>
+<ul>
+<li class=""><code>CreditCard</code>: Pay với credit card</li>
+<li class=""><code>PayPal</code>: Pay với PayPal</li>
+<li class=""><code>Bitcoin</code>: Pay với Bitcoin</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Factory <code>PaymentFactory</code></strong>:</p>
+<ul>
+<li class="">Method: <code>createPaymentMethod(String type)</code></li>
+</ul>
+</li>
+<li class="">
+<p><strong>Class <code>PaymentService</code></strong>:</p>
+<ul>
+<li class="">Method: <code>processPayment(PaymentMethod method, double amount)</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>Test:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">PaymentMethod credit = PaymentFactory.createPaymentMethod("credit");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">PaymentService service = new PaymentService();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">service.processPayment(credit, 100.0);</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-7-tổng-hợp---hệ-thống-quản-lý-file>Bài 7: Tổng hợp - Hệ thống Quản lý File<a href=#bài-7-tổng-hợp---hệ-thống-quản-lý-file class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 7: Tổng hợp - Hệ thống Quản lý File" title="Đường dẫn trực tiếp đến Bài 7: Tổng hợp - Hệ thống Quản lý File" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Tạo hệ thống quản lý file với:</p>
+<ol>
+<li class="">
+<p><strong>Interface <code>FileStorage</code></strong>:</p>
+<ul>
+<li class="">Methods: <code>save(String data)</code>, <code>load(String filename)</code></li>
+</ul>
+</li>
+<li class="">
+<p><strong>Implementations</strong>:</p>
+<ul>
+<li class=""><code>LocalFileStorage</code>: Lưu vào file local</li>
+<li class=""><code>CloudFileStorage</code>: Lưu vào cloud</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Factory <code>StorageFactory</code></strong>:</p>
+<ul>
+<li class="">Tạo storage dựa trên config</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Class <code>FileManager</code></strong>:</p>
+<ul>
+<li class="">Phụ thuộc vào <code>FileStorage</code> (DIP)</li>
+<li class="">Methods: <code>saveFile()</code>, <code>loadFile()</code></li>
+</ul>
+</li>
+<li class="">
+<p><strong>Singleton <code>Config</code></strong>:</p>
+<ul>
+<li class="">Lưu cấu hình hệ thống</li>
+</ul>
+</li>
+</ol>
+<p><strong>Yêu cầu:</strong></p>
+<ul>
+<li class="">Tuân thủ SOLID (S, O, D)</li>
+<li class="">Sử dụng Factory và Singleton Pattern</li>
+<li class="">JavaDoc đầy đủ</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-tài-liệu-tham-khảo>📚 TÀI LIỆU THAM KHẢO<a href=#-tài-liệu-tham-khảo class=hash-link aria-label="Đường dẫn trực tiếp đến 📚 TÀI LIỆU THAM KHẢO" title="Đường dẫn trực tiếp đến 📚 TÀI LIỆU THAM KHẢO" translate=no>​</a></h2>
+<ol>
+<li class=""><strong>SOLID Principles</strong>: <a href=https://en.wikipedia.org/wiki/SOLID target=_blank rel="noopener noreferrer" class="">https://en.wikipedia.org/wiki/SOLID</a></li>
+<li class=""><strong>Design Patterns</strong>: "Head First Design Patterns" - Eric Freeman</li>
+<li class=""><strong>Refactoring</strong>: "Refactoring" - Martin Fowler</li>
+</ol>
+<hr/>
+<p><strong>Chúc bạn học tốt! 🚀</strong></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/thayduy/lap-trinh-huong-doi-tuong/tree/main/docs/CHUONG_4_LT.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Sửa trang này</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Trang tài liệu"><a class="pagination-nav__link pagination-nav__link--prev" href=/lap-trinh-huong-doi-tuong/CHUONG_3_LT><div class=pagination-nav__sublabel>Trước</div><div class=pagination-nav__label>CHƯƠNG 3: KẾ THỪA & ĐA HÌNH – TRÁI TIM CỦA OOP</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/lap-trinh-huong-doi-tuong/CHUONG_5_LT><div class=pagination-nav__sublabel>Kế tiếp</div><div class=pagination-nav__label>CHƯƠNG 5: XỬ LÝ NGOẠI LỆ (EXCEPTIONS) & KIỂM THỬ (TESTING)</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#-mục-tiêu-học-tập class="table-of-contents__link toc-highlight">📚 MỤC TIÊU HỌC TẬP</a><li><a href=#-kiến-thức-cần-có-prerequisites class="table-of-contents__link toc-highlight">📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)</a><li><a href=#0-tại-sao-cần-nguyên-lý-thiết-kế class="table-of-contents__link toc-highlight">0. TẠI SAO CẦN NGUYÊN LÝ THIẾT KẾ?</a><ul><li><a href=#vấn-đề-thường-gặp class="table-of-contents__link toc-highlight">Vấn đề thường gặp</a><li><a href=#nguyên-lý-thiết-kế-giúp-gì class="table-of-contents__link toc-highlight">Nguyên lý thiết kế giúp gì?</a></ul><li><a href=#-hướng-dẫn-học-sâu--code-chạy-thử class="table-of-contents__link toc-highlight">🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ</a><li><a href=#41-uml-class-diagram-nhập-môn class="table-of-contents__link toc-highlight">4.1. UML CLASS DIAGRAM (NHẬP MÔN)</a><ul><li><a href=#411-uml-là-gì class="table-of-contents__link toc-highlight">4.1.1. UML là gì?</a><li><a href=#412-các-thành-phần-cơ-bản class="table-of-contents__link toc-highlight">4.1.2. Các thành phần cơ bản</a><li><a href=#413-các-loại-quan-hệ class="table-of-contents__link toc-highlight">4.1.3. Các loại quan hệ</a><li><a href=#414-ví-dụ-uml-hoàn-chỉnh class="table-of-contents__link toc-highlight">4.1.4. Ví dụ UML hoàn chỉnh</a></ul><li><a href=#42-nguyên-lý-solid-trọng-tâm class="table-of-contents__link toc-highlight">4.2. NGUYÊN LÝ SOLID (TRỌNG TÂM)</a><ul><li><a href=#421-solid-là-gì class="table-of-contents__link toc-highlight">4.2.1. SOLID là gì?</a><li><a href=#422-s--single-responsibility-principle-srp class="table-of-contents__link toc-highlight">4.2.2. S – Single Responsibility Principle (SRP)</a><li><a href=#423-o--openclosed-principle-ocp class="table-of-contents__link toc-highlight">4.2.3. O – Open/Closed Principle (OCP)</a><li><a href=#424-l--liskov-substitution-principle-lsp class="table-of-contents__link toc-highlight">4.2.4. L – Liskov Substitution Principle (LSP)</a><li><a href=#425-i--interface-segregation-principle-isp class="table-of-contents__link toc-highlight">4.2.5. I – Interface Segregation Principle (ISP)</a><li><a href=#426-bảng-tóm-tắt-solid--tra-nhanh class="table-of-contents__link toc-highlight">4.2.6. Bảng tóm tắt SOLID – Tra nhanh</a></ul><li><a href=#43-dependency-inversion-principle-d--solid class="table-of-contents__link toc-highlight">4.3. DEPENDENCY INVERSION PRINCIPLE (D – SOLID)</a><ul><li><a href=#431-dependency-inversion-là-gì class="table-of-contents__link toc-highlight">4.3.1. Dependency Inversion là gì?</a><li><a href=#432-high-level-vs-low-level-modules class="table-of-contents__link toc-highlight">4.3.2. High-level vs Low-level Modules</a><li><a href=#433-dependency-injection-di class="table-of-contents__link toc-highlight">4.3.3. Dependency Injection (DI)</a><li><a href=#434-tại-sao-từ-khóa-new-là-kẻ-thù class="table-of-contents__link toc-highlight">4.3.4. Tại sao từ khóa new là "kẻ thù"?</a></ul><li><a href=#44-liên-hệ-dependency-inversion-với-factory--interface class="table-of-contents__link toc-highlight">4.4. LIÊN HỆ DEPENDENCY INVERSION VỚI FACTORY & INTERFACE</a><ul><li><a href=#441-luồng-thiết-kế-chuẩn class="table-of-contents__link toc-highlight">4.4.1. Luồng thiết kế chuẩn</a></ul><li><a href=#45-design-patterns-cơ-bản class="table-of-contents__link toc-highlight">4.5. DESIGN PATTERNS CƠ BẢN</a><ul><li><a href=#451-design-pattern-là-gì class="table-of-contents__link toc-highlight">4.5.1. Design Pattern là gì?</a><li><a href=#452-singleton-pattern class="table-of-contents__link toc-highlight">4.5.2. Singleton Pattern</a><li><a href=#453-factory-pattern class="table-of-contents__link toc-highlight">4.5.3. Factory Pattern</a><li><a href=#454-strategy-pattern-kẻ-hủy-diệt-ifelse class="table-of-contents__link toc-highlight">4.5.4. Strategy Pattern (Kẻ hủy diệt If/Else)</a></ul><li><a href=#-cầu-nối-sang-chương-5 class="table-of-contents__link toc-highlight">🔗 CẦU NỐI SANG CHƯƠNG 5</a><li><a href=#-tóm-tắt-chương-4 class="table-of-contents__link toc-highlight">📝 TÓM TẮT CHƯƠNG 4</a><ul><li><a href=#kiến-thức-đã-học class="table-of-contents__link toc-highlight">Kiến thức đã học:</a><li><a href=#kỹ-năng-đã-có class="table-of-contents__link toc-highlight">Kỹ năng đã có:</a></ul><li><a href=#-bài-tập-chương-4 class="table-of-contents__link toc-highlight">🎯 BÀI TẬP CHƯƠNG 4</a><ul><li><a href=#bài-1-uml-class-diagram class="table-of-contents__link toc-highlight">Bài 1: UML Class Diagram</a><li><a href=#bài-2-single-responsibility-principle class="table-of-contents__link toc-highlight">Bài 2: Single Responsibility Principle</a><li><a href=#bài-3-openclosed-principle class="table-of-contents__link toc-highlight">Bài 3: Open/Closed Principle</a><li><a href=#bài-4-dependency-inversion-principle class="table-of-contents__link toc-highlight">Bài 4: Dependency Inversion Principle</a><li><a href=#bài-5-singleton-pattern class="table-of-contents__link toc-highlight">Bài 5: Singleton Pattern</a><li><a href=#bài-6-factory-pattern class="table-of-contents__link toc-highlight">Bài 6: Factory Pattern</a><li><a href=#bài-7-tổng-hợp---hệ-thống-quản-lý-file class="table-of-contents__link toc-highlight">Bài 7: Tổng hợp - Hệ thống Quản lý File</a></ul><li><a href=#-tài-liệu-tham-khảo class="table-of-contents__link toc-highlight">📚 TÀI LIỆU THAM KHẢO</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Tài liệu</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/lap-trinh-huong-doi-tuong/>Lý thuyết</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Liên kết</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/thayduy/lap-trinh-huong-doi-tuong target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright © 2026 Lập trình Hướng đối tượng. Built with Docusaurus.</div></div></div></footer></div></body>

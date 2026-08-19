@@ -1,0 +1,806 @@
+<!doctype html><html lang=vi dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-CHUONG_6_LT" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.2"><title data-rh=true>CHƯƠNG 6: COLLECTIONS & STREAM API – HIỆN ĐẠI HÓA JAVA | Lập trình Hướng đối tượng</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://thayduy.github.io/lap-trinh-huong-doi-tuong/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://thayduy.github.io/lap-trinh-huong-doi-tuong/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_6_LT /><meta data-rh=true property=og:locale content=vi /><meta data-rh=true name=docusaurus_locale content=vi /><meta data-rh=true name=docsearch:language content=vi /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="CHƯƠNG 6: COLLECTIONS & STREAM API – HIỆN ĐẠI HÓA JAVA | Lập trình Hướng đối tượng"/><meta data-rh=true name=description content="📚 MỤC TIÊU HỌC TẬP"/><meta data-rh=true property=og:description content="📚 MỤC TIÊU HỌC TẬP"/><link data-rh=true rel=icon href=/lap-trinh-huong-doi-tuong/img/favicon.ico /><link data-rh=true rel=canonical href=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_6_LT /><link data-rh=true rel=alternate href=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_6_LT hreflang=vi /><link data-rh=true rel=alternate href=https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_6_LT hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://thayduy.github.io/lap-trinh-huong-doi-tuong/CHUONG_6_LT","name":"CHƯƠNG 6: COLLECTIONS & STREAM API – HIỆN ĐẠI HÓA JAVA","position":1}]}</script><link rel=stylesheet href=/lap-trinh-huong-doi-tuong/assets/css/styles.96ad39d9.css /><script src=/lap-trinh-huong-doi-tuong/assets/js/runtime~main.4596e5db.js defer></script><script src=/lap-trinh-huong-doi-tuong/assets/js/main.87eabe26.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-509")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/lap-trinh-huong-doi-tuong/img/logo.svg /><div role=region aria-label="Chuyển tới nội dung chính"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Chuyển tới nội dung chính</a></div><nav aria-label="Thanh điều hướng" class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Đóng - mở thanh điều hướng" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/lap-trinh-huong-doi-tuong/><div class=navbar__logo><img src=/lap-trinh-huong-doi-tuong/img/logo.svg alt=Logo class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/lap-trinh-huong-doi-tuong/img/logo.svg alt=Logo class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">LTHĐT</b></a><a aria-current=page class="navbar__item navbar__link navbar__link--active" href=/lap-trinh-huong-doi-tuong/CHUONG_1_LT>Lý thuyết</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/thayduy/lap-trinh-huong-doi-tuong target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Chuyển đổi chế độ sáng và tối (hiện tại là system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Trở lại đầu trang" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Thanh điều hướng tài liệu" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_1_LT><span class=linkLabel_WmDU>CHƯƠNG 1: TƯ DUY HƯỚNG ĐỐI TƯỢNG & THIẾT LẬP MÔI TRƯỜNG CHUYÊN NGHIỆP</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_2_LT><span class=linkLabel_WmDU>CHƯƠNG 2: LỚP (CLASS) & ĐỐI TƯỢNG (OBJECT) – MODERN JAVA APPROACH</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_3_LT><span class=linkLabel_WmDU>CHƯƠNG 3: KẾ THỪA & ĐA HÌNH – TRÁI TIM CỦA OOP</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_4_LT><span class=linkLabel_WmDU>CHƯƠNG 4: NGUYÊN LÝ THIẾT KẾ & DESIGN PATTERNS CƠ BẢN</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/CHUONG_5_LT><span class=linkLabel_WmDU>CHƯƠNG 5: XỬ LÝ NGOẠI LỆ (EXCEPTIONS) & KIỂM THỬ (TESTING)</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current=page href=/lap-trinh-huong-doi-tuong/CHUONG_6_LT><span class=linkLabel_WmDU>CHƯƠNG 6: COLLECTIONS & STREAM API – HIỆN ĐẠI HÓA JAVA</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/lap-trinh-huong-doi-tuong/><span class=linkLabel_WmDU>📘 GIÁO TRÌNH LÝ THUYẾT – LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG (JAVA)</span></a></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Liên kết điều hướng"><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Trang chủ" class=breadcrumbs__link href=/lap-trinh-huong-doi-tuong/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>CHƯƠNG 6: COLLECTIONS & STREAM API – HIỆN ĐẠI HÓA JAVA</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">Trên trang này</button></div><div class="theme-doc-markdown markdown"><header><h1>CHƯƠNG 6: COLLECTIONS & STREAM API – HIỆN ĐẠI HÓA JAVA</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-mục-tiêu-học-tập>📚 MỤC TIÊU HỌC TẬP<a href=#-mục-tiêu-học-tập class=hash-link aria-label="Đường dẫn trực tiếp đến 📚 MỤC TIÊU HỌC TẬP" title="Đường dẫn trực tiếp đến 📚 MỤC TIÊU HỌC TẬP" translate=no>​</a></h2>
+<p>Sau khi hoàn thành chương này, bạn sẽ:</p>
+<ul>
+<li class="">Sử dụng thành thạo Java Collections Framework</li>
+<li class="">Hiểu và áp dụng Generics</li>
+<li class="">Viết Lambda Expressions</li>
+<li class="">Sử dụng Functional Interfaces</li>
+<li class="">Xử lý dữ liệu với Stream API</li>
+<li class="">Chuyển đổi từ Imperative sang Declarative programming</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-kiến-thức-cần-có-prerequisites>📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)<a href=#-kiến-thức-cần-có-prerequisites class=hash-link aria-label="Đường dẫn trực tiếp đến 📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)" title="Đường dẫn trực tiếp đến 📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)" translate=no>​</a></h2>
+<p>Trước khi học chương này, bạn cần nắm vững:</p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class=task-list-item>
+<p><input type=checkbox disabled/> ✅ <strong>Mảng (Arrays)</strong> (Chương 1, phần 0.7)</p>
+<ul>
+<li class="">Khai báo, truy cập, duyệt mảng</li>
+<li class="">Hiểu hạn chế của mảng (kích thước cố định)</li>
+</ul>
+</li>
+<li class=task-list-item>
+<p><input type=checkbox disabled/> ✅ <strong>Wrapper Classes</strong> (Chương 1, phần 0.13) ⭐ <strong>QUAN TRỌNG</strong></p>
+<ul>
+<li class="">Integer, Double, String, Boolean, ...</li>
+<li class="">Autoboxing và Unboxing</li>
+<li class=""><strong>Collections chỉ chấp nhận Wrapper Classes, không chấp nhận primitives!</strong></li>
+</ul>
+</li>
+<li class=task-list-item>
+<p><input type=checkbox disabled/> ✅ <strong>Interface</strong> (Chương 3, phần 3.4)</p>
+<ul>
+<li class="">Định nghĩa và implement interface</li>
+<li class="">Functional Interfaces</li>
+</ul>
+</li>
+<li class=task-list-item>
+<p><input type=checkbox disabled/> ✅ <strong>Method</strong> (Chương 1, 2)</p>
+<ul>
+<li class="">Cách định nghĩa và gọi method</li>
+<li class="">Tham số, return type</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>💡 Lưu ý:</strong></p>
+<ul>
+<li class="">Nếu bạn chưa học <strong>Wrapper Classes</strong> ở Chương 1, hãy quay lại học ngay! Collections không thể dùng primitives.</li>
+<li class="">Chương này sẽ <strong>hiện đại hóa</strong> cách bạn xử lý dữ liệu trong Java.</li>
+</ul>
+</blockquote>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-hướng-dẫn-học-sâu--code-chạy-thử>🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ<a href=#-hướng-dẫn-học-sâu--code-chạy-thử class=hash-link aria-label="Đường dẫn trực tiếp đến 🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ" title="Đường dẫn trực tiếp đến 🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Chủ đề<th>Code<th>So sánh<tbody><tr><td>for vs Stream<td><code>CODE/VI_DU/CHUONG_6/01_Collections_Stream/</code><td>Cùng kết quả <code>[4, 8]</code></table>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">cd CODE/VI_DU/CHUONG_6/01_Collections_Stream</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">javac Main.java && java Main</span><br/></div></code></pre></div></div>
+<p><strong>Giải thích từng bước Stream:</strong></p>
+<ol>
+<li class=""><code>numbers.stream()</code> – tạo luồng dữ liệu từ List.</li>
+<li class=""><code>.filter(n -> n % 2 == 0)</code> – giữ 2, 4 (intermediate).</li>
+<li class=""><code>.map(n -> n * 2)</code> – thành 4, 8 (intermediate).</li>
+<li class=""><code>.collect(Collectors.toList())</code> – gom kết quả (terminal – lúc này mới thực thi pipeline).</li>
+</ol>
+<p><strong>❓ Tự kiểm tra:</strong> Vì sao <code>List&lt;int></code> không compile? → Generic chỉ nhận <strong>object</strong>; dùng <code>Integer</code> + autoboxing.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=61-java-collections-framework>6.1. JAVA COLLECTIONS FRAMEWORK<a href=#61-java-collections-framework class=hash-link aria-label="Đường dẫn trực tiếp đến 6.1. JAVA COLLECTIONS FRAMEWORK" title="Đường dẫn trực tiếp đến 6.1. JAVA COLLECTIONS FRAMEWORK" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=611-collections-là-gì>6.1.1. Collections là gì?<a href=#611-collections-là-gì class=hash-link aria-label="Đường dẫn trực tiếp đến 6.1.1. Collections là gì?" title="Đường dẫn trực tiếp đến 6.1.1. Collections là gì?" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa>Định nghĩa<a href=#định-nghĩa class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>Collections Framework</strong> là tập hợp các interfaces và classes để lưu trữ và xử lý nhóm các objects.</p>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Không cần tự implement cấu trúc dữ liệu</li>
+<li class="">✅ Tối ưu hiệu suất</li>
+<li class="">✅ Code chuẩn, dễ đọc</li>
+</ul>
+<blockquote>
+<p><strong>💡 Nhắc lại từ Chương 1:</strong></p>
+<ul>
+<li class="">
+<p>Bạn đã học <strong>Mảng (Arrays)</strong> ở Chương 1, phần 0.7</p>
+</li>
+<li class="">
+<p>Mảng có hạn chế: kích thước cố định, không thể thêm/xóa dễ dàng</p>
+</li>
+<li class="">
+<p><strong>Collections</strong> giải quyết các vấn đề này!</p>
+</li>
+<li class="">
+<p>Bạn đã học <strong>Wrapper Classes</strong> ở Chương 1, phần 0.13</p>
+</li>
+<li class="">
+<p>Collections chỉ chấp nhận objects (Wrapper Classes), không chấp nhận primitives</p>
+</li>
+<li class="">
+<p>Ví dụ: <code>List&lt;Integer></code> (✅), <code>List&lt;int></code> (❌)</p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>🧰 Tưởng tượng: Hộp dụng cụ (The Toolbox)</strong></p>
+<ul>
+<li class=""><strong>Collection</strong>: Là cái hộp dụng cụ đa năng.</li>
+<li class=""><strong>List</strong>: Giống <strong>Danh sách đi chợ</strong>. Thứ tự quan trọng (mua trứng trước hay sữa sau), và có thể ghi 2 lần "sữa" (duplicate) nếu cần mua nhiều.</li>
+<li class=""><strong>Set</strong>: Giống <strong>Danh sách khách mời đám cưới</strong>. Không được mời ai 2 lần (no duplicate), thứ tự không quan trọng.</li>
+<li class=""><strong>Map</strong>: Giống <strong>Cuốn từ điển</strong> hoặc <strong>Danh bạ điện thoại</strong>. Tra cứu bằng Từ khóa (Tên) để ra Ý nghĩa (Số điện thoại). Tên không được trùng, nhưng số điện thoại có thể trùng.</li>
+</ul>
+</blockquote>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=collections-hierarchy>Collections Hierarchy<a href=#collections-hierarchy class=hash-link aria-label="Đường dẫn trực tiếp đến Collections Hierarchy" title="Đường dẫn trực tiếp đến Collections Hierarchy" translate=no>​</a></h4>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Collection</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">├── List (Có thứ tự, cho phép duplicate)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   ├── ArrayList</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   ├── LinkedList</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   └── Vector</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">├── Set (Không có thứ tự, không duplicate)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   ├── HashSet</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   ├── TreeSet</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   └── LinkedHashSet</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└── Queue (Hàng đợi)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    ├── PriorityQueue</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    └── Deque</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Map (Không extends Collection)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">├── HashMap</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">├── TreeMap</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└── LinkedHashMap</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=612-list-interface>6.1.2. List Interface<a href=#612-list-interface class=hash-link aria-label="Đường dẫn trực tiếp đến 6.1.2. List Interface" title="Đường dẫn trực tiếp đến 6.1.2. List Interface" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=đặc-điểm>Đặc điểm<a href=#đặc-điểm class=hash-link aria-label="Đường dẫn trực tiếp đến Đặc điểm" title="Đường dẫn trực tiếp đến Đặc điểm" translate=no>​</a></h4>
+<p><strong>List:</strong></p>
+<ul>
+<li class="">Có thứ tự (ordered)</li>
+<li class="">Cho phép duplicate</li>
+<li class="">Có index (truy cập theo vị trí)</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=arraylist>ArrayList<a href=#arraylist class=hash-link aria-label="Đường dẫn trực tiếp đến ArrayList" title="Đường dẫn trực tiếp đến ArrayList" translate=no>​</a></h4>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">Implement bằng mảng động</li>
+<li class="">Truy cập nhanh (O(1))</li>
+<li class="">Thêm/xóa chậm ở giữa (O(n))</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> list = new ArrayList&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Thêm phần tử</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.add("Apple");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.add("Banana");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.add("Orange");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Truy cập</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">String first = list.get(0);  // "Apple"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Duyệt</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">for (String fruit : list) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println(fruit);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Hoặc</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.forEach(fruit -> System.out.println(fruit));</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=linkedlist>LinkedList<a href=#linkedlist class=hash-link aria-label="Đường dẫn trực tiếp đến LinkedList" title="Đường dẫn trực tiếp đến LinkedList" translate=no>​</a></h4>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">Implement bằng linked list</li>
+<li class="">Thêm/xóa nhanh (O(1))</li>
+<li class="">Truy cập chậm (O(n))</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> list = new LinkedList&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.add("Apple");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.add("Banana");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.addFirst("First");  // Thêm vào đầu</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.addLast("Last");    // Thêm vào cuối</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=so-sánh-arraylist-vs-linkedlist>So sánh ArrayList vs LinkedList<a href=#so-sánh-arraylist-vs-linkedlist class=hash-link aria-label="Đường dẫn trực tiếp đến So sánh ArrayList vs LinkedList" title="Đường dẫn trực tiếp đến So sánh ArrayList vs LinkedList" translate=no>​</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Đặc điểm<th>ArrayList<th>LinkedList<tbody><tr><td><strong>Cấu trúc</strong><td>Mảng động<td>Linked list<tr><td><strong>Truy cập</strong><td>O(1) - Nhanh<td>O(n) - Chậm<tr><td><strong>Thêm cuối</strong><td>O(1) - Nhanh<td>O(1) - Nhanh<tr><td><strong>Thêm/xóa giữa</strong><td>O(n) - Chậm<td>O(1) - Nhanh<tr><td><strong>Bộ nhớ</strong><td>Ít hơn<td>Nhiều hơn (pointer)<tr><td><strong>Khi nào dùng</strong><td>Truy cập nhiều<td>Thêm/xóa nhiều</table>
+<p><strong>Khuyến nghị:</strong></p>
+<ul>
+<li class="">✅ Dùng <strong>ArrayList</strong> trong hầu hết trường hợp</li>
+<li class="">✅ Dùng <strong>LinkedList</strong> khi thêm/xóa ở giữa nhiều</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=613-set-interface>6.1.3. Set Interface<a href=#613-set-interface class=hash-link aria-label="Đường dẫn trực tiếp đến 6.1.3. Set Interface" title="Đường dẫn trực tiếp đến 6.1.3. Set Interface" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=đặc-điểm-1>Đặc điểm<a href=#đặc-điểm-1 class=hash-link aria-label="Đường dẫn trực tiếp đến Đặc điểm" title="Đường dẫn trực tiếp đến Đặc điểm" translate=no>​</a></h4>
+<p><strong>Set:</strong></p>
+<ul>
+<li class="">Không có thứ tự (unordered) - trừ LinkedHashSet</li>
+<li class="">Không cho phép duplicate</li>
+<li class="">Không có index</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=hashset>HashSet<a href=#hashset class=hash-link aria-label="Đường dẫn trực tiếp đến HashSet" title="Đường dẫn trực tiếp đến HashSet" translate=no>​</a></h4>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">Không có thứ tự</li>
+<li class="">Nhanh nhất (O(1) cho add/contains)</li>
+<li class="">Dùng hashCode() và equals()</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Set&lt;String> set = new HashSet&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">set.add("Apple");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">set.add("Banana");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">set.add("Apple");  // Bị bỏ qua (duplicate)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">System.out.println(set.size());  // 2</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">System.out.println(set.contains("Apple"));  // true</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=treeset>TreeSet<a href=#treeset class=hash-link aria-label="Đường dẫn trực tiếp đến TreeSet" title="Đường dẫn trực tiếp đến TreeSet" translate=no>​</a></h4>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">Có thứ tự (sorted)</li>
+<li class="">Chậm hơn HashSet (O(log n))</li>
+<li class="">Dùng Comparable hoặc Comparator</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Set&lt;String> set = new TreeSet&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">set.add("Banana");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">set.add("Apple");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">set.add("Orange");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Tự động sắp xếp</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">for (String fruit : set) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println(fruit);  // Apple, Banana, Orange</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=linkedhashset>LinkedHashSet<a href=#linkedhashset class=hash-link aria-label="Đường dẫn trực tiếp đến LinkedHashSet" title="Đường dẫn trực tiếp đến LinkedHashSet" translate=no>​</a></h4>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">Giữ thứ tự chèn (insertion order)</li>
+<li class="">Nhanh như HashSet</li>
+<li class="">Kết hợp HashSet + LinkedList</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Set&lt;String> set = new LinkedHashSet&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">set.add("Banana");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">set.add("Apple");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">set.add("Orange");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Giữ thứ tự chèn</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">for (String fruit : set) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println(fruit);  // Banana, Apple, Orange</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=614-map-interface>6.1.4. Map Interface<a href=#614-map-interface class=hash-link aria-label="Đường dẫn trực tiếp đến 6.1.4. Map Interface" title="Đường dẫn trực tiếp đến 6.1.4. Map Interface" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=đặc-điểm-2>Đặc điểm<a href=#đặc-điểm-2 class=hash-link aria-label="Đường dẫn trực tiếp đến Đặc điểm" title="Đường dẫn trực tiếp đến Đặc điểm" translate=no>​</a></h4>
+<p><strong>Map:</strong></p>
+<ul>
+<li class="">Lưu trữ key-value pairs</li>
+<li class="">Key không duplicate</li>
+<li class="">Value có thể duplicate</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=hashmap>HashMap<a href=#hashmap class=hash-link aria-label="Đường dẫn trực tiếp đến HashMap" title="Đường dẫn trực tiếp đến HashMap" translate=no>​</a></h4>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">Không có thứ tự</li>
+<li class="">Nhanh nhất (O(1))</li>
+<li class="">Cho phép null key và null value</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Map&lt;String, Integer> map = new HashMap&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">map.put("Apple", 10);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">map.put("Banana", 20);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">map.put("Orange", 15);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Truy cập</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">int apples = map.get("Apple");  // 10</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Kiểm tra</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">if (map.containsKey("Apple")) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println("Apple exists");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Duyệt</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">for (Map.Entry&lt;String, Integer> entry : map.entrySet()) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println(entry.getKey() + ": " + entry.getValue());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=treemap>TreeMap<a href=#treemap class=hash-link aria-label="Đường dẫn trực tiếp đến TreeMap" title="Đường dẫn trực tiếp đến TreeMap" translate=no>​</a></h4>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">Có thứ tự (sorted theo key)</li>
+<li class="">Chậm hơn HashMap (O(log n))</li>
+<li class="">Key phải implement Comparable</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Map&lt;String, Integer> map = new TreeMap&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">map.put("Banana", 20);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">map.put("Apple", 10);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">map.put("Orange", 15);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Tự động sắp xếp theo key</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">for (String key : map.keySet()) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    System.out.println(key + ": " + map.get(key));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Apple: 10, Banana: 20, Orange: 15</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=615-tiêu-chí-lựa-chọn-cấu-trúc-dữ-liệu>6.1.5. Tiêu chí Lựa chọn Cấu trúc Dữ liệu<a href=#615-tiêu-chí-lựa-chọn-cấu-trúc-dữ-liệu class=hash-link aria-label="Đường dẫn trực tiếp đến 6.1.5. Tiêu chí Lựa chọn Cấu trúc Dữ liệu" title="Đường dẫn trực tiếp đến 6.1.5. Tiêu chí Lựa chọn Cấu trúc Dữ liệu" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=decision-tree>Decision Tree<a href=#decision-tree class=hash-link aria-label="Đường dẫn trực tiếp đến Decision Tree" title="Đường dẫn trực tiếp đến Decision Tree" translate=no>​</a></h4>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Cần duplicate?</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">├── Có → List</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   ├── Truy cập nhiều? → ArrayList</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│   └── Thêm/xóa giữa nhiều? → LinkedList</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">│</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└── Không → Set</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    ├── Cần thứ tự?</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    │   ├── Có → TreeSet (sorted) hoặc LinkedHashSet (insertion order)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    │   └── Không → HashSet</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    │</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    └── Cần key-value? → Map</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        ├── Cần thứ tự? → TreeMap</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        └── Không → HashMap</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=️-phân-tích-hiệu-năng-performance-analysis>🏎️ Phân tích Hiệu Năng (Performance Analysis)<a href=#️-phân-tích-hiệu-năng-performance-analysis class=hash-link aria-label="Đường dẫn trực tiếp đến 🏎️ Phân tích Hiệu Năng (Performance Analysis)" title="Đường dẫn trực tiếp đến 🏎️ Phân tích Hiệu Năng (Performance Analysis)" translate=no>​</a></h3>
+<p>Chọn đúng "Hộp dụng cụ" quyết định tốc độ chương trình:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Hành động<th>ArrayList<th>LinkedList<th>HashSet<th>HashMap<tbody><tr><td><strong>Truy cập (Get)</strong><td>⚡️ Cực nhanh (O(1))<td>🐌 Rùa bò (O(n))<td>-<td>⚡️ Cực nhanh (O(1))<tr><td><strong>Thêm/Xóa cuối</strong><td>⚡️ Cực nhanh<td>⚡️ Cực nhanh<td>⚡️ Cực nhanh<td>⚡️ Cực nhanh<tr><td><strong>Thêm/Xóa giữa</strong><td>🐌 Rùa bò (Dời mảng)<td>⚡️ Cực nhanh (Nối dây)<td>-<td>-<tr><td><strong>Tìm kiếm (Find)</strong><td>🐢 Chậm (Duyệt cả list)<td>🐢 Chậm<td>⚡️ Cực nhanh<td>⚡️ Cực nhanh</table>
+<blockquote>
+<p><strong>Kinh nghiệm xương máu:</strong></p>
+<ul>
+<li class="">Nếu bạn cần <strong>tìm kiếm</strong> nhanh (ví dụ: tìm User theo ID) → Đừng dùng <code>List</code>, hãy dùng <code>Map</code>.</li>
+<li class="">Nếu bạn cần <strong>lưu trữ đơn giản</strong> để duyệt → Dùng <code>ArrayList</code>.</li>
+<li class="">Hạn chế dùng <code>LinkedList</code> trừ khi bạn hiểu rõ mình đang làm gì (thường ít khi cần).</li>
+</ul>
+</blockquote>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-thực-tế>Ví dụ thực tế<a href=#ví-dụ-thực-tế class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ thực tế" title="Đường dẫn trực tiếp đến Ví dụ thực tế" translate=no>​</a></h4>
+<p><strong>1. Danh sách sinh viên (có thể trùng tên):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;Student> students = new ArrayList&lt;>();  // ✅ List</span><br/></div></code></pre></div></div>
+<p><strong>2. Danh sách ID duy nhất:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Set&lt;String> uniqueIds = new HashSet&lt;>();  // ✅ Set</span><br/></div></code></pre></div></div>
+<p><strong>3. Dictionary (từ điển):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Map&lt;String, String> dictionary = new HashMap&lt;>();  // ✅ Map</span><br/></div></code></pre></div></div>
+<p><strong>4. Leaderboard (bảng xếp hạng - cần sorted):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Map&lt;String, Integer> scores = new TreeMap&lt;>();  // ✅ TreeMap</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=62-generics>6.2. GENERICS<a href=#62-generics class=hash-link aria-label="Đường dẫn trực tiếp đến 6.2. GENERICS" title="Đường dẫn trực tiếp đến 6.2. GENERICS" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=621-generics-là-gì>6.2.1. Generics là gì?<a href=#621-generics-là-gì class=hash-link aria-label="Đường dẫn trực tiếp đến 6.2.1. Generics là gì?" title="Đường dẫn trực tiếp đến 6.2.1. Generics là gì?" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=vấn-đề-không-dùng-generics>Vấn đề không dùng Generics<a href=#vấn-đề-không-dùng-generics class=hash-link aria-label="Đường dẫn trực tiếp đến Vấn đề không dùng Generics" title="Đường dẫn trực tiếp đến Vấn đề không dùng Generics" translate=no>​</a></h4>
+<p><strong>Code cũ (không type-safe):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List list = new ArrayList();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.add("Hello");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.add(123);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.add(new Date());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Phải cast khi lấy ra</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">String str = (String) list.get(0);  // OK</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">String str2 = (String) list.get(1);  // ❌ ClassCastException!</span><br/></div></code></pre></div></div>
+<p><strong>Vấn đề:</strong></p>
+<ul>
+<li class="">❌ Không type-safe</li>
+<li class="">❌ Dễ lỗi ClassCastException</li>
+<li class="">❌ Phải cast mỗi lần</li>
+</ul>
+<blockquote>
+<p><strong>u001f🍾 Tưởng tượng: Hũ đựng bánh (Labelled Jar)</strong></p>
+<ul>
+<li class=""><strong>Không dùng Generics</strong>: Giống như cái hũ thủy tinh trơn, không dán nhãn. Bạn có thể bỏ bánh quy, kẹo, hay thậm chí... ốc vít vào đó. Khi lấy ra ăn, bạn phải nhìn kỹ (cast) mới dám ăn, nếu không sẽ gãy răng (Runtime Error).</li>
+<li class=""><strong>Dùng Generics (<code>Box&lt;Cookie></code>)</strong>: Giống như cái hũ có dán nhãn <strong>"CHỈ ĐỰNG BÁNH QUY"</strong>. Nếu bạn cố bỏ ốc vít vào, cái nắp sẽ không đóng lại được (Compile Error). Khi lấy ra, bạn nhắm mắt cũng biết đó là bánh quy (Type-safe).</li>
+</ul>
+</blockquote>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=giải-pháp-generics>Giải pháp: Generics<a href=#giải-pháp-generics class=hash-link aria-label="Đường dẫn trực tiếp đến Giải pháp: Generics" title="Đường dẫn trực tiếp đến Giải pháp: Generics" translate=no>​</a></h4>
+<p><strong>Code mới (type-safe):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> list = new ArrayList&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.add("Hello");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// list.add(123);  // ❌ Compiler error ngay!</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">String str = list.get(0);  // ✅ Không cần cast</span><br/></div></code></pre></div></div>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Type-safe (compiler kiểm tra)</li>
+<li class="">✅ Không cần cast</li>
+<li class="">✅ Code rõ ràng hơn</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=622-cú-pháp-generics>6.2.2. Cú pháp Generics<a href=#622-cú-pháp-generics class=hash-link aria-label="Đường dẫn trực tiếp đến 6.2.2. Cú pháp Generics" title="Đường dẫn trực tiếp đến 6.2.2. Cú pháp Generics" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=generic-class>Generic Class<a href=#generic-class class=hash-link aria-label="Đường dẫn trực tiếp đến Generic Class" title="Đường dẫn trực tiếp đến Generic Class" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Định nghĩa</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Box&lt;T> {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private T item;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public void setItem(T item) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.item = item;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public T getItem() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return item;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Box&lt;String> stringBox = new Box&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">stringBox.setItem("Hello");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">String value = stringBox.getItem();  // ✅ Type-safe</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Box&lt;Integer> intBox = new Box&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">intBox.setItem(123);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Integer number = intBox.getItem();  // ✅ Type-safe</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=generic-method>Generic Method<a href=#generic-method class=hash-link aria-label="Đường dẫn trực tiếp đến Generic Method" title="Đường dẫn trực tiếp đến Generic Method" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class Utils {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Generic method</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static &lt;T> void printArray(T[] array) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        for (T item : array) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">            System.out.println(item);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    // Generic method với return type</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static &lt;T> T getFirst(List&lt;T> list) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return list.get(0);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">String[] strings = {"Hello", "World"};</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Utils.printArray(strings);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Integer[] numbers = {1, 2, 3};</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Utils.printArray(numbers);</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=bounded-type-parameters>Bounded Type Parameters<a href=#bounded-type-parameters class=hash-link aria-label="Đường dẫn trực tiếp đến Bounded Type Parameters" title="Đường dẫn trực tiếp đến Bounded Type Parameters" translate=no>​</a></h4>
+<p><strong>Giới hạn kiểu generic:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Chỉ chấp nhận Number và subclass</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class NumberBox&lt;T extends Number> {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private T number;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public double getDoubleValue() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return number.doubleValue();  // Có thể gọi methods của Number</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">NumberBox&lt;Integer> intBox = new NumberBox&lt;>();  // ✅ OK</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">NumberBox&lt;Double> doubleBox = new NumberBox&lt;>();  // ✅ OK</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// NumberBox&lt;String> stringBox = new NumberBox&lt;>();  // ❌ LỖI</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=623-wildcards>6.2.3. Wildcards<a href=#623-wildcards class=hash-link aria-label="Đường dẫn trực tiếp đến 6.2.3. Wildcards" title="Đường dẫn trực tiếp đến 6.2.3. Wildcards" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=-unbounded-wildcard>? (Unbounded Wildcard)<a href=#-unbounded-wildcard class=hash-link aria-label="Đường dẫn trực tiếp đến ? (Unbounded Wildcard)" title="Đường dẫn trực tiếp đến ? (Unbounded Wildcard)" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Chấp nhận bất kỳ type nào</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void printList(List&lt;?> list) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    for (Object item : list) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println(item);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=-extends-type-upper-bounded>? extends Type (Upper Bounded)<a href=#-extends-type-upper-bounded class=hash-link aria-label="Đường dẫn trực tiếp đến ? extends Type (Upper Bounded)" title="Đường dẫn trực tiếp đến ? extends Type (Upper Bounded)" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Chấp nhận Number và subclass</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public double sum(List&lt;? extends Number> numbers) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    double sum = 0;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    for (Number num : numbers) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        sum += num.doubleValue();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    return sum;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> integers = Arrays.asList(1, 2, 3);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;Double> doubles = Arrays.asList(1.5, 2.5, 3.5);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">sum(integers);  // ✅ OK</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">sum(doubles);   // ✅ OK</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=-super-type-lower-bounded>? super Type (Lower Bounded)<a href=#-super-type-lower-bounded class=hash-link aria-label="Đường dẫn trực tiếp đến ? super Type (Lower Bounded)" title="Đường dẫn trực tiếp đến ? super Type (Lower Bounded)" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Chấp nhận Integer và superclass</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public void addNumbers(List&lt;? super Integer> list) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    list.add(1);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    list.add(2);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sử dụng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;Number> numbers = new ArrayList&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">addNumbers(numbers);  // ✅ OK</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;Object> objects = new ArrayList&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">addNumbers(objects);  // ✅ OK</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=63-lambda-expressions--functional-interfaces>6.3. LAMBDA EXPRESSIONS & FUNCTIONAL INTERFACES<a href=#63-lambda-expressions--functional-interfaces class=hash-link aria-label="Đường dẫn trực tiếp đến 6.3. LAMBDA EXPRESSIONS & FUNCTIONAL INTERFACES" title="Đường dẫn trực tiếp đến 6.3. LAMBDA EXPRESSIONS & FUNCTIONAL INTERFACES" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=631-lambda-expressions-là-gì>6.3.1. Lambda Expressions là gì?<a href=#631-lambda-expressions-là-gì class=hash-link aria-label="Đường dẫn trực tiếp đến 6.3.1. Lambda Expressions là gì?" title="Đường dẫn trực tiếp đến 6.3.1. Lambda Expressions là gì?" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=vấn-đề-code-dài-dòng>Vấn đề: Code dài dòng<a href=#vấn-đề-code-dài-dòng class=hash-link aria-label="Đường dẫn trực tiếp đến Vấn đề: Code dài dòng" title="Đường dẫn trực tiếp đến Vấn đề: Code dài dòng" translate=no>​</a></h4>
+<p><strong>Code cũ (Anonymous Inner Class):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("Alice", "Bob", "Charlie");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sắp xếp với Comparator</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Collections.sort(names, new Comparator&lt;String>() {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public int compare(String a, String b) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        return a.length() - b.length();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">});</span><br/></div></code></pre></div></div>
+<p><strong>Vấn đề:</strong></p>
+<ul>
+<li class="">❌ Code dài dòng</li>
+<li class="">❌ Khó đọc</li>
+<li class="">❌ Nhiều boilerplate</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=giải-pháp-lambda-expression>Giải pháp: Lambda Expression<a href=#giải-pháp-lambda-expression class=hash-link aria-label="Đường dẫn trực tiếp đến Giải pháp: Lambda Expression" title="Đường dẫn trực tiếp đến Giải pháp: Lambda Expression" translate=no>​</a></h4>
+<p><strong>Code mới (ngắn gọn):</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("Alice", "Bob", "Charlie");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Lambda expression</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Collections.sort(names, (a, b) -> a.length() - b.length());</span><br/></div></code></pre></div></div>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li class="">✅ Ngắn gọn</li>
+<li class="">✅ Dễ đọc</li>
+<li class="">✅ Functional programming style</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=632-cú-pháp-lambda>6.3.2. Cú pháp Lambda<a href=#632-cú-pháp-lambda class=hash-link aria-label="Đường dẫn trực tiếp đến 6.3.2. Cú pháp Lambda" title="Đường dẫn trực tiếp đến 6.3.2. Cú pháp Lambda" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=cú-pháp-cơ-bản>Cú pháp cơ bản<a href=#cú-pháp-cơ-bản class=hash-link aria-label="Đường dẫn trực tiếp đến Cú pháp cơ bản" title="Đường dẫn trực tiếp đến Cú pháp cơ bản" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">(parameters) -> expression</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Hoặc</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">(parameters) -> {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    statements;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    return value;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// 1. Không tham số</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Runnable r = () -> System.out.println("Hello");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// 2. Một tham số (có thể bỏ dấu ngoặc)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Function&lt;String, Integer> f = s -> s.length();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// 3. Nhiều tham số</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">BiFunction&lt;Integer, Integer, Integer> add = (a, b) -> a + b;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// 4. Nhiều dòng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Function&lt;String, String> upper = s -> {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    String result = s.toUpperCase();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    return result;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">};</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-thực-tế-1>Ví dụ thực tế<a href=#ví-dụ-thực-tế-1 class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ thực tế" title="Đường dẫn trực tiếp đến Ví dụ thực tế" translate=no>​</a></h4>
+<p><strong>1. Với List:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("Alice", "Bob", "Charlie");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Duyệt với Lambda</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">names.forEach(name -> System.out.println(name));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Hoặc method reference</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">names.forEach(System.out::println);</span><br/></div></code></pre></div></div>
+<p><strong>2. Với Comparator:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("Alice", "Bob", "Charlie");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sắp xếp theo độ dài</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">names.sort((a, b) -> a.length() - b.length());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sắp xếp theo thứ tự alphabet</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">names.sort((a, b) -> a.compareTo(b));</span><br/></div></code></pre></div></div>
+<p><strong>3. Với Predicate:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Lọc số chẵn</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">numbers.removeIf(n -> n % 2 == 0);</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=633-functional-interfaces>6.3.3. Functional Interfaces<a href=#633-functional-interfaces class=hash-link aria-label="Đường dẫn trực tiếp đến 6.3.3. Functional Interfaces" title="Đường dẫn trực tiếp đến 6.3.3. Functional Interfaces" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-1>Định nghĩa<a href=#định-nghĩa-1 class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>Functional Interface</strong> là interface chỉ có <strong>một abstract method</strong>.</p>
+<p><strong>Annotation:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">@FunctionalInterface</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public interface MyFunction {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    void doSomething();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=các-functional-interfaces-phổ-biến>Các Functional Interfaces phổ biến<a href=#các-functional-interfaces-phổ-biến class=hash-link aria-label="Đường dẫn trực tiếp đến Các Functional Interfaces phổ biến" title="Đường dẫn trực tiếp đến Các Functional Interfaces phổ biến" translate=no>​</a></h4>
+<p><strong>1. Predicate<t></t></strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Kiểm tra điều kiện (trả về boolean)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Predicate&lt;String> isLong = s -> s.length() > 5;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">boolean result = isLong.test("Hello World");  // true</span><br/></div></code></pre></div></div>
+<p><strong>2. Consumer<t></t></strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Nhận input, không trả về gì</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Consumer&lt;String> print = s -> System.out.println(s);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">print.accept("Hello");  // In "Hello"</span><br/></div></code></pre></div></div>
+<p><strong>3. Function&lt;T, R></strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Nhận T, trả về R</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Function&lt;String, Integer> length = s -> s.length();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">int len = length.apply("Hello");  // 5</span><br/></div></code></pre></div></div>
+<p><strong>4. Supplier<t></t></strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Không nhận gì, trả về T</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Supplier&lt;String> greeting = () -> "Hello";</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">String msg = greeting.get();  // "Hello"</span><br/></div></code></pre></div></div>
+<p><strong>5. BiFunction&lt;T, U, R></strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Nhận T và U, trả về R</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">BiFunction&lt;Integer, Integer, Integer> add = (a, b) -> a + b;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">int sum = add.apply(5, 3);  // 8</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-sử-dụng>Ví dụ sử dụng<a href=#ví-dụ-sử-dụng class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ sử dụng" title="Đường dẫn trực tiếp đến Ví dụ sử dụng" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Predicate: Lọc tên dài hơn 4 ký tự</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Predicate&lt;String> longName = name -> name.length() > 4;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> longNames = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .filter(longName)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// ["Alice", "Charlie", "David"]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Function: Chuyển thành chữ hoa</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Function&lt;String, String> upper = String::toUpperCase;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> upperNames = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .map(upper)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// ["ALICE", "BOB", "CHARLIE", "DAVID"]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Consumer: In từng phần tử</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Consumer&lt;String> print = System.out::println;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">names.forEach(print);</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=64-stream-api-tư-duy-declarative>6.4. STREAM API (TƯ DUY DECLARATIVE)<a href=#64-stream-api-tư-duy-declarative class=hash-link aria-label="Đường dẫn trực tiếp đến 6.4. STREAM API (TƯ DUY DECLARATIVE)" title="Đường dẫn trực tiếp đến 6.4. STREAM API (TƯ DUY DECLARATIVE)" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=641-imperative-vs-declarative>6.4.1. Imperative vs Declarative<a href=#641-imperative-vs-declarative class=hash-link aria-label="Đường dẫn trực tiếp đến 6.4.1. Imperative vs Declarative" title="Đường dẫn trực tiếp đến 6.4.1. Imperative vs Declarative" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=imperative-mệnh-lệnh---how>Imperative (Mệnh lệnh) - "HOW"<a href=#imperative-mệnh-lệnh---how class=hash-link aria-label='Đường dẫn trực tiếp đến Imperative (Mệnh lệnh) - "HOW"' title='Đường dẫn trực tiếp đến Imperative (Mệnh lệnh) - "HOW"' translate=no>​</a></h4>
+<p><strong>Tập trung vào "Làm thế nào":</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> result = new ArrayList&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Imperative: Mô tả từng bước</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">for (String name : names) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    if (name.length() > 4) {  // Lọc</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        String upper = name.toUpperCase();  // Chuyển đổi</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        result.add(upper);  // Thêm vào list</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">❌ Code dài</li>
+<li class="">❌ Phải quản lý state (biến result)</li>
+<li class="">❌ Khó đọc</li>
+</ul>
+<blockquote>
+<p><strong>🏭 Tưởng tượng: Dây chuyền sản xuất (Assembly Line)</strong></p>
+<ul>
+<li class=""><strong>Stream API</strong> biến việc xử lý dữ liệu thành một dây chuyền nhà máy.</li>
+<li class=""><strong>Source (List)</strong>: Nguyên liệu thô đầu vào.</li>
+<li class=""><strong>Filter</strong>: Máy sàng lọc (chỉ lấy nguyên liệu tốt).</li>
+<li class=""><strong>Map</strong>: Máy chế biến (gọt vỏ, sơn màu).</li>
+<li class=""><strong>Collect</strong>: Đóng gói thành phẩm.</li>
+<li class="">Bạn chỉ cần đứng chỉ tay "Tôi muốn lọc cái này, chế biến thế kia" (Declarative), máy móc sẽ tự chạy. Bạn không cần tự tay bưng bê từng món (Imperative Loop).</li>
+</ul>
+</blockquote>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=declarative-khai-báo---what>Declarative (Khai báo) - "WHAT"<a href=#declarative-khai-báo---what class=hash-link aria-label='Đường dẫn trực tiếp đến Declarative (Khai báo) - "WHAT"' title='Đường dẫn trực tiếp đến Declarative (Khai báo) - "WHAT"' translate=no>​</a></h4>
+<p><strong>Tập trung vào "Làm gì":</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Declarative: Mô tả kết quả mong muốn</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> result = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .filter(name -> name.length() > 4)  // Lọc</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .map(String::toUpperCase)            // Chuyển đổi</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());       // Thu thập</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=-phân-tích-dây-chuyền-pipeline-trace>🏭 Phân tích Dây chuyền (Pipeline Trace)<a href=#-phân-tích-dây-chuyền-pipeline-trace class=hash-link aria-label="Đường dẫn trực tiếp đến 🏭 Phân tích Dây chuyền (Pipeline Trace)" title="Đường dẫn trực tiếp đến 🏭 Phân tích Dây chuyền (Pipeline Trace)" translate=no>​</a></h3>
+<p>Hãy nhìn dữ liệu chạy qua băng chuyền như thế nào:</p>
+<ol>
+<li class=""><strong>Source</strong>: <code>["Alice", "Bob", "Charlie", "David"]</code></li>
+<li class=""><strong>Filter (<code>> 4</code>)</strong>:
+<ul>
+<li class="">"Alice" (5) → ✅ Giữ</li>
+<li class="">"Bob" (3) → ❌ Loại</li>
+<li class="">"Charlie" (7) → ✅ Giữ</li>
+<li class="">"David" (5) → ✅ Giữ</li>
+<li class=""><em>Output</em>: <code>["Alice", "Charlie", "David"]</code></li>
+</ul>
+</li>
+<li class=""><strong>Map (<code>toUpperCase</code>)</strong>:
+<ul>
+<li class="">"Alice" → "ALICE"</li>
+<li class="">"Charlie" → "CHARLIE"</li>
+<li class="">"David" → "DAVID"</li>
+<li class=""><em>Output</em>: <code>["ALICE", "CHARLIE", "DAVID"]</code></li>
+</ul>
+</li>
+<li class=""><strong>Collect</strong>: Đóng gói vào List mới.</li>
+</ol>
+<blockquote>
+<p><strong>💡 Tại sao hay hơn Loop?</strong>
+Bạn không cần tạo biến tạm (<code>result</code>), không cần viết <code>if/else</code> lồng nhau. Logic cực kỳ rõ ràng "từ trái sang phải".</p>
+</blockquote>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">✅ Code ngắn gọn</li>
+<li class="">✅ Dễ đọc (đọc như câu văn)</li>
+<li class="">✅ Không cần quản lý state</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=642-stream-api-là-gì>6.4.2. Stream API là gì?<a href=#642-stream-api-là-gì class=hash-link aria-label="Đường dẫn trực tiếp đến 6.4.2. Stream API là gì?" title="Đường dẫn trực tiếp đến 6.4.2. Stream API là gì?" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=định-nghĩa-2>Định nghĩa<a href=#định-nghĩa-2 class=hash-link aria-label="Đường dẫn trực tiếp đến Định nghĩa" title="Đường dẫn trực tiếp đến Định nghĩa" translate=no>​</a></h4>
+<p><strong>Stream API</strong> là API để xử lý collections theo kiểu functional programming.</p>
+<p><strong>Đặc điểm:</strong></p>
+<ul>
+<li class="">Không lưu trữ dữ liệu (không phải cấu trúc dữ liệu)</li>
+<li class="">Functional (không thay đổi source)</li>
+<li class="">Lazy evaluation (chỉ xử lý khi cần)</li>
+<li class="">Có thể parallel</li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=tạo-stream>Tạo Stream<a href=#tạo-stream class=hash-link aria-label="Đường dẫn trực tiếp đến Tạo Stream" title="Đường dẫn trực tiếp đến Tạo Stream" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// Từ Collection</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> list = Arrays.asList("a", "b", "c");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Stream&lt;String> stream = list.stream();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Từ Array</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">String[] array = {"a", "b", "c"};</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Stream&lt;String> stream2 = Arrays.stream(array);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Từ values</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Stream&lt;String> stream3 = Stream.of("a", "b", "c");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Từ range</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">IntStream range = IntStream.range(1, 10);  // 1-9</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=643-các-toán-tử-stream>6.4.3. Các Toán tử Stream<a href=#643-các-toán-tử-stream class=hash-link aria-label="Đường dẫn trực tiếp đến 6.4.3. Các Toán tử Stream" title="Đường dẫn trực tiếp đến 6.4.3. Các Toán tử Stream" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=1-filter---lọc>1. filter() - Lọc<a href=#1-filter---lọc class=hash-link aria-label="Đường dẫn trực tiếp đến 1. filter() - Lọc" title="Đường dẫn trực tiếp đến 1. filter() - Lọc" translate=no>​</a></h4>
+<p><strong>Lọc phần tử thỏa điều kiện:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> evens = numbers.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .filter(n -> n % 2 == 0)  // Lọc số chẵn</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// [2, 4, 6]</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=2-map---chuyển-đổi>2. map() - Chuyển đổi<a href=#2-map---chuyển-đổi class=hash-link aria-label="Đường dẫn trực tiếp đến 2. map() - Chuyển đổi" title="Đường dẫn trực tiếp đến 2. map() - Chuyển đổi" translate=no>​</a></h4>
+<p><strong>Chuyển đổi mỗi phần tử:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("alice", "bob", "charlie");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> upper = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .map(String::toUpperCase)  // Chuyển thành chữ hoa</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// ["ALICE", "BOB", "CHARLIE"]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// map() có thể đổi kiểu</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> lengths = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .map(String::length)  // String → Integer</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// [5, 3, 7]</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=3-sorted---sắp-xếp>3. sorted() - Sắp xếp<a href=#3-sorted---sắp-xếp class=hash-link aria-label="Đường dẫn trực tiếp đến 3. sorted() - Sắp xếp" title="Đường dẫn trực tiếp đến 3. sorted() - Sắp xếp" translate=no>​</a></h4>
+<p><strong>Sắp xếp phần tử:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("Charlie", "Alice", "Bob");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> sorted = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .sorted()  // Sắp xếp tự nhiên</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// ["Alice", "Bob", "Charlie"]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Sắp xếp tùy chỉnh</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> sortedByLength = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .sorted((a, b) -> a.length() - b.length())  // Theo độ dài</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// ["Bob", "Alice", "Charlie"]</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=4-distinct---loại-bỏ-duplicate>4. distinct() - Loại bỏ duplicate<a href=#4-distinct---loại-bỏ-duplicate class=hash-link aria-label="Đường dẫn trực tiếp đến 4. distinct() - Loại bỏ duplicate" title="Đường dẫn trực tiếp đến 4. distinct() - Loại bỏ duplicate" translate=no>​</a></h4>
+<p><strong>Loại bỏ phần tử trùng:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> numbers = Arrays.asList(1, 2, 2, 3, 3, 3, 4);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> unique = numbers.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .distinct()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// [1, 2, 3, 4]</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=5-limit-và-skip>5. limit() và skip()<a href=#5-limit-và-skip class=hash-link aria-label="Đường dẫn trực tiếp đến 5. limit() và skip()" title="Đường dẫn trực tiếp đến 5. limit() và skip()" translate=no>​</a></h4>
+<p><strong>Giới hạn số lượng:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> first3 = numbers.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .limit(3)  // Lấy 3 phần tử đầu</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// [1, 2, 3]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> skip3 = numbers.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .skip(3)  // Bỏ qua 3 phần tử đầu</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// [4, 5, 6, 7, 8]</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=6-collect---thu-thập>6. collect() - Thu thập<a href=#6-collect---thu-thập class=hash-link aria-label="Đường dẫn trực tiếp đến 6. collect() - Thu thập" title="Đường dẫn trực tiếp đến 6. collect() - Thu thập" translate=no>​</a></h4>
+<p><strong>Thu thập kết quả:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("Alice", "Bob", "Charlie");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// To List</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> list = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// To Set</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Set&lt;String> set = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toSet());</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// To Map</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Map&lt;String, Integer> map = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toMap(</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        name -> name,           // Key</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        name -> name.length()  // Value</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    ));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// {"Alice": 5, "Bob": 3, "Charlie": 7}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Joining</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">String joined = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.joining(", "));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// "Alice, Bob, Charlie"</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=7-reduce---tổng-hợp>7. reduce() - Tổng hợp<a href=#7-reduce---tổng-hợp class=hash-link aria-label="Đường dẫn trực tiếp đến 7. reduce() - Tổng hợp" title="Đường dẫn trực tiếp đến 7. reduce() - Tổng hợp" translate=no>​</a></h4>
+<p><strong>Tổng hợp tất cả phần tử:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Tổng</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">int sum = numbers.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .reduce(0, (a, b) -> a + b);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// 15</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Hoặc</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">int sum2 = numbers.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .reduce(0, Integer::sum);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Tích</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">int product = numbers.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .reduce(1, (a, b) -> a * b);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// 120</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Max</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Optional&lt;Integer> max = numbers.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .reduce(Integer::max);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Optional[5]</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=8-foreach---duyệt>8. forEach() - Duyệt<a href=#8-foreach---duyệt class=hash-link aria-label="Đường dẫn trực tiếp đến 8. forEach() - Duyệt" title="Đường dẫn trực tiếp đến 8. forEach() - Duyệt" translate=no>​</a></h4>
+<p><strong>Duyệt và thực hiện hành động:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("Alice", "Bob", "Charlie");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .forEach(name -> System.out.println(name));</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// In từng tên</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=644-chain-of-operations>6.4.4. Chain of Operations<a href=#644-chain-of-operations class=hash-link aria-label="Đường dẫn trực tiếp đến 6.4.4. Chain of Operations" title="Đường dẫn trực tiếp đến 6.4.4. Chain of Operations" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=kết-hợp-nhiều-toán-tử>Kết hợp nhiều toán tử<a href=#kết-hợp-nhiều-toán-tử class=hash-link aria-label="Đường dẫn trực tiếp đến Kết hợp nhiều toán tử" title="Đường dẫn trực tiếp đến Kết hợp nhiều toán tử" translate=no>​</a></h4>
+<p><strong>Ví dụ: Tìm tên dài hơn 4 ký tự, chuyển thành chữ hoa, sắp xếp:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> names = Arrays.asList("Alice", "Bob", "Charlie", "David", "Eve");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> result = names.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .filter(name -> name.length() > 4)      // Lọc: ["Alice", "Charlie", "David"]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .map(String::toUpperCase)              // Chuyển đổi: ["ALICE", "CHARLIE", "DAVID"]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .sorted()                               // Sắp xếp: ["ALICE", "CHARLIE", "DAVID"]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());          // Thu thập</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">System.out.println(result);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// [ALICE, CHARLIE, DAVID]</span><br/></div></code></pre></div></div>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ-thực-tế-xử-lý-dữ-liệu-phức-tạp>Ví dụ thực tế: Xử lý dữ liệu phức tạp<a href=#ví-dụ-thực-tế-xử-lý-dữ-liệu-phức-tạp class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ thực tế: Xử lý dữ liệu phức tạp" title="Đường dẫn trực tiếp đến Ví dụ thực tế: Xử lý dữ liệu phức tạp" translate=no>​</a></h4>
+<p><strong>Bài toán: Từ danh sách sinh viên, tìm sinh viên có GPA >= 3.5, sắp xếp theo GPA giảm dần, lấy top 3:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;Student> students = Arrays.asList(</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    new Student("Alice", 3.8),</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    new Student("Bob", 3.2),</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    new Student("Charlie", 3.9),</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    new Student("David", 3.6),</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    new Student("Eve", 3.4)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;String> topStudents = students.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .filter(s -> s.getGpa() >= 3.5)                    // Lọc GPA >= 3.5</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .sorted((a, b) -> Double.compare(b.getGpa(), a.getGpa()))  // Sắp xếp giảm dần</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .limit(3)                                           // Lấy top 3</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .map(Student::getName)                              // Lấy tên</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .collect(Collectors.toList());                      // Thu thập</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">System.out.println(topStudents);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// [Charlie, Alice, David]</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=645-terminal-vs-intermediate-operations>6.4.5. Terminal vs Intermediate Operations<a href=#645-terminal-vs-intermediate-operations class=hash-link aria-label="Đường dẫn trực tiếp đến 6.4.5. Terminal vs Intermediate Operations" title="Đường dẫn trực tiếp đến 6.4.5. Terminal vs Intermediate Operations" translate=no>​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=phân-loại>Phân loại<a href=#phân-loại class=hash-link aria-label="Đường dẫn trực tiếp đến Phân loại" title="Đường dẫn trực tiếp đến Phân loại" translate=no>​</a></h4>
+<p><strong>Intermediate Operations (Toán tử trung gian):</strong></p>
+<ul>
+<li class="">Trả về Stream</li>
+<li class="">Lazy (chỉ thực thi khi có terminal operation)</li>
+<li class="">Có thể chain nhiều operations</li>
+<li class="">Ví dụ: <code>filter()</code>, <code>map()</code>, <code>sorted()</code>, <code>distinct()</code></li>
+</ul>
+<p><strong>Terminal Operations (Toán tử kết thúc):</strong></p>
+<ul>
+<li class="">Trả về kết quả cụ thể (không phải Stream)</li>
+<li class="">Thực thi toàn bộ pipeline</li>
+<li class="">Ví dụ: <code>collect()</code>, <code>forEach()</code>, <code>reduce()</code>, <code>count()</code></li>
+</ul>
+<hr/>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ví-dụ>Ví dụ<a href=#ví-dụ class=hash-link aria-label="Đường dẫn trực tiếp đến Ví dụ" title="Đường dẫn trực tiếp đến Ví dụ" translate=no>​</a></h4>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Intermediate operations (chưa thực thi)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Stream&lt;Integer> stream = numbers.stream()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .filter(n -> n % 2 == 0)  // Intermediate</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    .map(n -> n * 2);          // Intermediate</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Terminal operation (thực thi tất cả)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> result = stream.collect(Collectors.toList());  // Terminal</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// [4, 8]</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=65-java-record-java-14---data-carrier-classes>6.5. JAVA RECORD (JAVA 14+) - DATA CARRIER CLASSES<a href=#65-java-record-java-14---data-carrier-classes class=hash-link aria-label="Đường dẫn trực tiếp đến 6.5. JAVA RECORD (JAVA 14+) - DATA CARRIER CLASSES" title="Đường dẫn trực tiếp đến 6.5. JAVA RECORD (JAVA 14+) - DATA CARRIER CLASSES" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=651-vấn-đề-của-class-thông-thường-pojodto>6.5.1. Vấn đề của class thông thường (POJO/DTO)<a href=#651-vấn-đề-của-class-thông-thường-pojodto class=hash-link aria-label="Đường dẫn trực tiếp đến 6.5.1. Vấn đề của class thông thường (POJO/DTO)" title="Đường dẫn trực tiếp đến 6.5.1. Vấn đề của class thông thường (POJO/DTO)" translate=no>​</a></h3>
+<p>Khi bạn muốn tạo một class chỉ để chứa dữ liệu (ví dụ: <code>User</code>, <code>Point</code>, <code>ProductDTO</code>), bạn phải viết rất nhiều code lặp đi lặp lại (boilerplate code):</p>
+<ul>
+<li class="">Khai báo fields (<code>private final</code>)</li>
+<li class="">Viết Constructor</li>
+<li class="">Viết Getters</li>
+<li class="">Override <code>equals()</code> và <code>hashCode()</code> (Cực kỳ quan trọng khi dùng với HashMap/HashSet)</li>
+<li class="">Override <code>toString()</code></li>
+</ul>
+<p><strong>Code truyền thống:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public class Point {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private final int x;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    private final int y;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public Point(int x, int y) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.x = x;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        this.y = y;</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public int getX() { return x; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public int getY() { return y; }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public boolean equals(Object o) { ... }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public int hashCode() { ... }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    @Override</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public String toString() { ... }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><em>Bạn mất 30 dòng code chỉ để lưu tọa độ x và y!</em></p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=652-giải-pháp-java-record>6.5.2. Giải pháp: Java Record<a href=#652-giải-pháp-java-record class=hash-link aria-label="Đường dẫn trực tiếp đến 6.5.2. Giải pháp: Java Record" title="Đường dẫn trực tiếp đến 6.5.2. Giải pháp: Java Record" translate=no>​</a></h3>
+<p>Từ Java 14, bạn có thể thay thế toàn bộ class trên bằng <strong>ĐÚNG MỘT DÒNG CODE</strong>:</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public record Point(int x, int y) {}</span><br/></div></code></pre></div></div>
+<p><strong>Record tự động làm gì cho bạn?</strong></p>
+<ol>
+<li class=""><strong>Immutability (Bất biến)</strong>: Các biến <code>x</code>, <code>y</code> tự động là <code>private final</code>. Không thể sửa giá trị sau khi tạo.</li>
+<li class=""><strong>Tự động sinh Constructor</strong>.</li>
+<li class=""><strong>Tự động sinh Getter</strong>: Lưu ý, getter của Record là <code>point.x()</code> và <code>point.y()</code>, không phải <code>getX()</code>.</li>
+<li class=""><strong>Tự động sinh <code>equals()</code>, <code>hashCode()</code> và <code>toString()</code> chuẩn chỉ</strong>.</li>
+</ol>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=653-sử-dụng-record-với-collections-sự-kết-hợp-hoàn-hảo>6.5.3. Sử dụng Record với Collections (Sự kết hợp hoàn hảo)<a href=#653-sử-dụng-record-với-collections-sự-kết-hợp-hoàn-hảo class=hash-link aria-label="Đường dẫn trực tiếp đến 6.5.3. Sử dụng Record với Collections (Sự kết hợp hoàn hảo)" title="Đường dẫn trực tiếp đến 6.5.3. Sử dụng Record với Collections (Sự kết hợp hoàn hảo)" translate=no>​</a></h3>
+<p>Bởi vì Record tự động implement <code>equals()</code> và <code>hashCode()</code> rất chuẩn xác, nó là <strong>ứng cử viên hoàn hảo số 1</strong> để làm <strong>Key trong HashMap</strong> hoặc <strong>Phần tử trong HashSet</strong>.</p>
+<p><strong>Ví dụ:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">public record StudentKey(String studentId, String classCode) {}</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">public class Main {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    public static void main(String[] args) {</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        Map&lt;StudentKey, Double> grades = new HashMap&lt;>();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        StudentKey key1 = new StudentKey("SV01", "CS101");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        grades.put(key1, 9.5);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Tạo một key MỚI nhưng có cùng dữ liệu</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        StudentKey key2 = new StudentKey("SV01", "CS101");</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // HashMap hoạt động chính xác vì Record đã tự động overide equals và hashCode</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println(grades.get(key2)); // In ra: 9.5</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        // Thử toString()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">        System.out.println(key1); // In ra: StudentKey[studentId=SV01, classCode=CS101]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p><strong>Khi nào dùng Record?</strong></p>
+<ul>
+<li class="">✅ Làm Key cho <code>Map</code>.</li>
+<li class="">✅ Làm Data Transfer Object (DTO) để trả data từ DB hoặc API.</li>
+<li class="">✅ Làm Tuple để trả về nhiều kết quả từ 1 hàm.</li>
+<li class="">❌ KHÔNG dùng Record nếu đối tượng cần thay đổi trạng thái (mutable) như <code>Entity</code> có hàm <code>setX()</code>.</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-bảng-lựa-chọn--ôn-tập-chương-6>📊 BẢNG LỰA CHỌN & ÔN TẬP (CHƯƠNG 6)<a href=#-bảng-lựa-chọn--ôn-tập-chương-6 class=hash-link aria-label="Đường dẫn trực tiếp đến 📊 BẢNG LỰA CHỌN & ÔN TẬP (CHƯƠNG 6)" title="Đường dẫn trực tiếp đến 📊 BẢNG LỰA CHỌN & ÔN TẬP (CHƯƠNG 6)" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=nhắc-lại-wrapper-classes-chương-1>Nhắc lại Wrapper Classes (Chương 1)<a href=#nhắc-lại-wrapper-classes-chương-1 class=hash-link aria-label="Đường dẫn trực tiếp đến Nhắc lại Wrapper Classes (Chương 1)" title="Đường dẫn trực tiếp đến Nhắc lại Wrapper Classes (Chương 1)" translate=no>​</a></h3>
+<p>Collections <strong>chỉ chứa object</strong>, không chứa primitive:</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;Integer> list = new ArrayList&lt;>();  // ✅</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// List&lt;int> list = ...;               // ❌ không compile</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">list.add(10);        // autoboxing: int → Integer</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">int x = list.get(0); // unboxing: Integer → int</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=cây-quyết-định-chọn-list--set--map>Cây quyết định: Chọn List / Set / Map<a href=#cây-quyết-định-chọn-list--set--map class=hash-link aria-label="Đường dẫn trực tiếp đến Cây quyết định: Chọn List / Set / Map" title="Đường dẫn trực tiếp đến Cây quyết định: Chọn List / Set / Map" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Cần lưu nhóm phần tử?</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">├── Cần tra cứu theo KEY → Map (HashMap, TreeMap)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">└── Chỉ cần tập phần tử</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    ├── Cần thứ tự, cho phép trùng → List (ArrayList / LinkedList)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    └── Không trùng → Set (HashSet / TreeSet)</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=arraylist-vs-linkedlist-tóm-tắt>ArrayList vs LinkedList (tóm tắt)<a href=#arraylist-vs-linkedlist-tóm-tắt class=hash-link aria-label="Đường dẫn trực tiếp đến ArrayList vs LinkedList (tóm tắt)" title="Đường dẫn trực tiếp đến ArrayList vs LinkedList (tóm tắt)" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Thao tác<th>ArrayList<th>LinkedList<tbody><tr><td>Truy cập index<td>O(1) – nhanh<td>O(n) – chậm<tr><td>Thêm/xóa đầu danh sách<td>O(n) – chậm<td>O(1) – nhanh<tr><td><strong>Chọn khi</strong><td>Đọc nhiều, ít chèn đầu<td>Chèn/xóa đầu nhiều</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=imperative-vs-declarative-stream>Imperative vs Declarative (Stream)<a href=#imperative-vs-declarative-stream class=hash-link aria-label="Đường dẫn trực tiếp đến Imperative vs Declarative (Stream)" title="Đường dẫn trực tiếp đến Imperative vs Declarative (Stream)" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Imperative<th>Declarative (Stream)<tbody><tr><td>“Làm từng bước” (for, if)<td>“Muốn gì” (filter, map, collect)<tr><td>Dễ debug từng dòng<td>Ngắn gọn, dễ đọc với pipeline<tr><td>Ví dụ: vòng for lọc số chẵn<td><code>stream().filter(n -> n%2==0).collect(...)</code></table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-tổng-kết-môn-học-sau-chương-6>🔗 TỔNG KẾT MÔN HỌC (SAU CHƯƠNG 6)<a href=#-tổng-kết-môn-học-sau-chương-6 class=hash-link aria-label="Đường dẫn trực tiếp đến 🔗 TỔNG KẾT MÔN HỌC (SAU CHƯƠNG 6)" title="Đường dẫn trực tiếp đến 🔗 TỔNG KẾT MÔN HỌC (SAU CHƯƠNG 6)" translate=no>​</a></h2>
+<p>Bạn đã đi trọn lộ trình:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Ch.1 Java + OOP tư duy → Ch.2 Class/Object → Ch.3 Kế thừa/Đa hình</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">→ Ch.4 SOLID & Pattern → Ch.5 Exception & Test → Ch.6 Collections & Stream</span><br/></div></code></pre></div></div>
+<p><strong>Dự án tích hợp gợi ý:</strong> Hệ thống quản lý thư viện / sản phẩm – dùng class (Ch.2–3), thiết kế SOLID (Ch.4), test + file (Ch.5), lưu danh sách bằng Collections + Stream (Ch.6).</p>
+<p><strong>Ôn thi:</strong> Xem <a class="" href=/lap-trinh-huong-doi-tuong/>README.md</a> – mục đề thi và checklist từng chương.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-tóm-tắt-chương-6>📝 TÓM TẮT CHƯƠNG 6<a href=#-tóm-tắt-chương-6 class=hash-link aria-label="Đường dẫn trực tiếp đến 📝 TÓM TẮT CHƯƠNG 6" title="Đường dẫn trực tiếp đến 📝 TÓM TẮT CHƯƠNG 6" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=kiến-thức-đã-học>Kiến thức đã học:<a href=#kiến-thức-đã-học class=hash-link aria-label="Đường dẫn trực tiếp đến Kiến thức đã học:" title="Đường dẫn trực tiếp đến Kiến thức đã học:" translate=no>​</a></h3>
+<ol>
+<li class="">✅ Java Collections Framework (List, Set, Map)</li>
+<li class="">✅ So sánh ArrayList vs LinkedList, HashSet vs TreeSet</li>
+<li class="">✅ Generics và Type Safety</li>
+<li class="">✅ Lambda Expressions</li>
+<li class="">✅ Functional Interfaces (Predicate, Consumer, Function)</li>
+<li class="">✅ Stream API và các toán tử</li>
+<li class="">✅ Imperative vs Declarative programming</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=kỹ-năng-đã-có>Kỹ năng đã có:<a href=#kỹ-năng-đã-có class=hash-link aria-label="Đường dẫn trực tiếp đến Kỹ năng đã có:" title="Đường dẫn trực tiếp đến Kỹ năng đã có:" translate=no>​</a></h3>
+<ul>
+<li class="">✅ Chọn cấu trúc dữ liệu phù hợp</li>
+<li class="">✅ Sử dụng Generics đúng cách</li>
+<li class="">✅ Viết Lambda Expressions</li>
+<li class="">✅ Xử lý dữ liệu với Stream API</li>
+<li class="">✅ Chuyển đổi code từ Imperative sang Declarative</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-bài-tập-chương-6>🎯 BÀI TẬP CHƯƠNG 6<a href=#-bài-tập-chương-6 class=hash-link aria-label="Đường dẫn trực tiếp đến 🎯 BÀI TẬP CHƯƠNG 6" title="Đường dẫn trực tiếp đến 🎯 BÀI TẬP CHƯƠNG 6" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-1-collections-cơ-bản>Bài 1: Collections cơ bản<a href=#bài-1-collections-cơ-bản class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 1: Collections cơ bản" title="Đường dẫn trực tiếp đến Bài 1: Collections cơ bản" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong></p>
+<ol>
+<li class="">Tạo <code>List&lt;String></code> chứa tên 5 sinh viên</li>
+<li class="">Tạo <code>Set&lt;Integer></code> chứa ID duy nhất</li>
+<li class="">Tạo <code>Map&lt;String, Double></code> chứa điểm số (tên → điểm)</li>
+<li class="">Duyệt và in tất cả</li>
+</ol>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-2-so-sánh-arraylist-vs-linkedlist>Bài 2: So sánh ArrayList vs LinkedList<a href=#bài-2-so-sánh-arraylist-vs-linkedlist class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 2: So sánh ArrayList vs LinkedList" title="Đường dẫn trực tiếp đến Bài 2: So sánh ArrayList vs LinkedList" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong></p>
+<ol>
+<li class="">Tạo ArrayList và LinkedList với 10000 phần tử</li>
+<li class="">Đo thời gian:
+<ul>
+<li class="">Thêm 1000 phần tử vào đầu</li>
+<li class="">Truy cập phần tử ở giữa 1000 lần</li>
+</ul>
+</li>
+<li class="">So sánh kết quả và giải thích</li>
+</ol>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-3-generics>Bài 3: Generics<a href=#bài-3-generics class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 3: Generics" title="Đường dẫn trực tiếp đến Bài 3: Generics" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong></p>
+<ol>
+<li class="">Tạo generic class <code>Pair&lt;T, U></code> lưu 2 giá trị</li>
+<li class="">Tạo generic method <code>swap()</code> đổi vị trí 2 phần tử trong mảng</li>
+<li class="">Tạo bounded generic class <code>NumberBox&lt;T extends Number></code></li>
+</ol>
+<p><strong>Test:</strong></p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Pair&lt;String, Integer> pair = new Pair&lt;>("Age", 25);</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">System.out.println(pair.getFirst());  // "Age"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">System.out.println(pair.getSecond()); // 25</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-4-lambda-expressions>Bài 4: Lambda Expressions<a href=#bài-4-lambda-expressions class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 4: Lambda Expressions" title="Đường dẫn trực tiếp đến Bài 4: Lambda Expressions" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong></p>
+<ol>
+<li class="">Sắp xếp List<string> theo độ dài (dùng Lambda)</string></li>
+<li class="">Lọc List<integer> chỉ lấy số chẵn (dùng Lambda)</integer></li>
+<li class="">Chuyển List<string> thành chữ hoa (dùng Lambda)</string></li>
+</ol>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-5-functional-interfaces>Bài 5: Functional Interfaces<a href=#bài-5-functional-interfaces class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 5: Functional Interfaces" title="Đường dẫn trực tiếp đến Bài 5: Functional Interfaces" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Tạo các Functional Interface và sử dụng:</p>
+<ol>
+<li class=""><code>Predicate&lt;Integer></code>: Kiểm tra số nguyên tố</li>
+<li class=""><code>Function&lt;String, Integer></code>: Đếm số từ trong chuỗi</li>
+<li class=""><code>Consumer&lt;String></code>: In chuỗi với format đặc biệt</li>
+</ol>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-6-stream-api---xử-lý-dữ-liệu>Bài 6: Stream API - Xử lý dữ liệu<a href=#bài-6-stream-api---xử-lý-dữ-liệu class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 6: Stream API - Xử lý dữ liệu" title="Đường dẫn trực tiếp đến Bài 6: Stream API - Xử lý dữ liệu" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Cho danh sách sinh viên:</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">List&lt;Student> students = Arrays.asList(</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    new Student("Alice", 20, 3.8),</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    new Student("Bob", 21, 3.2),</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    new Student("Charlie", 19, 3.9),</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    new Student("David", 22, 3.6),</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    new Student("Eve", 20, 3.4)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">);</span><br/></div></code></pre></div></div>
+<p><strong>Dùng Stream API để:</strong></p>
+<ol>
+<li class="">Tìm sinh viên có GPA >= 3.5</li>
+<li class="">Sắp xếp theo GPA giảm dần</li>
+<li class="">Lấy top 3</li>
+<li class="">Tính GPA trung bình</li>
+<li class="">Nhóm theo tuổi</li>
+</ol>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bài-7-tổng-hợp---hệ-thống-quản-lý-sản-phẩm>Bài 7: Tổng hợp - Hệ thống Quản lý Sản phẩm<a href=#bài-7-tổng-hợp---hệ-thống-quản-lý-sản-phẩm class=hash-link aria-label="Đường dẫn trực tiếp đến Bài 7: Tổng hợp - Hệ thống Quản lý Sản phẩm" title="Đường dẫn trực tiếp đến Bài 7: Tổng hợp - Hệ thống Quản lý Sản phẩm" translate=no>​</a></h3>
+<p><strong>Yêu cầu:</strong>
+Tạo hệ thống quản lý sản phẩm với:</p>
+<ol>
+<li class="">
+<p><strong>Class <code>Product</code></strong>:</p>
+<ul>
+<li class="">Fields: id, name, price, category</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Class <code>ProductManager</code></strong>:</p>
+<ul>
+<li class="">Sử dụng Collections để lưu trữ</li>
+<li class="">Methods sử dụng Stream API:
+<ul>
+<li class=""><code>findByCategory(String category)</code>: Tìm theo danh mục</li>
+<li class=""><code>findExpensiveProducts(double minPrice)</code>: Tìm sản phẩm đắt</li>
+<li class=""><code>getAveragePrice()</code>: Tính giá trung bình</li>
+<li class=""><code>getProductsByPriceRange(double min, double max)</code>: Tìm trong khoảng giá</li>
+<li class=""><code>getTopExpensiveProducts(int n)</code>: Lấy n sản phẩm đắt nhất</li>
+<li class=""><code>groupByCategory()</code>: Nhóm theo danh mục</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Yêu cầu:</strong></p>
+<ul>
+<li class="">Sử dụng Generics</li>
+<li class="">Tất cả methods dùng Stream API</li>
+<li class="">Code Declarative (không dùng vòng lặp for)</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=-tài-liệu-tham-khảo>📚 TÀI LIỆU THAM KHẢO<a href=#-tài-liệu-tham-khảo class=hash-link aria-label="Đường dẫn trực tiếp đến 📚 TÀI LIỆU THAM KHẢO" title="Đường dẫn trực tiếp đến 📚 TÀI LIỆU THAM KHẢO" translate=no>​</a></h2>
+<ol>
+<li class=""><strong>Java Collections Tutorial</strong>: <a href=https://docs.oracle.com/javase/tutorial/collections/ target=_blank rel="noopener noreferrer" class="">https://docs.oracle.com/javase/tutorial/collections/</a></li>
+<li class=""><strong>Java Stream API</strong>: <a href=https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html target=_blank rel="noopener noreferrer" class="">https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html</a></li>
+<li class=""><strong>Effective Java</strong> - Joshua Bloch (Item 26-37: Generics)</li>
+</ol>
+<hr/>
+<p><strong>Chúc bạn học tốt! 🚀</strong></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/thayduy/lap-trinh-huong-doi-tuong/tree/main/docs/CHUONG_6_LT.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Sửa trang này</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Trang tài liệu"><a class="pagination-nav__link pagination-nav__link--prev" href=/lap-trinh-huong-doi-tuong/CHUONG_5_LT><div class=pagination-nav__sublabel>Trước</div><div class=pagination-nav__label>CHƯƠNG 5: XỬ LÝ NGOẠI LỆ (EXCEPTIONS) & KIỂM THỬ (TESTING)</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/lap-trinh-huong-doi-tuong/><div class=pagination-nav__sublabel>Kế tiếp</div><div class=pagination-nav__label>📘 GIÁO TRÌNH LÝ THUYẾT – LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG (JAVA)</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#-mục-tiêu-học-tập class="table-of-contents__link toc-highlight">📚 MỤC TIÊU HỌC TẬP</a><li><a href=#-kiến-thức-cần-có-prerequisites class="table-of-contents__link toc-highlight">📋 KIẾN THỨC CẦN CÓ (PREREQUISITES)</a><li><a href=#-hướng-dẫn-học-sâu--code-chạy-thử class="table-of-contents__link toc-highlight">🎓 HƯỚNG DẪN HỌC SÂU & CODE CHẠY THỬ</a><li><a href=#61-java-collections-framework class="table-of-contents__link toc-highlight">6.1. JAVA COLLECTIONS FRAMEWORK</a><ul><li><a href=#611-collections-là-gì class="table-of-contents__link toc-highlight">6.1.1. Collections là gì?</a><li><a href=#612-list-interface class="table-of-contents__link toc-highlight">6.1.2. List Interface</a><li><a href=#613-set-interface class="table-of-contents__link toc-highlight">6.1.3. Set Interface</a><li><a href=#614-map-interface class="table-of-contents__link toc-highlight">6.1.4. Map Interface</a><li><a href=#615-tiêu-chí-lựa-chọn-cấu-trúc-dữ-liệu class="table-of-contents__link toc-highlight">6.1.5. Tiêu chí Lựa chọn Cấu trúc Dữ liệu</a><li><a href=#️-phân-tích-hiệu-năng-performance-analysis class="table-of-contents__link toc-highlight">🏎️ Phân tích Hiệu Năng (Performance Analysis)</a></ul><li><a href=#62-generics class="table-of-contents__link toc-highlight">6.2. GENERICS</a><ul><li><a href=#621-generics-là-gì class="table-of-contents__link toc-highlight">6.2.1. Generics là gì?</a><li><a href=#622-cú-pháp-generics class="table-of-contents__link toc-highlight">6.2.2. Cú pháp Generics</a><li><a href=#623-wildcards class="table-of-contents__link toc-highlight">6.2.3. Wildcards</a></ul><li><a href=#63-lambda-expressions--functional-interfaces class="table-of-contents__link toc-highlight">6.3. LAMBDA EXPRESSIONS & FUNCTIONAL INTERFACES</a><ul><li><a href=#631-lambda-expressions-là-gì class="table-of-contents__link toc-highlight">6.3.1. Lambda Expressions là gì?</a><li><a href=#632-cú-pháp-lambda class="table-of-contents__link toc-highlight">6.3.2. Cú pháp Lambda</a><li><a href=#633-functional-interfaces class="table-of-contents__link toc-highlight">6.3.3. Functional Interfaces</a></ul><li><a href=#64-stream-api-tư-duy-declarative class="table-of-contents__link toc-highlight">6.4. STREAM API (TƯ DUY DECLARATIVE)</a><ul><li><a href=#641-imperative-vs-declarative class="table-of-contents__link toc-highlight">6.4.1. Imperative vs Declarative</a><li><a href=#-phân-tích-dây-chuyền-pipeline-trace class="table-of-contents__link toc-highlight">🏭 Phân tích Dây chuyền (Pipeline Trace)</a><li><a href=#642-stream-api-là-gì class="table-of-contents__link toc-highlight">6.4.2. Stream API là gì?</a><li><a href=#643-các-toán-tử-stream class="table-of-contents__link toc-highlight">6.4.3. Các Toán tử Stream</a><li><a href=#644-chain-of-operations class="table-of-contents__link toc-highlight">6.4.4. Chain of Operations</a><li><a href=#645-terminal-vs-intermediate-operations class="table-of-contents__link toc-highlight">6.4.5. Terminal vs Intermediate Operations</a></ul><li><a href=#65-java-record-java-14---data-carrier-classes class="table-of-contents__link toc-highlight">6.5. JAVA RECORD (JAVA 14+) - DATA CARRIER CLASSES</a><ul><li><a href=#651-vấn-đề-của-class-thông-thường-pojodto class="table-of-contents__link toc-highlight">6.5.1. Vấn đề của class thông thường (POJO/DTO)</a><li><a href=#652-giải-pháp-java-record class="table-of-contents__link toc-highlight">6.5.2. Giải pháp: Java Record</a><li><a href=#653-sử-dụng-record-với-collections-sự-kết-hợp-hoàn-hảo class="table-of-contents__link toc-highlight">6.5.3. Sử dụng Record với Collections (Sự kết hợp hoàn hảo)</a></ul><li><a href=#-bảng-lựa-chọn--ôn-tập-chương-6 class="table-of-contents__link toc-highlight">📊 BẢNG LỰA CHỌN & ÔN TẬP (CHƯƠNG 6)</a><ul><li><a href=#nhắc-lại-wrapper-classes-chương-1 class="table-of-contents__link toc-highlight">Nhắc lại Wrapper Classes (Chương 1)</a><li><a href=#cây-quyết-định-chọn-list--set--map class="table-of-contents__link toc-highlight">Cây quyết định: Chọn List / Set / Map</a><li><a href=#arraylist-vs-linkedlist-tóm-tắt class="table-of-contents__link toc-highlight">ArrayList vs LinkedList (tóm tắt)</a><li><a href=#imperative-vs-declarative-stream class="table-of-contents__link toc-highlight">Imperative vs Declarative (Stream)</a></ul><li><a href=#-tổng-kết-môn-học-sau-chương-6 class="table-of-contents__link toc-highlight">🔗 TỔNG KẾT MÔN HỌC (SAU CHƯƠNG 6)</a><li><a href=#-tóm-tắt-chương-6 class="table-of-contents__link toc-highlight">📝 TÓM TẮT CHƯƠNG 6</a><ul><li><a href=#kiến-thức-đã-học class="table-of-contents__link toc-highlight">Kiến thức đã học:</a><li><a href=#kỹ-năng-đã-có class="table-of-contents__link toc-highlight">Kỹ năng đã có:</a></ul><li><a href=#-bài-tập-chương-6 class="table-of-contents__link toc-highlight">🎯 BÀI TẬP CHƯƠNG 6</a><ul><li><a href=#bài-1-collections-cơ-bản class="table-of-contents__link toc-highlight">Bài 1: Collections cơ bản</a><li><a href=#bài-2-so-sánh-arraylist-vs-linkedlist class="table-of-contents__link toc-highlight">Bài 2: So sánh ArrayList vs LinkedList</a><li><a href=#bài-3-generics class="table-of-contents__link toc-highlight">Bài 3: Generics</a><li><a href=#bài-4-lambda-expressions class="table-of-contents__link toc-highlight">Bài 4: Lambda Expressions</a><li><a href=#bài-5-functional-interfaces class="table-of-contents__link toc-highlight">Bài 5: Functional Interfaces</a><li><a href=#bài-6-stream-api---xử-lý-dữ-liệu class="table-of-contents__link toc-highlight">Bài 6: Stream API - Xử lý dữ liệu</a><li><a href=#bài-7-tổng-hợp---hệ-thống-quản-lý-sản-phẩm class="table-of-contents__link toc-highlight">Bài 7: Tổng hợp - Hệ thống Quản lý Sản phẩm</a></ul><li><a href=#-tài-liệu-tham-khảo class="table-of-contents__link toc-highlight">📚 TÀI LIỆU THAM KHẢO</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Tài liệu</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/lap-trinh-huong-doi-tuong/>Lý thuyết</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Liên kết</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/thayduy/lap-trinh-huong-doi-tuong target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright © 2026 Lập trình Hướng đối tượng. Built with Docusaurus.</div></div></div></footer></div></body>
